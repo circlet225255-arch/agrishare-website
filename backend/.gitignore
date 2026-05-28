@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+npm-debug.log
+npm-error.log
+yarn-debug.log
+yarn-error.log
+
+# Environment
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Build
+dist/
+build/
+
+# Logs
+logs/
+*.log
+
+# Tests
+.nyc_output/
+coverage/
+
+# Temp files
+tmp/
+temp/
+uploads/*
+!uploads/.gitkeep

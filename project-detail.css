@@ -1,0 +1,118 @@
+.detail-shell {
+  min-height: 100vh;
+  padding: clamp(18px, 4vw, 42px);
+  background:
+    linear-gradient(125deg, rgba(232, 245, 233, 0.95), rgba(255, 250, 240, 0.9) 44%, rgba(244, 232, 208, 0.85)),
+    var(--field);
+}
+
+.detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.detail-header .tracking-brand {
+  color: var(--ink);
+}
+
+.detail-header .tracking-brand small {
+  color: var(--muted);
+}
+
+.detail-content {
+  display: grid;
+  gap: 18px;
+}
+
+.detail-hero {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.detail-hero img,
+.detail-card {
+  border: 1px solid rgba(255, 255, 255, 0.62);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.62);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(22px) saturate(1.28);
+}
+
+.detail-hero img {
+  width: 100%;
+  min-height: 420px;
+  object-fit: cover;
+}
+
+.detail-card {
+  display: grid;
+  gap: 14px;
+  padding: clamp(22px, 4vw, 34px);
+}
+
+.detail-card h1,
+.detail-card h2 {
+  margin: 0;
+  line-height: 1.08;
+}
+
+.detail-card h1 {
+  font-size: clamp(2rem, 5vw, 4.5rem);
+}
+
+.secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.62);
+  border-radius: 8px;
+  padding: 0 18px;
+  color: var(--leaf-dark);
+  background: rgba(255, 255, 255, 0.5);
+  font-weight: 800;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.package-list,
+.update-list,
+.faq-list,
+.quality-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.package-list li,
+.update-list li,
+.faq-list li,
+.quality-list li {
+  border: 1px solid rgba(255, 255, 255, 0.62);
+  border-radius: 8px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 900px) {
+  .detail-hero,
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

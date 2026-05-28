@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="AgriShare đã ghi nhận đơn đầu tư. Xem mã đơn, hướng dẫn thanh toán và gửi thông tin biên lai." />
+    <title>AgriShare | Đã ghi nhận đơn</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="assets/agrishare-logo-icon.png" />
+    <link rel="stylesheet" href="track-order.css" />
+  </head>
+  <body>
+    <main class="tracking-shell">
+      <section class="tracking-hero">
+        <a class="tracking-brand" href="index.html" aria-label="AgriShare">
+          <img src="assets/agrishare-emblem.png" alt="" />
+          <span>
+            <strong><span>AGRI</span>SHARE</strong>
+            <small>Đơn đầu tư đã được ghi nhận</small>
+          </span>
+        </a>
+        <div>
+          <p class="eyebrow">Cảm ơn bạn</p>
+          <h1>AgriShare đã nhận yêu cầu đầu tư.</h1>
+          <p>Đội ngũ sẽ liên hệ xác nhận quyền lợi, thanh toán, lịch nhận sản phẩm hoặc trải nghiệm farm.</p>
+        </div>
+      </section>
+
+      <section class="tracking-panel">
+        <article class="tracking-result" id="thankYouResult">
+          <h2>Đang tải đơn...</h2>
+        </article>
+
+        <form class="tracking-form" id="receiptForm">
+          <p class="eyebrow">Gửi thông tin thanh toán</p>
+          <label>
+            Mã giao dịch hoặc nội dung chuyển khoản
+            <input name="paymentReference" type="text" placeholder="VD: AGS-20260528-ABCDE" />
+          </label>
+          <label>
+            Link ảnh biên lai
+            <input name="receiptUrl" type="url" placeholder="Dán link ảnh biên lai nếu có" />
+          </label>
+          <label>
+            Hoặc upload ảnh/PDF biên lai
+            <input name="receiptFile" type="file" accept="image/png,image/jpeg,image/webp,application/pdf" />
+          </label>
+          <label>
+            Ghi chú
+            <input name="receiptNote" type="text" placeholder="Ngân hàng, thời gian chuyển khoản..." />
+          </label>
+          <button class="primary-button" type="submit">Gửi biên lai</button>
+          <p class="form-status" id="receiptStatus" role="status"></p>
+        </form>
+      </section>
+    </main>
+    <script src="config.js"></script>
+    <script src="thank-you.js"></script>
+  </body>
+</html>

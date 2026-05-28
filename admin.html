@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Trang quản trị đơn đầu tư AgriShare, theo dõi khách hàng, gói đầu tư và trạng thái xử lý."
+    />
+    <title>AgriShare Admin | Quản trị đơn đầu tư</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="assets/agrishare-logo-icon.png" />
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body>
+    <main class="admin-shell">
+      <aside class="admin-sidebar">
+        <a class="admin-brand" href="index.html" aria-label="AgriShare">
+          <img src="assets/agrishare-emblem.png" alt="" />
+          <span>
+            <strong><span>AGRI</span>SHARE</strong>
+            <small>Quản trị vận hành</small>
+          </span>
+        </a>
+
+        <nav class="admin-nav" aria-label="Điều hướng quản trị">
+          <a class="active" href="#orders" data-admin-view="orders">Đơn đầu tư</a>
+          <a href="#projects" data-admin-view="projects">Dự án/Farm</a>
+          <a href="#customers" data-admin-view="customers">Khách hàng CRM</a>
+          <a href="#analytics" data-admin-view="analytics">Analytics</a>
+          <a href="#settings" data-admin-view="settings">Cấu hình</a>
+          <a href="#audit" data-admin-view="audit">Nhật ký hệ thống</a>
+          <a href="#account" data-admin-view="account">Tài khoản</a>
+          <a href="index.html#projects">Website khách hàng</a>
+        </nav>
+
+        <div class="admin-help">
+          <strong>Luồng xử lý</strong>
+          <span>Ghi nhận đơn</span>
+          <span>Tư vấn xác nhận</span>
+          <span>Thanh toán</span>
+          <span>Ký quỹ</span>
+          <span>Theo dõi mùa vụ</span>
+          <span>Bàn giao sản phẩm</span>
+        </div>
+      </aside>
+
+      <section class="admin-main" id="orders">
+        <header class="admin-topbar">
+          <div>
+            <p class="eyebrow">AgriShare Admin</p>
+            <h1>Quản trị đơn đầu tư</h1>
+            <p>Theo dõi khách hàng, gói đầu tư, hình thức nhận sản phẩm và trạng thái đơn.</p>
+          </div>
+          <div class="admin-session" id="sessionBox">
+            <span id="sessionName">Chưa đăng nhập</span>
+            <button class="ghost-button" type="button" id="logoutButton" hidden>Đăng xuất</button>
+          </div>
+        </header>
+
+        <section class="login-panel" id="loginPanel">
+          <div>
+            <p class="eyebrow">Đăng nhập</p>
+            <h2>Vào trang quản trị</h2>
+            <p>Dùng tài khoản admin, sale, farm hoặc auditor đã seed trong backend để vào đúng khu vận hành.</p>
+          </div>
+          <form class="login-form" id="loginForm">
+            <label>
+              Email admin
+              <input name="email" type="email" autocomplete="username" required placeholder="admin@agrishare.com" />
+            </label>
+            <label>
+              Mật khẩu
+              <input name="password" type="password" autocomplete="current-password" required placeholder="Mật khẩu admin" />
+            </label>
+            <button class="primary-button" type="submit">Đăng nhập</button>
+            <p class="form-status" id="loginStatus" role="status"></p>
+          </form>
+          <div class="role-hints">
+            <span><strong>Admin</strong> admin@agrishare.com / admin123</span>
+            <span><strong>Sale</strong> sale@agrishare.com / sale123</span>
+            <span><strong>Farm</strong> farm@agrishare.com / farm123</span>
+            <span><strong>Auditor</strong> auditor@agrishare.com / audit123</span>
+          </div>
+        </section>
+
+        <section class="dashboard-panel" id="dashboardPanel" hidden>
+          <div class="role-banner" id="roleBanner"></div>
+          <div class="metric-grid" aria-label="Tổng quan đơn đầu tư">
+            <article>
+              <span>Tổng đơn</span>
+              <strong id="metricTotal">0</strong>
+            </article>
+            <article>
+              <span>Tổng giá trị</span>
+              <strong id="metricRevenue">0đ</strong>
+            </article>
+            <article>
+              <span>Đang tư vấn</span>
+              <strong id="metricContacting">0</strong>
+            </article>
+            <article>
+              <span>Chờ thanh toán</span>
+              <strong id="metricPayment">0</strong>
+            </article>
+          </div>
+
+          <section class="admin-view active" id="ordersView">
+          <div class="toolbar">
+            <label>
+              Tìm kiếm
+              <input id="searchInput" type="search" placeholder="Mã đơn, tên khách, số điện thoại..." />
+            </label>
+            <label>
+              Lọc trạng thái
+              <select id="statusFilter">
+                <option value="">Tất cả trạng thái</option>
+                <option value="new">Mới</option>
+                <option value="contacting">Đang tư vấn</option>
+                <option value="awaiting_payment">Chờ thanh toán</option>
+                <option value="paid">Đã thanh toán</option>
+                <option value="escrow_ready">Sẵn sàng ký quỹ</option>
+                <option value="in_production">Theo dõi mùa vụ</option>
+                <option value="ready_to_deliver">Chờ bàn giao</option>
+                <option value="completed">Hoàn tất</option>
+                <option value="cancelled">Đã hủy</option>
+              </select>
+            </label>
+            <div class="toolbar-actions">
+              <button class="ghost-button" type="button" id="exportButton">Xuất CSV</button>
+              <button class="ghost-button" type="button" id="refreshButton">Tải lại đơn</button>
+            </div>
+          </div>
+
+          <div class="orders-layout">
+            <section class="orders-table-card">
+              <div class="table-scroll">
+                <table class="orders-table">
+                  <thead>
+                    <tr>
+                      <th>Mã đơn</th>
+                      <th>Khách hàng</th>
+                      <th>Dự án</th>
+                      <th>Gói</th>
+                      <th>Giá trị</th>
+                      <th>Trạng thái</th>
+                      <th>Ngày tạo</th>
+                    </tr>
+                  </thead>
+                  <tbody id="ordersTableBody"></tbody>
+                </table>
+              </div>
+              <div class="empty-state" id="emptyState" hidden>
+                <strong>Chưa có đơn phù hợp</strong>
+                <span>Khi khách hàng gửi form đầu tư trên website, đơn sẽ xuất hiện tại đây.</span>
+              </div>
+            </section>
+
+            <aside class="order-detail" id="orderDetail">
+              <p class="eyebrow">Chi tiết đơn</p>
+              <h2>Chọn một đơn để xem</h2>
+              <p>Thông tin khách hàng, gói đầu tư, giao hàng và timeline xử lý sẽ hiển thị ở đây.</p>
+            </aside>
+          </div>
+          </section>
+
+          <section class="admin-view" id="projectsView" hidden>
+            <div class="section-card">
+              <div>
+                <p class="eyebrow">Quản lý dự án</p>
+                <h2>Thêm và cập nhật sản phẩm/farm</h2>
+                <p>Quản lý nội dung bán hàng, vốn gọi, gói đầu tư và trạng thái hiển thị trên marketplace.</p>
+              </div>
+              <form class="project-form" id="projectForm">
+                <input name="projectId" type="hidden" />
+                <div class="form-grid">
+                  <label>Tên dự án<input name="name" required /></label>
+                  <label>Danh mục
+                    <select name="category" required>
+                      <option>Bưởi da xanh</option>
+                      <option>Gạo</option>
+                      <option>Mật ong dú</option>
+                      <option>Sữa chua</option>
+                      <option>Rau sạch</option>
+                      <option>Cà phê</option>
+                    </select>
+                  </label>
+                  <label>Tỉnh/Thành<input name="province" required /></label>
+                  <label>Quận/Huyện/Farm<input name="district" required /></label>
+                  <label>Vốn cần gọi<input name="capitalRequired" type="number" min="1000000" step="1000000" required /></label>
+                  <label>Đã gọi vốn<input name="funded" type="number" min="0" step="1000000" value="0" /></label>
+                  <label>Thời gian<input name="duration" placeholder="VD: 8 tháng" /></label>
+                  <label>Lợi nhuận dự kiến<input name="expectedReturnRate" placeholder="VD: 10-14%" /></label>
+                  <label>Rủi ro
+                    <select name="riskLevel">
+                      <option>Thấp</option>
+                      <option>Trung bình</option>
+                      <option>Cao</option>
+                      <option>Ổn định chất lượng</option>
+                    </select>
+                  </label>
+                  <label>Trạng thái
+                    <select name="status">
+                      <option value="drafting">Nháp</option>
+                      <option value="funding">Đang gọi vốn</option>
+                      <option value="active">Đang hoạt động</option>
+                      <option value="ongoing">Theo dõi mùa vụ</option>
+                      <option value="harvest">Thu hoạch</option>
+                      <option value="completed">Hoàn tất</option>
+                    </select>
+                  </label>
+                  <label class="form-wide">Ảnh dự án<input name="image" placeholder="assets/agrishare-concept-01.jpg hoặc URL ảnh" /></label>
+                  <label class="form-wide">Upload ảnh dự án<input name="imageFile" type="file" accept="image/png,image/jpeg,image/webp" /></label>
+                  <label>Nhà sản xuất<input name="producer" placeholder="VD: Gạo Tám Á" /></label>
+                  <label>Logo sản phẩm<input name="logo" placeholder="assets/logo-gao-tam-a.jpg hoặc URL logo" /></label>
+                  <label>Facebook<input name="facebookUrl" type="url" placeholder="Link Facebook nhà sản xuất" /></label>
+                  <label class="form-wide">Tags<input name="tags" placeholder="Chất lượng, Mùa vụ ổn định, QA/QC" /></label>
+                  <label class="form-wide">Điểm nổi bật<input name="highlights" placeholder="Vườn chuyên canh, Trái tuyển chọn, Truy xuất lô" /></label>
+                  <label class="form-wide">Giới thiệu sản phẩm<textarea name="productIntro" rows="2"></textarea></label>
+                  <label class="form-wide">Ghi chú chất lượng<textarea name="qualityNotes" rows="2"></textarea></label>
+                  <label>Quy cách đóng gói<input name="packaging" placeholder="VD: Túi 5kg hoặc thùng 10kg" /></label>
+                  <label>Giá tham chiếu<input name="referencePrice" placeholder="Theo mùa vụ / theo bảng giá" /></label>
+                  <label>Hạn dùng<input name="shelfLife" placeholder="VD: 3-6 tháng" /></label>
+                  <label>Bảo quản<input name="storage" placeholder="VD: Khô mát, bảo quản lạnh..." /></label>
+                  <label class="form-wide">Kế hoạch giao nhận<input name="deliveryPlan" /></label>
+                  <label class="form-wide">Chính sách đổi/bù<input name="returnPolicy" /></label>
+                  <label class="form-wide">Mô tả ngắn<textarea name="shortDescription" rows="2"></textarea></label>
+                  <label class="form-wide">Mô tả bán hàng<textarea name="description" rows="4" required></textarea></label>
+                  <label class="form-wide">Câu chuyện farm<textarea name="farmerStory" rows="3"></textarea></label>
+                  <label class="form-wide">Cảnh báo rủi ro<textarea name="riskDisclosure" rows="3"></textarea></label>
+                </div>
+                <div class="form-actions">
+                  <button class="primary-button" type="submit">Lưu dự án</button>
+                  <button class="ghost-button" type="button" id="resetProjectForm">Tạo mới</button>
+                  <p class="action-status" id="projectStatus" role="status"></p>
+                </div>
+              </form>
+            </div>
+            <div class="orders-table-card">
+              <div class="table-scroll">
+                <table class="orders-table">
+                  <thead>
+                    <tr>
+                      <th>Dự án</th>
+                      <th>Danh mục</th>
+                      <th>Vốn</th>
+                      <th>Trạng thái</th>
+                      <th>Cập nhật</th>
+                    </tr>
+                  </thead>
+                  <tbody id="projectsTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="section-card">
+              <div>
+                <p class="eyebrow">Nhật ký mùa vụ</p>
+                <h2>Cập nhật tiến độ farm</h2>
+                <p>Farm team hoặc auditor có thể ghi nhận sinh trưởng, QA/QC, thu hoạch và ảnh chứng minh.</p>
+              </div>
+              <form class="project-form" id="projectUpdateForm">
+                <div class="form-grid">
+                  <label>Dự án
+                    <select name="projectId" required></select>
+                  </label>
+                  <label>Loại cập nhật
+                    <select name="type" required>
+                      <option value="season_log">Nhật ký mùa vụ</option>
+                      <option value="growth_update">Sinh trưởng</option>
+                      <option value="harvest_report">Thu hoạch</option>
+                      <option value="quality_report">Báo cáo chất lượng</option>
+                      <option value="milestone">Cột mốc</option>
+                    </select>
+                  </label>
+                  <label>Tiêu đề<input name="title" required placeholder="VD: Kiểm tra chất lượng tuần 4" /></label>
+                  <label>Giai đoạn<input name="growthStage" placeholder="VD: Ra hoa, nuôi trái, thu hoạch" /></label>
+                  <label>Nhiệt độ TB<input name="temperatureAvg" type="number" step="0.1" /></label>
+                  <label>Lượng mưa<input name="rainfall" type="number" step="0.1" /></label>
+                  <label>Tình trạng sâu bệnh<input name="pestCondition" /></label>
+                  <label>Sản lượng dự kiến<input name="estimatedYield" type="number" step="0.1" /></label>
+                  <label class="form-wide">Ảnh minh chứng<input name="updateImageFile" type="file" accept="image/png,image/jpeg,image/webp" /></label>
+                  <label class="form-wide">Mô tả<textarea name="description" rows="4" required></textarea></label>
+                </div>
+                <div class="form-actions">
+                  <button class="primary-button" type="submit">Lưu nhật ký mùa vụ</button>
+                  <p class="action-status" id="projectUpdateStatus" role="status"></p>
+                </div>
+              </form>
+            </div>
+          </section>
+
+          <section class="admin-view" id="customersView" hidden>
+            <div class="toolbar">
+              <label>Tìm khách hàng<input id="customerSearchInput" type="search" placeholder="Tên, số điện thoại, email..." /></label>
+              <button class="ghost-button" type="button" id="refreshCustomersButton">Tải lại khách</button>
+            </div>
+            <div class="orders-table-card">
+              <div class="table-scroll">
+                <table class="orders-table">
+                  <thead>
+                    <tr>
+                      <th>Khách hàng</th>
+                      <th>Liên hệ</th>
+                      <th>Tổng đơn</th>
+                      <th>Tổng giá trị</th>
+                      <th>Trạng thái</th>
+                    </tr>
+                  </thead>
+                  <tbody id="customersTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <section class="admin-view" id="analyticsView" hidden>
+            <div class="section-card">
+              <div>
+                <p class="eyebrow">Analytics bán hàng</p>
+                <h2>Tín hiệu chuyển đổi</h2>
+                <p>Theo dõi sự kiện website, đơn hàng theo trạng thái và các điểm cần tối ưu bán hàng.</p>
+              </div>
+              <button class="ghost-button" type="button" id="refreshAnalyticsButton">Tải analytics</button>
+            </div>
+            <div class="metric-grid" id="analyticsGrid"></div>
+          </section>
+
+          <section class="admin-view" id="settingsView" hidden>
+            <div class="section-card">
+              <div>
+                <p class="eyebrow">Cấu hình vận hành</p>
+                <h2>Thanh toán, marketing, pháp lý</h2>
+                <p>Các trường này dùng cho trang cảm ơn, VietQR thủ công, hotline, Zalo và checklist pháp lý production.</p>
+              </div>
+              <form class="project-form" id="settingsForm">
+                <div class="form-grid">
+                  <label>Ngân hàng<input name="bankName" /></label>
+                  <label>Mã ngân hàng VietQR<input name="bankCode" placeholder="VD: VCB, ACB, MB..." /></label>
+                  <label>Số tài khoản<input name="accountNumber" /></label>
+                  <label>Tên tài khoản<input name="accountName" /></label>
+                  <label>Hotline<input name="hotline" /></label>
+                  <label>Zalo URL<input name="zaloUrl" /></label>
+                  <label>Google Analytics ID<input name="googleAnalyticsId" /></label>
+                  <label>Meta Pixel ID<input name="metaPixelId" /></label>
+                  <label>Email hỗ trợ<input name="supportEmail" /></label>
+                  <label>Trạng thái thông báo TMĐT
+                    <select name="ecommerceNoticeStatus">
+                      <option value="not_started">Chưa bắt đầu</option>
+                      <option value="preparing">Đang chuẩn bị</option>
+                      <option value="submitted">Đã nộp</option>
+                      <option value="approved">Đã duyệt</option>
+                    </select>
+                  </label>
+                  <label class="form-wide">Địa chỉ kinh doanh<input name="businessAddress" /></label>
+                </div>
+                <div class="form-actions">
+                  <button class="primary-button" type="submit">Lưu cấu hình</button>
+                  <p class="action-status" id="settingsStatus" role="status"></p>
+                </div>
+              </form>
+            </div>
+          </section>
+
+          <section class="admin-view" id="auditView" hidden>
+            <div class="section-card">
+              <div>
+                <p class="eyebrow">Minh bạch vận hành</p>
+                <h2>Nhật ký thay đổi hệ thống</h2>
+                <p>Theo dõi ai đã tạo/sửa đơn hàng, dự án, cấu hình, biên lai và mật khẩu.</p>
+              </div>
+              <button class="ghost-button" type="button" id="refreshAuditButton">Tải nhật ký</button>
+            </div>
+            <div class="orders-table-card">
+              <div class="table-scroll">
+                <table class="orders-table">
+                  <thead>
+                    <tr>
+                      <th>Thời gian</th>
+                      <th>Người thao tác</th>
+                      <th>Hành động</th>
+                      <th>Đối tượng</th>
+                      <th>Chi tiết</th>
+                    </tr>
+                  </thead>
+                  <tbody id="auditTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <section class="admin-view" id="accountView" hidden>
+            <div class="section-card">
+              <div>
+                <p class="eyebrow">Bảo mật tài khoản</p>
+                <h2>Đổi mật khẩu vận hành</h2>
+                <p>Nên đổi mật khẩu seed trước khi dùng website với dữ liệu thật.</p>
+              </div>
+              <form class="project-form" id="passwordForm">
+                <div class="form-grid">
+                  <label>Mật khẩu hiện tại<input name="currentPassword" type="password" autocomplete="current-password" required /></label>
+                  <label>Mật khẩu mới<input name="newPassword" type="password" autocomplete="new-password" minlength="6" required /></label>
+                </div>
+                <div class="form-actions">
+                  <button class="primary-button" type="submit">Đổi mật khẩu</button>
+                  <p class="action-status" id="passwordStatus" role="status"></p>
+                </div>
+              </form>
+            </div>
+          </section>
+        </section>
+      </section>
+    </main>
+
+    <script src="config.js"></script>
+    <script src="admin.js"></script>
+  </body>
+</html>
