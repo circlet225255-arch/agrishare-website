@@ -449,6 +449,45 @@ async function loadMarketplaceProjects() {
   }
 }
 
+function isMongoObjectId(value) {
+  return /^[a-f\d]{24}$/i.test(String(value || ""));
+}
+
+async function resolveCheckoutProject(project) {
+  if (!project || isMongoObjectId(project.id)) {
+    return project;
+  }
+
+  const response = await fetch(`${API_BASE_URL}/projects/marketplace`);
+
+  if (!response.ok) {
+    throw new Error("Chưa kết nối được dữ liệu sản phẩm thật. Vui lòng thử lại sau vài giây.");
+  }
+
+  const data = await response.json();
+
+  if (!data.success || !Array.isArray(data.projects)) {
+    throw new Error("Chưa tải được dữ liệu sản phẩm thật từ hệ thống.");
+  }
+
+  const matchedProject = data.projects.find((item) => {
+    return item.name === project.name || item.category === project.category || item.slug === project.slug;
+  });
+
+  if (!matchedProject) {
+    throw new Error("Chưa tìm thấy sản phẩm này trong MongoDB để ghi nhận đơn thật.");
+  }
+
+  const enrichedProject = enrichMarketplaceProject(matchedProject);
+  projects = sortProjectsByPriority(
+    projects.map((item) =>
+      item.name === project.name || item.category === project.category ? enrichedProject : item,
+    ),
+  );
+
+  return enrichedProject;
+}
+
 function openProject(projectId) {
   const project = projects.find((item) => String(item.id) === String(projectId));
   if (!project) return;
@@ -719,12 +758,12 @@ async function submitInvestmentOrder(event) {
   const flow = event.target.closest(".investment-flow");
   const status = flow.querySelector("#checkoutStatus");
   const result = dialogContent.querySelector("#orderResult");
-  const project = projects.find((item) => String(item.id) === String(flow.dataset.projectId));
+  let project = projects.find((item) => String(item.id) === String(flow.dataset.projectId));
   const formData = new FormData(flow);
   const amount = getSelectedInvestmentAmount(flow);
 
-  if (!/^[a-f\d]{24}$/i.test(String(project.id))) {
-    status.textContent = "Backend MongoDB cần chạy để ghi nhận đơn thật. Website đang dùng dữ liệu tĩnh.";
+  if (!project) {
+    status.textContent = "Chưa tìm thấy sản phẩm để ghi nhận đơn.";
     status.dataset.state = "error";
     return;
   }
@@ -762,6 +801,11 @@ async function submitInvestmentOrder(event) {
   flow.querySelector("[type='submit']").disabled = true;
 
   try {
+    project = await resolveCheckoutProject(project);
+    flow.dataset.projectId = project.id;
+    payload.projectId = project.id;
+    status.textContent = "Đã kết nối sản phẩm thật, đang ghi nhận đơn...";
+
     const response = await fetch(`${API_BASE_URL}/checkout/investment-orders`, {
       method: "POST",
       headers: {

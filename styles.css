@@ -2274,6 +2274,49 @@ body::before {
   filter: drop-shadow(0 12px 24px rgba(4, 24, 13, 0.18));
 }
 
+.project-dialog {
+  width: min(1180px, calc(100vw - 28px));
+  height: auto;
+  max-height: calc(100dvh - 48px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+
+#dialogContent {
+  height: auto;
+  min-height: 0;
+}
+
+.dialog-commerce {
+  height: auto;
+  min-height: 0;
+  max-height: none;
+}
+
+.dialog-product-summary,
+.dialog-checkout {
+  min-height: 0;
+  max-height: none;
+  overflow: visible;
+}
+
+.dialog-checkout {
+  padding-bottom: 0;
+}
+
+.project-dialog .checkout-submit-bar {
+  position: static;
+  margin: 0;
+  border-radius: 8px;
+}
+
+.dialog-close {
+  right: 16px;
+  left: auto;
+  z-index: 6;
+}
+
 @media (max-width: 1080px) {
   .project-grid,
   .policy-grid,
@@ -2340,6 +2383,7 @@ body::before {
   .calc-results,
   .timeline,
   .project-grid,
+  .dialog-commerce,
   .policy-grid,
   .trust-checklist,
   .risk-grid,
@@ -2382,6 +2426,31 @@ body::before {
   .site-footer {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .project-dialog {
+    height: min(92dvh, 980px);
+    overflow-y: auto;
+  }
+
+  #dialogContent {
+    height: auto;
+  }
+
+  .dialog-commerce {
+    display: block;
+    height: auto;
+  }
+
+  .dialog-product-summary,
+  .dialog-checkout {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .dialog-product-summary {
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   }
 }
 
