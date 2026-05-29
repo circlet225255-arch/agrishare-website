@@ -41,8 +41,10 @@ function renderProject(project, updates) {
 
   detailRoot.innerHTML = `
     <section class="detail-hero">
-      <img src="${image}" alt="${project.name}" />
-      <article class="detail-card">
+      <div class="detail-hero-media">
+        <img src="${image}" alt="${project.name}" />
+      </div>
+      <article class="detail-card detail-hero-card">
         <p class="eyebrow">${project.category} tại ${location}</p>
         <h1>${project.name}</h1>
         <p>${project.shortDescription || project.description}</p>
@@ -53,8 +55,10 @@ function renderProject(project, updates) {
           <div><span>Thời gian</span><strong>${project.duration || "Theo hồ sơ dự án"}</strong></div>
           <div><span>Lợi nhuận dự kiến</span><strong>${project.expectedReturnRate || "Theo hồ sơ dự án"}</strong></div>
         </div>
-        ${project.facebookUrl ? `<a class="secondary-button" href="${project.facebookUrl}" target="_blank" rel="noreferrer">Xem Facebook nhà sản xuất</a>` : ""}
-        <a class="primary-button" href="index.html#projects">Lựa chọn gói đầu tư</a>
+        <div class="detail-actions">
+          <a class="primary-button" href="index.html#projects">Lựa chọn gói đầu tư</a>
+          ${project.facebookUrl ? `<a class="secondary-button" href="${project.facebookUrl}" target="_blank" rel="noreferrer">Xem Facebook nhà sản xuất</a>` : ""}
+        </div>
       </article>
     </section>
 
@@ -87,42 +91,44 @@ function renderProject(project, updates) {
       </article>
     </section>
 
-    <section class="detail-card">
-      <h2>Gói đầu tư và quyền lợi</h2>
-      <ul class="package-list">
-        ${(project.investmentPackages || [])
-          .map(
-            (item) => `
-              <li>
-                <strong>${item.label || item.key}</strong>
-                <span>${item.isCustom ? "Tùy chọn đầu tư" : currency.format(item.amount || 0)}</span>
-                <p>${item.rewardDescription || item.description || "Quyền lợi được xác nhận khi tư vấn."}</p>
-              </li>
-            `,
-          )
-          .join("")}
-      </ul>
-    </section>
+    <section class="detail-two-column">
+      <article class="detail-card">
+        <h2>Gói đầu tư và quyền lợi</h2>
+        <ul class="package-list">
+          ${(project.investmentPackages || [])
+            .map(
+              (item) => `
+                <li>
+                  <strong>${item.label || item.key}</strong>
+                  <span>${item.isCustom ? "Tùy chọn đầu tư" : currency.format(item.amount || 0)}</span>
+                  <p>${item.rewardDescription || item.description || "Quyền lợi được xác nhận khi tư vấn."}</p>
+                </li>
+              `,
+            )
+            .join("")}
+        </ul>
+      </article>
 
-    <section class="detail-card">
-      <h2>Nhật ký mùa vụ</h2>
-      <ul class="update-list">
-        ${
-          updates.length
-            ? updates
-                .map(
-                  (item) => `
-                    <li>
-                      <strong>${item.title}</strong>
-                      <span>${item.type}</span>
-                      <p>${item.description || ""}</p>
-                    </li>
-                  `,
-                )
-                .join("")
-            : "<li>Chưa có nhật ký mới. Admin/Farm sẽ cập nhật trong quá trình vận hành.</li>"
-        }
-      </ul>
+      <article class="detail-card">
+        <h2>Nhật ký mùa vụ</h2>
+        <ul class="update-list">
+          ${
+            updates.length
+              ? updates
+                  .map(
+                    (item) => `
+                      <li>
+                        <strong>${item.title}</strong>
+                        <span>${item.type}</span>
+                        <p>${item.description || ""}</p>
+                      </li>
+                    `,
+                  )
+                  .join("")
+              : "<li>Chưa có nhật ký mới. Admin/Farm sẽ cập nhật trong quá trình vận hành.</li>"
+          }
+        </ul>
+      </article>
     </section>
   `;
 }

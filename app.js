@@ -89,7 +89,7 @@ const fallbackProjects = [
     name: "Bưởi da xanh Sông Xoài",
     category: "Bưởi da xanh",
     location: "Sông Xoài",
-    image: "assets/product-buoi-song-xoai.png",
+    image: "assets/product-buoi-song-xoai-v2.png",
     capital: 260000000,
     funded: 84,
     duration: "8 tháng",
@@ -106,7 +106,7 @@ const fallbackProjects = [
     name: "Gạo Tám Á",
     category: "Gạo",
     location: "Việt Nam",
-    image: "assets/product-gao-tam-a.png",
+    image: "assets/product-gao-tam-a-v2.png",
     capital: 180000000,
     funded: 58,
     duration: "6 tháng",
@@ -123,7 +123,7 @@ const fallbackProjects = [
     name: "Mật ong dú Win's Farm",
     category: "Mật ong dú",
     location: "Win's Farm",
-    image: "assets/product-mat-ong-du-wins-farm.png",
+    image: "assets/product-mat-ong-du-wins-farm-v2.png",
     capital: 520000000,
     funded: 31,
     duration: "12 tháng",
@@ -140,7 +140,7 @@ const fallbackProjects = [
     name: "Sữa chua Ông Nhiệm",
     category: "Sữa chua",
     location: "Ông Nhiệm",
-    image: "assets/product-sua-chua-ong-nhiem.png",
+    image: "assets/product-sua-chua-ong-nhiem-v2.png",
     capital: 140000000,
     funded: 65,
     duration: "5 tháng",
@@ -362,7 +362,7 @@ function renderProjects(filter = "all") {
   projectGrid.innerHTML = visibleProjects
     .map(
       (project) => `
-        <article class="project-card">
+        <article class="project-card project-card-featured">
           <div class="project-image">
             <img src="${project.image}" alt="${project.name}" />
             <div class="project-header">
@@ -373,7 +373,10 @@ function renderProjects(filter = "all") {
             </div>
           </div>
           <div class="project-body">
-            <span class="producer-pill">${project.producer || project.category}</span>
+            <div class="project-card-topline">
+              <span class="producer-pill">${project.producer || project.category}</span>
+              <span class="funding-pill">${project.funded}% đã tài trợ</span>
+            </div>
             <div class="project-meta">
               <span>${project.category}</span>
               <span>${project.location}</span>
@@ -398,15 +401,15 @@ function renderProjects(filter = "all") {
                 <strong>${project.returnRate}</strong>
               </div>
             </div>
-            <button class="card-action" type="button" data-project-id="${project.id}">
-              ${project.cta || "Xem hồ sơ dự án"}
-            </button>
-            <a class="project-detail-link" href="project-detail.html?id=${encodeURIComponent(project.id)}">
-              Xem chi tiết dự án
-            </a>
-            <a class="facebook-link" href="${project.facebookUrl}" target="_blank" rel="noreferrer">
-              Xem Facebook nhà sản xuất
-            </a>
+            <div class="project-actions">
+              <button class="card-action" type="button" data-project-id="${project.id}">
+                ${project.cta || "Xem hồ sơ dự án"}
+              </button>
+              <a class="project-detail-link" href="project-detail.html?id=${encodeURIComponent(project.id)}">
+                Xem hồ sơ
+              </a>
+            </div>
+            <a class="facebook-link" href="${project.facebookUrl}" target="_blank" rel="noreferrer">Xem Facebook nhà sản xuất</a>
           </div>
         </article>
       `,
@@ -453,144 +456,164 @@ function openProject(projectId) {
   const defaultPackage = packageOptions[0];
 
   dialogContent.innerHTML = `
-    <div class="dialog-cover">
-      <img src="${project.image}" alt="${project.name}" />
-    </div>
-    <div class="dialog-body">
-      <p class="eyebrow">${project.category} tại ${project.location}</p>
-      <h3>${project.name}</h3>
-      <p>${project.summary}</p>
-      <div class="producer-panel">
-        <span>Nhà sản xuất</span>
-        <strong>${project.producer || project.name}</strong>
-        <p>${project.productIntro || ""}</p>
-        <a class="text-link" href="${project.facebookUrl}" target="_blank" rel="noreferrer">Xem kênh Facebook</a>
-      </div>
-      <div class="dialog-facts">
-        <div>
-          <span>Vốn cần gọi</span>
-          <strong>${currency.format(project.capital)}</strong>
+    <div class="dialog-commerce">
+      <aside class="dialog-product-summary">
+        <div class="dialog-cover">
+          <img src="${project.image}" alt="${project.name}" />
+          <span class="project-logo-badge dialog-logo">
+            <img src="${project.logo}" alt="Logo ${project.producer || project.name}" />
+          </span>
         </div>
-        <div>
-          <span>Thời gian</span>
-          <strong>${project.duration}</strong>
+        <div class="dialog-summary-copy">
+          <p class="eyebrow">${project.category} tại ${project.location}</p>
+          <h3>${project.name}</h3>
+          <p>${project.summary}</p>
+          <div class="producer-panel">
+            <span>Nhà sản xuất</span>
+            <strong>${project.producer || project.name}</strong>
+            <p>${project.productIntro || ""}</p>
+            <a class="text-link" href="${project.facebookUrl}" target="_blank" rel="noreferrer">Xem kênh Facebook</a>
+          </div>
         </div>
-        <div>
-          <span>Rủi ro</span>
-          <strong>${project.risk}</strong>
+        <div class="dialog-facts">
+          <div>
+            <span>Vốn cần gọi</span>
+            <strong>${currency.format(project.capital)}</strong>
+          </div>
+          <div>
+            <span>Thời gian</span>
+            <strong>${project.duration}</strong>
+          </div>
+          <div>
+            <span>Rủi ro</span>
+            <strong>${project.risk}</strong>
+          </div>
         </div>
-      </div>
-      <p>
-        Hồ sơ vận hành đề xuất: thẩm định thực địa, hợp đồng điện tử, escrow theo tiến độ,
-        nhật ký sản xuất hằng tuần, bằng chứng hình ảnh và báo cáo sau thu hoạch.
-      </p>
-      <div class="quality-panel">
-        <h4>Hồ sơ sản phẩm cần theo dõi</h4>
-        <ul>
-          ${(project.highlights || []).map((item) => `<li>${item}</li>`).join("")}
-          <li>${project.qualityNotes || "Kiểm soát chất lượng theo từng lô sản phẩm."}</li>
-        </ul>
-      </div>
-      <div class="quality-panel">
-        <h4>Quy cách bán hàng</h4>
-        <ul>
-          <li><strong>Đóng gói:</strong> ${project.specs?.packaging || "Cập nhật theo từng lô sản phẩm."}</li>
-          <li><strong>Giá tham chiếu:</strong> ${project.specs?.referencePrice || "Xác nhận theo mùa vụ."}</li>
-          <li><strong>Hạn dùng:</strong> ${project.specs?.shelfLife || "Theo bao bì hoặc xác nhận đơn."}</li>
-          <li><strong>Bảo quản:</strong> ${project.specs?.storage || "Theo hướng dẫn của từng sản phẩm."}</li>
-          <li><strong>Giao nhận:</strong> ${project.specs?.deliveryPlan || "Theo lịch đã xác nhận với khách hàng."}</li>
-          <li><strong>Đổi/bù:</strong> ${project.specs?.returnPolicy || "Xử lý khi sản phẩm sai quy cách hoặc hư hỏng do giao nhận."}</li>
-        </ul>
-      </div>
-      <form class="investment-flow" data-project-id="${project.id}" data-selected-package="${defaultPackage.id}" data-selected-delivery="home_delivery">
-        <div class="flow-header">
-          <span>Đặt đầu tư thật</span>
-          <h4>Khách hàng lựa chọn gói đầu tư</h4>
-          <p>Thông tin bên dưới sẽ được gửi về MongoDB để AgriShare tư vấn, xác nhận thanh toán và theo dõi đơn.</p>
+        <div class="quality-panel">
+          <h4>Hồ sơ sản phẩm cần theo dõi</h4>
+          <ul>
+            ${(project.highlights || []).map((item) => `<li>${item}</li>`).join("")}
+            <li>${project.qualityNotes || "Kiểm soát chất lượng theo từng lô sản phẩm."}</li>
+          </ul>
         </div>
-        <div class="package-grid" role="group" aria-label="Lựa chọn gói đầu tư">
-          ${packageOptions
-            .map(
-              (item) => `
-                <button
-                  class="package-option ${item.id === defaultPackage.id ? "active" : ""}"
-                  type="button"
-                  data-package-id="${item.id}"
-                >
-                  <span>${item.label}</span>
-                  <strong>${item.note}</strong>
+        <div class="quality-panel">
+          <h4>Quy cách bán hàng</h4>
+          <ul>
+            <li><strong>Đóng gói:</strong> ${project.specs?.packaging || "Cập nhật theo từng lô sản phẩm."}</li>
+            <li><strong>Giá tham chiếu:</strong> ${project.specs?.referencePrice || "Xác nhận theo mùa vụ."}</li>
+            <li><strong>Hạn dùng:</strong> ${project.specs?.shelfLife || "Theo bao bì hoặc xác nhận đơn."}</li>
+            <li><strong>Bảo quản:</strong> ${project.specs?.storage || "Theo hướng dẫn của từng sản phẩm."}</li>
+            <li><strong>Giao nhận:</strong> ${project.specs?.deliveryPlan || "Theo lịch đã xác nhận với khách hàng."}</li>
+            <li><strong>Đổi/bù:</strong> ${project.specs?.returnPolicy || "Xử lý khi sản phẩm sai quy cách hoặc hư hỏng do giao nhận."}</li>
+          </ul>
+        </div>
+      </aside>
+      <div class="dialog-checkout">
+        <form class="investment-flow" data-project-id="${project.id}" data-selected-package="${defaultPackage.id}" data-selected-delivery="home_delivery">
+          <div class="flow-header">
+            <span>Đặt đầu tư thật</span>
+            <h4>Khách hàng lựa chọn gói đầu tư</h4>
+            <p>Thông tin bên dưới sẽ được gửi về MongoDB để AgriShare tư vấn, xác nhận thanh toán và theo dõi đơn.</p>
+          </div>
+          <div class="checkout-step">
+            <span>01</span>
+            <div>
+              <h5>Chọn gói đầu tư</h5>
+              <div class="package-grid" role="group" aria-label="Lựa chọn gói đầu tư">
+                ${packageOptions
+                  .map(
+                    (item) => `
+                      <button
+                        class="package-option ${item.id === defaultPackage.id ? "active" : ""}"
+                        type="button"
+                        data-package-id="${item.id}"
+                      >
+                        <span>${item.label}</span>
+                        <strong>${item.note}</strong>
+                      </button>
+                    `,
+                  )
+                  .join("")}
+              </div>
+              <label class="custom-investment" data-custom-investment hidden>
+                Số tiền tùy chọn của khách hàng
+                <input id="customInvestmentAmount" name="customAmount" type="number" min="1000000" step="1000000" placeholder="Nhập số tiền đầu tư" />
+              </label>
+            </div>
+          </div>
+          <div class="checkout-step">
+            <span>02</span>
+            <div class="reward-panel">
+              <span>Quyền lợi</span>
+              <h4>Giá trị sản phẩm nhận lại</h4>
+              <ul id="packageBenefits">${renderBenefits(project, defaultPackage.id)}</ul>
+            </div>
+          </div>
+          <div class="checkout-step">
+            <span>03</span>
+            <div class="delivery-panel">
+              <span>Nhận sản phẩm</span>
+              <h4>Chọn hình thức nhận sản phẩm</h4>
+              <div class="delivery-grid" role="group" aria-label="Hình thức nhận sản phẩm">
+                <button class="delivery-option active" type="button" data-delivery-method="home_delivery">
+                  <strong>Nhận hàng tại nhà</strong>
+                  <small>Lưu địa chỉ giao hàng, lịch giao theo mùa vụ và trạng thái đơn hàng.</small>
                 </button>
-              `,
-            )
-            .join("")}
-        </div>
-        <label class="custom-investment" data-custom-investment hidden>
-          Số tiền tùy chọn của khách hàng
-          <input id="customInvestmentAmount" name="customAmount" type="number" min="1000000" step="1000000" placeholder="Nhập số tiền đầu tư" />
-        </label>
-        <div class="reward-panel">
-          <span>Quyền lợi</span>
-          <h4>Giá trị sản phẩm nhận lại</h4>
-          <ul id="packageBenefits">${renderBenefits(project, defaultPackage.id)}</ul>
-        </div>
-        <div class="delivery-panel">
-          <span>Nhận sản phẩm</span>
-          <h4>Chọn hình thức nhận sản phẩm</h4>
-          <div class="delivery-grid" role="group" aria-label="Hình thức nhận sản phẩm">
-            <button class="delivery-option active" type="button" data-delivery-method="home_delivery">
-              <strong>Nhận hàng tại nhà</strong>
-              <small>Lưu địa chỉ giao hàng, lịch giao theo mùa vụ và trạng thái đơn hàng.</small>
-            </button>
-            <button class="delivery-option" type="button" data-delivery-method="farm_pickup">
-              <strong>Trải nghiệm và nhận sản phẩm tại Farm của nhà nông</strong>
-              <small>Đặt lịch tham quan, xác nhận người tham dự và nhận sản phẩm trực tiếp tại farm.</small>
-            </button>
+                <button class="delivery-option" type="button" data-delivery-method="farm_pickup">
+                  <strong>Trải nghiệm và nhận sản phẩm tại Farm của nhà nông</strong>
+                  <small>Đặt lịch tham quan, xác nhận người tham dự và nhận sản phẩm trực tiếp tại farm.</small>
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="customer-panel">
-          <span>Thông tin khách hàng</span>
-          <h4>AgriShare liên hệ xác nhận đơn</h4>
-          <div class="checkout-grid">
-            <label>
-              Họ và tên
-              <input name="fullName" type="text" autocomplete="name" required placeholder="Nguyễn Văn A" />
-            </label>
-            <label>
-              Số điện thoại
-              <input name="phone" type="tel" autocomplete="tel" required placeholder="090..." />
-            </label>
-            <label>
-              Email
-              <input name="email" type="email" autocomplete="email" placeholder="email@domain.com" />
-            </label>
-            <label>
-              Ngày mong muốn nhận hàng hoặc đi farm
-              <input name="preferredDate" type="date" />
-            </label>
-            <label class="checkout-wide">
-              Địa chỉ nhận hàng
-              <input name="address" type="text" autocomplete="street-address" placeholder="Số nhà, phường/xã, tỉnh/thành" />
-            </label>
-            <label>
-              Số người tham gia farm
-              <input name="participants" type="number" min="1" value="1" />
-            </label>
-            <label class="checkout-wide">
-              Ghi chú thêm
-              <textarea name="note" rows="3" placeholder="Nhu cầu nhận hàng, thời gian liên hệ, yêu cầu hóa đơn..."></textarea>
-            </label>
+          <div class="checkout-step">
+            <span>04</span>
+            <div class="customer-panel">
+              <span>Thông tin khách hàng</span>
+              <h4>AgriShare liên hệ xác nhận đơn</h4>
+              <div class="checkout-grid">
+                <label>
+                  Họ và tên
+                  <input name="fullName" type="text" autocomplete="name" required placeholder="Nguyễn Văn A" />
+                </label>
+                <label>
+                  Số điện thoại
+                  <input name="phone" type="tel" autocomplete="tel" required placeholder="090..." />
+                </label>
+                <label>
+                  Email
+                  <input name="email" type="email" autocomplete="email" placeholder="email@domain.com" />
+                </label>
+                <label>
+                  Ngày mong muốn nhận hàng hoặc đi farm
+                  <input name="preferredDate" type="date" />
+                </label>
+                <label class="checkout-wide">
+                  Địa chỉ nhận hàng
+                  <input name="address" type="text" autocomplete="street-address" placeholder="Số nhà, phường/xã, tỉnh/thành" />
+                </label>
+                <label>
+                  Số người tham gia farm
+                  <input name="participants" type="number" min="1" value="1" />
+                </label>
+                <label class="checkout-wide">
+                  Ghi chú thêm
+                  <textarea name="note" rows="3" placeholder="Nhu cầu nhận hàng, thời gian liên hệ, yêu cầu hóa đơn..."></textarea>
+                </label>
+              </div>
+              <label class="consent-line">
+                <input name="consentAccepted" type="checkbox" checked />
+                Tôi đồng ý để AgriShare lưu thông tin và liên hệ tư vấn đơn đầu tư này theo <a href="legal.html" target="_blank" rel="noreferrer">điều khoản và chính sách bảo mật</a>.
+              </label>
+            </div>
           </div>
-          <label class="consent-line">
-            <input name="consentAccepted" type="checkbox" checked />
-            Tôi đồng ý để AgriShare lưu thông tin và liên hệ tư vấn đơn đầu tư này theo <a href="legal.html" target="_blank" rel="noreferrer">điều khoản và chính sách bảo mật</a>.
-          </label>
-        </div>
-        <div class="checkout-actions">
-          <button class="btn btn-primary" type="submit">Gửi đơn đầu tư</button>
-          <p id="checkoutStatus" role="status"></p>
-        </div>
-      </form>
-      <div id="orderResult" class="order-result" hidden></div>
+          <div class="checkout-actions checkout-submit-bar">
+            <button class="btn btn-primary" type="submit">Gửi đơn đầu tư</button>
+            <p id="checkoutStatus" role="status"></p>
+          </div>
+        </form>
+        <div id="orderResult" class="order-result" hidden></div>
+      </div>
     </div>
   `;
 
