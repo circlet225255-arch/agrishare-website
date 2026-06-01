@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AgriShare Competition Poster</title>
+    <style>
+      :root {
+        --ink: #122217;
+        --deep: #0f3718;
+        --green: #2f6d36;
+        --green-2: #77a968;
+        --mint: #eef7e9;
+        --cream: #fff8ea;
+        --gold: #f4c565;
+        --muted: #647063;
+        --glass: rgba(255, 255, 255, 0.7);
+        --glass-strong: rgba(255, 255, 255, 0.86);
+        --line: rgba(255, 255, 255, 0.74);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: #182619;
+        font-family: "Be Vietnam Pro", "Segoe UI", Arial, sans-serif;
+        color: var(--ink);
+      }
+
+      .poster {
+        position: relative;
+        width: 1600px;
+        min-height: 2263px;
+        overflow: hidden;
+        padding: 72px;
+        background:
+          linear-gradient(180deg, rgba(15, 55, 24, 0.88), rgba(15, 55, 24, 0.2) 21%, rgba(239, 248, 235, 0.92) 46%, rgba(255, 248, 234, 0.96)),
+          url("assets/agrishare-hero-liquid-marketplace.png") center top / cover no-repeat;
+        isolation: isolate;
+      }
+
+      .poster::before {
+        content: "";
+        position: absolute;
+        inset: 30px;
+        z-index: -2;
+        border: 1px solid rgba(255, 255, 255, 0.48);
+        border-radius: 8px;
+        background:
+          radial-gradient(circle at 16% 12%, rgba(244, 197, 101, 0.34), transparent 22%),
+          radial-gradient(circle at 86% 20%, rgba(184, 218, 168, 0.5), transparent 26%),
+          radial-gradient(circle at 58% 84%, rgba(47, 109, 54, 0.22), transparent 26%);
+        backdrop-filter: blur(2px);
+      }
+
+      .poster::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background:
+          repeating-linear-gradient(115deg, rgba(255, 255, 255, 0.11) 0 1px, transparent 1px 26px),
+          linear-gradient(90deg, rgba(5, 31, 10, 0.22), transparent 28%, rgba(255, 255, 255, 0.2));
+        pointer-events: none;
+      }
+
+      .glass {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background:
+          linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(237, 247, 231, 0.63)),
+          var(--glass);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.88),
+          0 28px 70px rgba(16, 50, 21, 0.18);
+        backdrop-filter: blur(26px) saturate(1.24);
+      }
+
+      .glass::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(125deg, rgba(255, 255, 255, 0.86), transparent 30%),
+          radial-gradient(circle at 20% 14%, rgba(255, 255, 255, 0.72), transparent 18%);
+        opacity: 0.72;
+        pointer-events: none;
+      }
+
+      .glass > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        gap: 28px;
+        align-items: center;
+        margin-bottom: 34px;
+        color: #ffffff;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+      }
+
+      .brand img {
+        width: 112px;
+        height: 112px;
+        object-fit: contain;
+        border-radius: 8px;
+        padding: 9px;
+        background: rgba(255, 255, 255, 0.84);
+        box-shadow: 0 18px 38px rgba(0, 0, 0, 0.2);
+      }
+
+      .eyebrow {
+        margin: 0 0 8px;
+        color: var(--gold);
+        font-size: 24px;
+        line-height: 1.2;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      .brand h1 {
+        margin: 0;
+        max-width: 760px;
+        color: #ffffff;
+        font-size: 74px;
+        line-height: 0.98;
+        font-weight: 900;
+      }
+
+      .solution-badge {
+        min-width: 360px;
+        padding: 24px;
+        text-align: right;
+        background: rgba(255, 255, 255, 0.14);
+        border: 1px solid rgba(255, 255, 255, 0.34);
+        border-radius: 8px;
+        backdrop-filter: blur(18px);
+      }
+
+      .solution-badge span {
+        display: block;
+        color: rgba(255, 255, 255, 0.78);
+        font-size: 19px;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+
+      .solution-badge strong {
+        display: block;
+        margin-top: 8px;
+        color: #ffffff;
+        font-size: 36px;
+        line-height: 1.05;
+        font-weight: 900;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1.03fr 0.97fr;
+        gap: 28px;
+        align-items: stretch;
+        margin-bottom: 28px;
+      }
+
+      .problem-card {
+        min-height: 356px;
+        padding: 42px;
+        color: #ffffff;
+        background:
+          linear-gradient(135deg, rgba(15, 55, 24, 0.9), rgba(47, 109, 54, 0.72)),
+          rgba(255, 255, 255, 0.18);
+      }
+
+      .problem-card h2 {
+        margin: 0 0 18px;
+        color: #ffffff;
+        font-size: 58px;
+        line-height: 1.04;
+        font-weight: 900;
+      }
+
+      .problem-card p {
+        margin: 0;
+        max-width: 790px;
+        color: rgba(255, 255, 255, 0.86);
+        font-size: 27px;
+        line-height: 1.52;
+        font-weight: 700;
+      }
+
+      .impact-card {
+        min-height: 356px;
+        padding: 38px;
+      }
+
+      .impact-card h2 {
+        color: var(--deep);
+        font-size: 38px;
+        line-height: 1.12;
+        font-weight: 900;
+      }
+
+      .impact-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        margin-top: 24px;
+      }
+
+      .metric {
+        min-height: 112px;
+        padding: 18px;
+        border-radius: 8px;
+        background: rgba(47, 109, 54, 0.1);
+      }
+
+      .metric strong {
+        display: block;
+        color: var(--green);
+        font-size: 34px;
+        font-weight: 900;
+      }
+
+      .metric span {
+        display: block;
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 18px;
+        line-height: 1.35;
+        font-weight: 700;
+      }
+
+      .flow-panel {
+        padding: 34px;
+        margin-bottom: 28px;
+      }
+
+      .section-title {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        align-items: end;
+        margin-bottom: 24px;
+      }
+
+      .section-title h2 {
+        margin: 0;
+        color: var(--deep);
+        font-size: 44px;
+        line-height: 1.1;
+        font-weight: 900;
+      }
+
+      .section-title p {
+        max-width: 520px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 21px;
+        line-height: 1.45;
+        font-weight: 700;
+      }
+
+      .flow {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 18px;
+      }
+
+      .flow::before {
+        content: "";
+        position: absolute;
+        left: 7%;
+        right: 7%;
+        top: 45px;
+        height: 8px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--green), var(--gold), var(--green-2));
+        opacity: 0.68;
+      }
+
+      .flow-step {
+        min-height: 238px;
+        padding: 18px;
+        border: 1px solid rgba(47, 109, 54, 0.14);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.66);
+      }
+
+      .flow-step strong {
+        display: grid;
+        place-items: center;
+        width: 82px;
+        height: 82px;
+        margin: 0 auto 20px;
+        border-radius: 50%;
+        color: #ffffff;
+        background: linear-gradient(135deg, var(--green), #8dbb7c);
+        box-shadow: 0 14px 28px rgba(47, 109, 54, 0.22);
+        font-size: 24px;
+        font-weight: 900;
+      }
+
+      .flow-step h3 {
+        margin: 0 0 8px;
+        color: var(--deep);
+        font-size: 24px;
+        line-height: 1.18;
+        font-weight: 900;
+        text-align: center;
+      }
+
+      .flow-step p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 17px;
+        line-height: 1.42;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      .products {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+        margin-bottom: 28px;
+      }
+
+      .product {
+        min-height: 286px;
+        padding: 14px;
+      }
+
+      .product img {
+        width: 100%;
+        height: 174px;
+        object-fit: cover;
+        display: block;
+        border-radius: 8px;
+      }
+
+      .product h3 {
+        margin: 16px 0 8px;
+        color: var(--deep);
+        font-size: 26px;
+        line-height: 1.08;
+        font-weight: 900;
+      }
+
+      .product p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 17px;
+        line-height: 1.38;
+        font-weight: 700;
+      }
+
+      .nabc {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+        margin-bottom: 28px;
+      }
+
+      .nabc-card {
+        min-height: 336px;
+        padding: 28px;
+      }
+
+      .nabc-card strong {
+        display: inline-grid;
+        place-items: center;
+        width: 64px;
+        height: 64px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        color: #ffffff;
+        background: linear-gradient(135deg, var(--deep), var(--green-2));
+        font-size: 34px;
+        font-weight: 900;
+      }
+
+      .nabc-card h2 {
+        margin: 0 0 12px;
+        color: var(--deep);
+        font-size: 31px;
+        font-weight: 900;
+      }
+
+      .nabc-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 18px;
+        line-height: 1.55;
+        font-weight: 700;
+      }
+
+      .business {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 18px;
+        margin-bottom: 28px;
+      }
+
+      .revenue,
+      .swot {
+        padding: 34px;
+      }
+
+      .revenue h2,
+      .swot h2 {
+        margin: 0 0 20px;
+        color: var(--deep);
+        font-size: 38px;
+        line-height: 1.1;
+        font-weight: 900;
+      }
+
+      .revenue ul {
+        margin: 0;
+        padding-left: 22px;
+      }
+
+      .revenue li {
+        margin: 12px 0;
+        color: var(--muted);
+        font-size: 20px;
+        line-height: 1.45;
+        font-weight: 700;
+      }
+
+      .swot-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .swot-grid div {
+        min-height: 136px;
+        padding: 18px;
+        border-radius: 8px;
+        background: rgba(47, 109, 54, 0.1);
+      }
+
+      .swot-grid h3 {
+        margin: 0 0 8px;
+        color: var(--green);
+        font-size: 28px;
+        font-weight: 900;
+      }
+
+      .swot-grid p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.38;
+        font-weight: 700;
+      }
+
+      .footer {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 30px;
+        align-items: center;
+        padding: 32px 38px;
+        color: #ffffff;
+        background:
+          linear-gradient(135deg, rgba(15, 55, 24, 0.93), rgba(47, 109, 54, 0.82)),
+          rgba(255, 255, 255, 0.12);
+      }
+
+      .footer p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.92);
+        font-size: 27px;
+        line-height: 1.38;
+        font-weight: 900;
+      }
+
+      .qr {
+        width: 172px;
+        height: 172px;
+        display: grid;
+        place-items: center;
+        border-radius: 8px;
+        background:
+          linear-gradient(90deg, var(--deep) 10px, transparent 10px) 0 0 / 38px 38px,
+          linear-gradient(var(--deep) 10px, transparent 10px) 0 0 / 38px 38px,
+          #fafff5;
+        color: var(--deep);
+        font-size: 18px;
+        font-weight: 900;
+        text-align: center;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        width: fit-content;
+        margin-bottom: 14px;
+        padding: 9px 14px;
+        border-radius: 8px;
+        background: rgba(244, 197, 101, 0.28);
+        color: var(--deep);
+        font-size: 16px;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="poster" aria-label="Poster dự án AgriShare">
+      <section class="topbar">
+        <div class="brand">
+          <img src="assets/agrishare-emblem.png" alt="AgriShare" />
+          <div>
+            <p class="eyebrow">Dự án lớp</p>
+            <h1>Đồng hành cùng nông sản sạch</h1>
+          </div>
+        </div>
+        <aside class="solution-badge">
+          <span>Tên giải pháp</span>
+          <strong>Website đầu tư nông sản AgriShare</strong>
+        </aside>
+      </section>
+
+      <section class="hero">
+        <article class="problem-card glass">
+          <p class="eyebrow">Tên dự án</p>
+          <h2>Tại TP.HCM thường xuyên xảy ra tình trạng nông dân được mùa, thì mất giá.</h2>
+          <p>
+            AgriShare chuyển câu chuyện tiêu thụ nông sản thành một hành trình đầu tư minh bạch: khách hàng góp vốn, theo dõi mùa vụ và nhận lại sản phẩm thật.
+          </p>
+        </article>
+        <article class="impact-card glass">
+          <span class="pill">Tác động chính</span>
+          <h2>Một nền tảng kết nối vốn, dữ liệu mùa vụ và thị trường đầu ra.</h2>
+          <div class="impact-grid">
+            <div class="metric">
+              <strong>01</strong>
+              <span>Nông dân có vốn trước mùa vụ</span>
+            </div>
+            <div class="metric">
+              <strong>02</strong>
+              <span>Khách hàng thấy rõ nguồn gốc</span>
+            </div>
+            <div class="metric">
+              <strong>03</strong>
+              <span>Đơn hàng lưu về hệ thống quản trị</span>
+            </div>
+            <div class="metric">
+              <strong>04</strong>
+              <span>Nông sản sạch có câu chuyện thật</span>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="flow-panel glass">
+        <div class="section-title">
+          <h2>Quy trình website</h2>
+          <p>Homepage → Listing Page → Project Detail Page → Cart/Checkout Page → Admin Dashboard</p>
+        </div>
+        <div class="flow">
+          <article class="flow-step">
+            <strong>01</strong>
+            <h3>Chọn nông sản</h3>
+            <p>Bưởi da xanh, gạo, mật ong dú, sữa chua.</p>
+          </article>
+          <article class="flow-step">
+            <strong>02</strong>
+            <h3>Chọn gói đầu tư</h3>
+            <p>10 triệu, 20 triệu, 50 triệu hoặc tùy chọn.</p>
+          </article>
+          <article class="flow-step">
+            <strong>03</strong>
+            <h3>Nhận quyền lợi</h3>
+            <p>Sản phẩm, nhật ký mùa vụ, truy xuất và trải nghiệm farm.</p>
+          </article>
+          <article class="flow-step">
+            <strong>04</strong>
+            <h3>Đặt đơn</h3>
+            <p>Thông tin khách hàng được gửi về MongoDB.</p>
+          </article>
+          <article class="flow-step">
+            <strong>05</strong>
+            <h3>Quản trị</h3>
+            <p>Admin theo dõi đơn, trạng thái, thanh toán và giao nhận.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="products">
+        <article class="product glass">
+          <img src="assets/product-buoi-song-xoai-v2.png" alt="Bưởi da xanh Sông Xoài" />
+          <h3>Bưởi da xanh Sông Xoài</h3>
+          <p>Sản phẩm chủ lực, ổn định chất lượng mùa vụ.</p>
+        </article>
+        <article class="product glass">
+          <img src="assets/product-gao-tam-a-v2.png" alt="Gạo Tám Á" />
+          <h3>Gạo Tám Á</h3>
+          <p>Sản phẩm chủ lực, phù hợp gói đầu tư định kỳ.</p>
+        </article>
+        <article class="product glass">
+          <img src="assets/product-mat-ong-du-wins-farm-v2.png" alt="Mật ong dú Win's Farm" />
+          <h3>Mật ong dú Win's Farm</h3>
+          <p>Đặc sản giá trị cao, câu chuyện farm rõ ràng.</p>
+        </article>
+        <article class="product glass">
+          <img src="assets/product-sua-chua-ong-nhiem-v2.png" alt="Sữa chua Ông Nhiệm" />
+          <h3>Sữa chua Ông Nhiệm</h3>
+          <p>Sản phẩm tươi, phù hợp giao nhận và combo gia đình.</p>
+        </article>
+      </section>
+
+      <section class="nabc">
+        <article class="nabc-card glass">
+          <strong>N</strong>
+          <h2>Need</h2>
+          <p>Nông dân cần vốn, thị trường và khả năng giảm rủi ro mất giá; khách hàng cần nông sản sạch có nguồn gốc đáng tin cậy.</p>
+        </article>
+        <article class="nabc-card glass">
+          <strong>A</strong>
+          <h2>Approach</h2>
+          <p>Xây website đầu tư nông sản với marketplace, chi tiết dự án, checkout, database MongoDB, API backend và dashboard quản trị.</p>
+        </article>
+        <article class="nabc-card glass">
+          <strong>B</strong>
+          <h2>Benefit</h2>
+          <p>Khách hàng nhận nông sản và trải nghiệm minh bạch; nông dân có vốn, đầu ra và hồ sơ thương hiệu số.</p>
+        </article>
+        <article class="nabc-card glass">
+          <strong>C</strong>
+          <h2>Competition</h2>
+          <p>Khác sàn thương mại điện tử thông thường vì kết hợp đầu tư, dữ liệu mùa vụ, quản trị đơn và trải nghiệm tại farm.</p>
+        </article>
+      </section>
+
+      <section class="business">
+        <article class="revenue glass">
+          <span class="pill">Dòng doanh thu</span>
+          <h2>Mô hình kinh doanh bền vững</h2>
+          <ul>
+            <li>Phí nền tảng 3% - 7% trên đơn đầu tư thành công.</li>
+            <li>Hoa hồng hoặc biên lợi nhuận từ marketplace nông sản.</li>
+            <li>Doanh thu trải nghiệm farm, workshop, combo gia đình.</li>
+            <li>Gói B2B: quà tặng nông sản, ESG/CSR, farm tour doanh nghiệp.</li>
+            <li>Phí truyền thông, hiển thị và tư vấn số hóa cho hợp tác xã.</li>
+          </ul>
+        </article>
+        <article class="swot glass">
+          <span class="pill">SWOT</span>
+          <h2>Đánh giá nhanh</h2>
+          <div class="swot-grid">
+            <div>
+              <h3>S</h3>
+              <p>Có dữ liệu đơn, sản phẩm, khách hàng và mùa vụ.</p>
+            </div>
+            <div>
+              <h3>W</h3>
+              <p>Cần chuẩn hóa thẩm định và cập nhật farm.</p>
+            </div>
+            <div>
+              <h3>O</h3>
+              <p>Nhu cầu nông sản sạch và truy xuất nguồn gốc tăng.</p>
+            </div>
+            <div>
+              <h3>T</h3>
+              <p>Rủi ro thời tiết, logistics, pháp lý và cạnh tranh.</p>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <footer class="footer glass">
+        <p>
+          AgriShare giúp biến nông sản sạch thành một dự án có hồ sơ, có vốn, có dữ liệu và có thị trường.
+        </p>
+        <div class="qr">agrishare-vn.netlify.app</div>
+      </footer>
+    </main>
+  </body>
+</html>

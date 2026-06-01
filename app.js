@@ -7,8 +7,18 @@ const marketplaceProfiles = {
       "https://facebook.com/htxbuoidaxanhsongxoaitanthanh?mibextid=wwXIfr&rdid=FnB3W6UFXdJYiR2T&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1bZEJ69iCj%2F%3Fmibextid%3DwwXIfr",
     producer: "HTX Bưởi da xanh Sông Xoài",
     productIntro:
-      "Bưởi da xanh vùng Sông Xoài, định hướng chất lượng ổn định, trái đẹp, phù hợp làm quà biếu và tiêu dùng gia đình.",
-    highlights: ["Vườn chuyên canh", "Trái tuyển chọn", "Theo dõi mùa vụ", "Truy xuất lô"],
+      "Bưởi da xanh tuyển chọn từ vùng Sông Xoài, phù hợp khách muốn đầu tư theo sản lượng thật và nhận trái theo mùa.",
+    investmentIntro:
+      "Đặt đầu tư theo kg bưởi, quy đổi thành phần vườn được theo dõi bằng nhật ký chăm sóc, hình ảnh và mốc thu hoạch.",
+    farmerInfo: "HTX chuyên canh bưởi da xanh, định hướng sản xuất ổn định và bán trực tiếp đến khách hàng.",
+    certificateStatus: "Đang chờ cập nhật giấy kiểm định chất lượng.",
+    farmExperience: "Đặt đầu tư để trải nghiệm vườn bưởi, tham quan quy trình chăm sóc và nhận sản phẩm tại farm.",
+    quantityOptions: [
+      { label: "100kg bưởi", unit: "kg", amount: 100, seasonUnit: "khoảng 0,05 mẫu vườn theo dõi" },
+      { label: "250kg bưởi", unit: "kg", amount: 250, seasonUnit: "khoảng 0,12 mẫu vườn theo dõi" },
+      { label: "500kg bưởi", unit: "kg", amount: 500, seasonUnit: "khoảng 0,25 mẫu vườn theo dõi" },
+    ],
+    highlights: ["Trái tuyển chọn", "Theo dõi theo vườn", "Nhận theo mùa", "Có trải nghiệm farm"],
     qualityNotes:
       "Ưu tiên lô trái đồng đều, vỏ xanh, tép mọng, vị ngọt thanh; lịch giao theo mùa thu hoạch thực tế.",
     specs: {
@@ -25,8 +35,18 @@ const marketplaceProfiles = {
     facebookUrl: "https://www.facebook.com/profile.php?id=61565116450494",
     producer: "Gạo Tám Á",
     productIntro:
-      "Gạo Tám Á hướng tới nhóm khách cần nguồn gạo ngon, ổn định, đóng gói sạch và có câu chuyện vùng trồng rõ ràng.",
-    highlights: ["Gạo ngon hằng ngày", "Đóng gói sạch", "Nguồn cung ổn định", "Phù hợp gia đình"],
+      "Gạo Tám Á phù hợp khách muốn đầu tư vào mùa vụ lúa, nhận gạo sạch theo đợt và theo dõi nguồn gốc rõ ràng.",
+    investmentIntro:
+      "Đặt đầu tư theo kg gạo, quy đổi thành diện tích ruộng dự kiến để cập nhật tiến độ gieo trồng, thu hoạch và đóng gói.",
+    farmerInfo: "Đơn vị sản xuất gạo địa phương, tập trung nguồn gạo dùng hằng ngày và đóng gói sạch.",
+    certificateStatus: "Đang chờ cập nhật giấy kiểm định chất lượng.",
+    farmExperience: "Đặt đầu tư để trải nghiệm đồng lúa, xem quy trình canh tác và nhận gạo tại farm/điểm sản xuất.",
+    quantityOptions: [
+      { label: "100kg gạo", unit: "kg", amount: 100, seasonUnit: "khoảng 0,04 mẫu ruộng theo dõi" },
+      { label: "300kg gạo", unit: "kg", amount: 300, seasonUnit: "khoảng 0,12 mẫu ruộng theo dõi" },
+      { label: "600kg gạo", unit: "kg", amount: 600, seasonUnit: "khoảng 0,24 mẫu ruộng theo dõi" },
+    ],
+    highlights: ["Gạo dùng hằng ngày", "Theo dõi ruộng", "Giao theo đợt", "Đóng gói sạch"],
     qualityNotes:
       "Ưu tiên lô gạo mới, hạt đều, mùi thơm tự nhiên; sản phẩm có thể chia nhiều đợt giao để giữ độ tươi.",
     specs: {
@@ -43,8 +63,18 @@ const marketplaceProfiles = {
     facebookUrl: "https://www.facebook.com/profile.php?id=61587362812412",
     producer: "Mật ong dú Win's Farm",
     productIntro:
-      "Mật ong dú Win's Farm là dòng đặc sản có sản lượng giới hạn, phù hợp quà tặng sức khỏe và trải nghiệm nông nghiệp bản địa.",
-    highlights: ["Mật ong dú", "Sản lượng giới hạn", "Quà tặng cao cấp", "Khai thác theo đợt"],
+      "Mật ong dú Win's Farm là đặc sản sản lượng giới hạn, phù hợp khách muốn đầu tư theo tổ ong và nhận mật theo đợt khai thác.",
+    investmentIntro:
+      "Đặt đầu tư theo lít mật, quy đổi thành số tổ ong dú dự kiến để theo dõi chăm sóc, khai thác và đóng chai.",
+    farmerInfo: "Win's Farm phát triển mô hình ong dú bản địa, khai thác theo đợt và ưu tiên chất lượng từng lô mật.",
+    certificateStatus: "Đang chờ cập nhật giấy kiểm định chất lượng.",
+    farmExperience: "Đặt đầu tư để trải nghiệm farm ong dú, tìm hiểu tổ ong và quy trình khai thác mật.",
+    quantityOptions: [
+      { label: "20 lít mật", unit: "lít", amount: 20, seasonUnit: "khoảng 4 tổ ong dú theo dõi" },
+      { label: "50 lít mật", unit: "lít", amount: 50, seasonUnit: "khoảng 10 tổ ong dú theo dõi" },
+      { label: "100 lít mật", unit: "lít", amount: 100, seasonUnit: "khoảng 20 tổ ong dú theo dõi" },
+    ],
+    highlights: ["Sản lượng giới hạn", "Quy đổi theo tổ", "Khai thác theo đợt", "Trải nghiệm farm ong"],
     qualityNotes:
       "Ưu tiên hũ mật trong, thơm, vị chua ngọt đặc trưng; cần kiểm soát thời điểm khai thác và bảo quản.",
     specs: {
@@ -61,8 +91,18 @@ const marketplaceProfiles = {
     facebookUrl: "https://www.facebook.com/suabotuoiongnhiem/?locale=vi_VN",
     producer: "Sữa chua Ông Nhiệm",
     productIntro:
-      "Sữa chua Ông Nhiệm phù hợp mô hình nhận sản phẩm định kỳ, bán lẻ địa phương và quà tặng tươi cho gia đình/văn phòng.",
-    highlights: ["Sữa chua tươi", "Giao định kỳ", "Sản phẩm dễ dùng", "Phù hợp văn phòng"],
+      "Sữa chua Ông Nhiệm phù hợp khách muốn đầu tư sản xuất theo mẻ, nhận sản phẩm tươi định kỳ cho gia đình hoặc văn phòng.",
+    investmentIntro:
+      "Đặt đầu tư theo thùng/hũ, quy đổi thành mẻ sản xuất dự kiến để theo dõi nguyên liệu, sản xuất lạnh và giao hàng.",
+    farmerInfo: "Cơ sở sữa chua địa phương, tập trung sản phẩm tươi, giao định kỳ và kiểm soát bảo quản lạnh.",
+    certificateStatus: "Đang chờ cập nhật giấy kiểm định chất lượng.",
+    farmExperience: "Đặt đầu tư để trải nghiệm điểm sản xuất, xem quy trình làm sữa chua và nhận sản phẩm tươi.",
+    quantityOptions: [
+      { label: "10 thùng sữa chua", unit: "thùng", amount: 10, seasonUnit: "khoảng 2 mẻ sản xuất theo dõi" },
+      { label: "25 thùng sữa chua", unit: "thùng", amount: 25, seasonUnit: "khoảng 5 mẻ sản xuất theo dõi" },
+      { label: "50 thùng sữa chua", unit: "thùng", amount: 50, seasonUnit: "khoảng 10 mẻ sản xuất theo dõi" },
+    ],
+    highlights: ["Sản phẩm tươi", "Quy đổi theo mẻ", "Giao định kỳ", "Trải nghiệm sản xuất"],
     qualityNotes:
       "Ưu tiên quy trình lạnh, hạn dùng rõ ràng, giao theo đợt nhỏ để giữ chất lượng sản phẩm.",
     specs: {
@@ -98,7 +138,7 @@ const fallbackProjects = [
     tags: ["Chất lượng", "Mùa vụ ổn định", "Ổn định chất lượng"],
     cta: "Lựa chọn gói đầu tư",
     summary:
-      "Đầu tư chăm sóc vùng bưởi da xanh Sông Xoài, duy trì chất lượng mùa vụ ổn định và kiểm soát đầu ra minh bạch.",
+      "Đầu tư theo sản lượng bưởi thật, theo dõi một phần vườn và nhận trái theo mùa thu hoạch.",
     ...marketplaceProfiles["Bưởi da xanh"],
   },
   {
@@ -114,7 +154,7 @@ const fallbackProjects = [
     risk: "Thấp",
     tags: ["Gạo ngon", "Đóng gói sạch", "Nguồn cung ổn định"],
     summary:
-      "Đầu tư mùa vụ gạo Tám Á, theo dõi nguồn cung, kiểm soát đóng gói và nhận sản phẩm gạo sạch theo lịch.",
+      "Đầu tư theo kg gạo, theo dõi mùa vụ lúa và nhận gạo sạch theo lịch giao đã xác nhận.",
     cta: "Lựa chọn gói đầu tư",
     ...marketplaceProfiles.Gạo,
   },
@@ -131,7 +171,7 @@ const fallbackProjects = [
     risk: "Trung bình",
     tags: ["Mật ong dú", "Đặc sản", "Sản lượng giới hạn"],
     summary:
-      "Đầu tư vùng khai thác mật ong dú Win's Farm, kiểm soát sản lượng theo đợt và đóng gói thành phẩm minh bạch.",
+      "Đầu tư theo lít mật, quy đổi số tổ ong dú và theo dõi quá trình chăm sóc, khai thác.",
     cta: "Lựa chọn gói đầu tư",
     ...marketplaceProfiles["Mật ong dú"],
   },
@@ -148,7 +188,7 @@ const fallbackProjects = [
     risk: "Thấp",
     tags: ["Sữa chua tươi", "Giao định kỳ", "Bán lẻ"],
     summary:
-      "Đầu tư sản xuất và phân phối sữa chua Ông Nhiệm, nhận sản phẩm tươi theo đợt hoặc trải nghiệm tại điểm sản xuất.",
+      "Đầu tư theo mẻ sản xuất, nhận sữa chua tươi định kỳ hoặc trải nghiệm tại điểm sản xuất.",
     cta: "Lựa chọn gói đầu tư",
     ...marketplaceProfiles["Sữa chua"],
   },
@@ -362,7 +402,13 @@ function renderProjects(filter = "all") {
   projectGrid.innerHTML = visibleProjects
     .map(
       (project) => `
-        <article class="project-card project-card-featured">
+        <article
+          class="project-card project-card-featured"
+          role="link"
+          tabindex="0"
+          data-detail-url="project-detail.html?id=${encodeURIComponent(project.id)}"
+          aria-label="Xem hồ sơ đầu tư ${project.name}"
+        >
           <div class="project-image">
             <img src="${project.image}" alt="${project.name}" />
             <div class="project-header">
@@ -375,41 +421,26 @@ function renderProjects(filter = "all") {
           <div class="project-body">
             <div class="project-card-topline">
               <span class="producer-pill">${project.producer || project.category}</span>
-              <span class="funding-pill">${project.funded}% đã tài trợ</span>
             </div>
             <div class="project-meta">
               <span>${project.category}</span>
               <span>${project.location}</span>
-              <span>${project.risk}</span>
             </div>
-            <p>${project.summary}</p>
-            <p class="product-intro">${project.productIntro || ""}</p>
-            <div class="tag-row">
-              ${project.tags.map((tag) => `<span>${tag}</span>`).join("")}
-            </div>
-            <div class="project-stats">
+            <p class="project-summary">${project.summary}</p>
+            <div class="project-info-strip">
               <div>
-                <span>Vốn cần gọi</span>
-                <strong>${currency.format(project.capital)}</strong>
+                <span>Nhà nông</span>
+                <strong>${project.producer || "Đang cập nhật"}</strong>
               </div>
               <div>
-                <span>Đã tài trợ</span>
-                <strong>${project.funded}%</strong>
-              </div>
-              <div>
-                <span>Lợi nhuận dự kiến</span>
-                <strong>${project.returnRate}</strong>
+                <span>Kiểm định</span>
+                <strong>Chờ cập nhật</strong>
               </div>
             </div>
             <div class="project-actions">
-              <button class="card-action" type="button" data-project-id="${project.id}">
-                ${project.cta || "Xem hồ sơ dự án"}
-              </button>
-              <a class="project-detail-link" href="project-detail.html?id=${encodeURIComponent(project.id)}">
-                Xem hồ sơ
-              </a>
+              <span class="card-action">Đặt đầu tư</span>
+              <span class="project-detail-link">Xem chi tiết sản phẩm</span>
             </div>
-            <a class="facebook-link" href="${project.facebookUrl}" target="_blank" rel="noreferrer">Xem Facebook nhà sản xuất</a>
           </div>
         </article>
       `,
@@ -915,10 +946,20 @@ document.querySelectorAll(".filter-btn").forEach((button) => {
 });
 
 projectGrid.addEventListener("click", (event) => {
-  const button = event.target.closest("[data-project-id]");
-  if (button) {
-    trackEvent("project_cta_click", { projectId: button.dataset.projectId });
-    openProject(button.dataset.projectId);
+  const card = event.target.closest("[data-detail-url]");
+  if (card) {
+    trackEvent("project_card_click", { url: card.dataset.detailUrl });
+    window.location.href = card.dataset.detailUrl;
+  }
+});
+
+projectGrid.addEventListener("keydown", (event) => {
+  if (event.key !== "Enter" && event.key !== " ") return;
+  const card = event.target.closest("[data-detail-url]");
+  if (card) {
+    event.preventDefault();
+    trackEvent("project_card_keyboard_click", { url: card.dataset.detailUrl });
+    window.location.href = card.dataset.detailUrl;
   }
 });
 
