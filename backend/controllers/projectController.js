@@ -342,7 +342,13 @@ exports.deleteProject = async (req, res, next) => {
 
 exports.getProjectUpdates = async (req, res) => {
   try {
-    const updates = await ProjectUpdate.find({ projectId: req.params.id })
+    const updates = await ProjectUpdate.find({
+      projectId: req.params.id,
+      $or: [
+        { orderCode: { $exists: false } },
+        { orderCode: '' },
+      ],
+    })
       .populate('createdBy', 'fullName role')
       .sort({ createdAt: -1 });
 
@@ -377,8 +383,13 @@ exports.createProjectUpdate = async (req, res) => {
       return res.status(403).json({ success: false, message: 'Không có quyền cập nhật nhật ký dự án' });
     }
 
+    const orderCode = req.body.orderCode ? String(req.body.orderCode).trim().toUpperCase() : '';
+    const farmUnitCode = req.body.farmUnitCode ? String(req.body.farmUnitCode).trim().toUpperCase() : '';
     const update = await ProjectUpdate.create({
       ...req.body,
+      orderCode,
+      farmUnitCode,
+      visibility: orderCode ? 'order' : 'project',
       projectId: project._id,
       createdBy: req.user._id,
     });

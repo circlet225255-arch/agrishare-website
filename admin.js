@@ -754,6 +754,8 @@ async function saveProjectUpdate(event) {
       type: formData.get("type"),
       title: formData.get("title"),
       description: formData.get("description"),
+      orderCode: String(formData.get("orderCode") || "").trim().toUpperCase(),
+      farmUnitCode: String(formData.get("farmUnitCode") || "").trim().toUpperCase(),
       images: uploadedImage ? [uploadedImage] : [],
       metrics: {
         growthStage: formData.get("growthStage"),

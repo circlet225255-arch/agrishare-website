@@ -1,6 +1,7 @@
 const Customer = require('../models/Customer');
 const InvestmentOrder = require('../models/InvestmentOrder');
 const Project = require('../models/Project');
+const ProjectUpdate = require('../models/ProjectUpdate');
 const logAudit = require('../utils/auditLogger');
 
 const deliveryLabels = {
@@ -338,9 +339,28 @@ exports.getOrderByCode = async (req, res) => {
       return res.status(404).json({ success: false, message: 'Không tìm thấy đơn đầu tư' });
     }
 
+    const projectId = order.projectId?._id || order.projectId;
+    const seasonUpdates = projectId
+      ? await ProjectUpdate.find({
+        projectId,
+        $or: [
+          { orderCode: order.orderCode },
+          { orderCode: { $exists: false } },
+          { orderCode: '' },
+        ],
+      })
+        .populate('createdBy', 'fullName role')
+        .sort({ createdAt: -1 })
+        .limit(8)
+        .lean()
+      : [];
+
     res.status(200).json({
       success: true,
-      order,
+      order: {
+        ...order,
+        seasonUpdates,
+      },
     });
   } catch (error) {
     res.status(500).json({

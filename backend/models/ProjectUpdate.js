@@ -18,6 +18,21 @@ const ProjectUpdateSchema = new mongoose.Schema(
     },
     description: String,
     images: [String],
+    orderCode: {
+      type: String,
+      trim: true,
+      uppercase: true,
+    },
+    farmUnitCode: {
+      type: String,
+      trim: true,
+      uppercase: true,
+    },
+    visibility: {
+      type: String,
+      enum: ['project', 'order'],
+      default: 'project',
+    },
     metrics: {
       growthStage: String,
       temperatureAvg: Number,
@@ -38,5 +53,6 @@ const ProjectUpdateSchema = new mongoose.Schema(
 
 // Index để tối ưu truy vấn
 ProjectUpdateSchema.index({ projectId: 1, createdAt: -1 });
+ProjectUpdateSchema.index({ projectId: 1, orderCode: 1, createdAt: -1 });
 
 module.exports = mongoose.model('ProjectUpdate', ProjectUpdateSchema);

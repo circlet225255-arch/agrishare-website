@@ -7,6 +7,8 @@ const currency = new Intl.NumberFormat("vi-VN", {
   maximumFractionDigits: 0,
 });
 
+const CREDIT_VALUE = 10000;
+
 const detailProjects = {
   "buoi-da-xanh-song-xoai": {
     id: "buoi-da-xanh-song-xoai",
@@ -18,14 +20,16 @@ const detailProjects = {
     producer: "HTX Bưởi da xanh Sông Xoài",
     facebookUrl:
       "https://facebook.com/htxbuoidaxanhsongxoaitanthanh?mibextid=wwXIfr&rdid=FnB3W6UFXdJYiR2T&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1bZEJ69iCj%2F%3Fmibextid%3DwwXIfr",
-    summary: "Đầu tư theo sản lượng bưởi thật, theo dõi một phần vườn và nhận trái theo mùa thu hoạch.",
+    summary: "Đồng hành theo sản lượng bưởi thật, theo dõi một phần vườn và nhận trái theo mùa thu hoạch.",
     productIntro:
-      "Bưởi da xanh tuyển chọn từ vùng Sông Xoài, phù hợp khách muốn đầu tư theo sản lượng thật và nhận trái theo mùa.",
+      "Bưởi da xanh tuyển chọn từ vùng Sông Xoài, phù hợp người tiêu dùng thông thái muốn sở hữu một mảnh vườn theo mùa.",
     investmentIntro:
-      "Khách chọn số kg bưởi muốn đặt. AgriShare quy đổi sản lượng đó thành phần vườn dự kiến để cập nhật nhật ký chăm sóc, hình ảnh và mốc thu hoạch.",
+      "Khách chọn số kg bưởi muốn đặt. AgriShare quy đổi sản lượng đó thành tín chỉ mùa vụ và phần vườn dự kiến để cập nhật nhật ký chăm sóc.",
     farmerInfo: "HTX chuyên canh bưởi da xanh, định hướng sản xuất ổn định và bán trực tiếp đến khách hàng.",
     certificateStatus: "Ô giấy kiểm định chất lượng đang chờ cập nhật.",
-    farmExperience: "Đặt đầu tư để trải nghiệm vườn bưởi, tham quan quy trình chăm sóc và nhận sản phẩm tại farm.",
+    farmExperience: "Đặt tín chỉ để trải nghiệm vườn bưởi, tham quan quy trình chăm sóc và nhận sản phẩm tại farm.",
+    unitPrice: 30000,
+    unitLabel: "kg bưởi",
     quantityOptions: [
       { label: "100kg bưởi", amount: 100, unit: "kg", seasonUnit: "khoảng 0,05 mẫu vườn theo dõi" },
       { label: "250kg bưởi", amount: 250, unit: "kg", seasonUnit: "khoảng 0,12 mẫu vườn theo dõi" },
@@ -42,14 +46,16 @@ const detailProjects = {
     logo: "assets/logo-gao-tam-a.jpg",
     producer: "Gạo Tám Á",
     facebookUrl: "https://www.facebook.com/profile.php?id=61565116450494",
-    summary: "Đầu tư theo kg gạo, theo dõi mùa vụ lúa và nhận gạo sạch theo lịch giao đã xác nhận.",
+    summary: "Đồng hành theo kg gạo, theo dõi mùa vụ lúa và nhận gạo sạch theo lịch giao đã xác nhận.",
     productIntro:
-      "Gạo Tám Á phù hợp khách muốn đầu tư vào mùa vụ lúa, nhận gạo sạch theo đợt và theo dõi nguồn gốc rõ ràng.",
+      "Gạo Tám Á phù hợp gia đình muốn mua tận gốc, nhận gạo sạch theo đợt và theo dõi nguồn gốc rõ ràng.",
     investmentIntro:
-      "Khách chọn số kg gạo muốn đặt. Sản lượng được quy đổi thành diện tích ruộng dự kiến để theo dõi gieo trồng, thu hoạch và đóng gói.",
+      "Khách chọn số kg gạo muốn đặt. Sản lượng được quy đổi thành tín chỉ mùa vụ và diện tích ruộng dự kiến để theo dõi gieo trồng.",
     farmerInfo: "Đơn vị sản xuất gạo địa phương, tập trung nguồn gạo dùng hằng ngày và đóng gói sạch.",
     certificateStatus: "Ô giấy kiểm định chất lượng đang chờ cập nhật.",
-    farmExperience: "Đặt đầu tư để trải nghiệm đồng lúa, xem quy trình canh tác và nhận gạo tại farm/điểm sản xuất.",
+    farmExperience: "Đặt tín chỉ để trải nghiệm đồng lúa, xem quy trình canh tác và nhận gạo tại farm/điểm sản xuất.",
+    unitPrice: 25000,
+    unitLabel: "kg gạo",
     quantityOptions: [
       { label: "100kg gạo", amount: 100, unit: "kg", seasonUnit: "khoảng 0,04 mẫu ruộng theo dõi" },
       { label: "300kg gạo", amount: 300, unit: "kg", seasonUnit: "khoảng 0,12 mẫu ruộng theo dõi" },
@@ -66,14 +72,16 @@ const detailProjects = {
     logo: "assets/logo-mat-ong-du-wins-farm.jpg",
     producer: "Mật ong dú Win's Farm",
     facebookUrl: "https://www.facebook.com/profile.php?id=61587362812412",
-    summary: "Đầu tư theo lít mật, quy đổi số tổ ong dú và theo dõi quá trình chăm sóc, khai thác.",
+    summary: "Đồng hành theo lít mật, quy đổi số tổ ong dú và theo dõi quá trình chăm sóc, khai thác.",
     productIntro:
-      "Mật ong dú Win's Farm là đặc sản sản lượng giới hạn, phù hợp khách muốn đầu tư theo tổ ong và nhận mật theo đợt khai thác.",
+      "Mật ong dú Win's Farm là đặc sản sản lượng giới hạn, phù hợp khách muốn theo dõi tổ ong và nhận mật theo đợt khai thác.",
     investmentIntro:
-      "Khách chọn số lít mật muốn đặt. AgriShare quy đổi sản lượng thành số tổ ong dú dự kiến để cập nhật chăm sóc, khai thác và đóng chai.",
+      "Khách chọn số lít mật muốn đặt. AgriShare quy đổi sản lượng thành tín chỉ mùa vụ và số tổ ong dú dự kiến.",
     farmerInfo: "Win's Farm phát triển mô hình ong dú bản địa, khai thác theo đợt và ưu tiên chất lượng từng lô mật.",
     certificateStatus: "Ô giấy kiểm định chất lượng đang chờ cập nhật.",
-    farmExperience: "Đặt đầu tư để trải nghiệm farm ong dú, tìm hiểu tổ ong và quy trình khai thác mật.",
+    farmExperience: "Đặt tín chỉ để trải nghiệm farm ong dú, tìm hiểu tổ ong và quy trình khai thác mật.",
+    unitPrice: 250000,
+    unitLabel: "lít mật",
     quantityOptions: [
       { label: "20 lít mật", amount: 20, unit: "lít", seasonUnit: "khoảng 4 tổ ong dú theo dõi" },
       { label: "50 lít mật", amount: 50, unit: "lít", seasonUnit: "khoảng 10 tổ ong dú theo dõi" },
@@ -90,14 +98,16 @@ const detailProjects = {
     logo: "assets/logo-sua-chua-ong-nhiem.jpg",
     producer: "Sữa chua Ông Nhiệm",
     facebookUrl: "https://www.facebook.com/suabotuoiongnhiem/?locale=vi_VN",
-    summary: "Đầu tư theo mẻ sản xuất, nhận sữa chua tươi định kỳ hoặc trải nghiệm tại điểm sản xuất.",
+    summary: "Đồng hành theo mẻ sản xuất, nhận sữa chua tươi định kỳ hoặc trải nghiệm tại điểm sản xuất.",
     productIntro:
-      "Sữa chua Ông Nhiệm phù hợp khách muốn đầu tư sản xuất theo mẻ, nhận sản phẩm tươi định kỳ cho gia đình hoặc văn phòng.",
+      "Sữa chua Ông Nhiệm phù hợp khách muốn đặt sản phẩm tươi định kỳ cho gia đình, văn phòng hoặc quà tặng.",
     investmentIntro:
-      "Khách chọn số thùng muốn đặt. Sản lượng được quy đổi thành mẻ sản xuất dự kiến để theo dõi nguyên liệu, quy trình lạnh và lịch giao.",
+      "Khách chọn số thùng muốn đặt. Sản lượng được quy đổi thành tín chỉ mùa vụ và mẻ sản xuất dự kiến để theo dõi quy trình lạnh.",
     farmerInfo: "Cơ sở sữa chua địa phương, tập trung sản phẩm tươi, giao định kỳ và kiểm soát bảo quản lạnh.",
     certificateStatus: "Ô giấy kiểm định chất lượng đang chờ cập nhật.",
-    farmExperience: "Đặt đầu tư để trải nghiệm điểm sản xuất, xem quy trình làm sữa chua và nhận sản phẩm tươi.",
+    farmExperience: "Đặt tín chỉ để trải nghiệm điểm sản xuất, xem quy trình làm sữa chua và nhận sản phẩm tươi.",
+    unitPrice: 180000,
+    unitLabel: "thùng sữa chua",
     quantityOptions: [
       { label: "10 thùng sữa chua", amount: 10, unit: "thùng", seasonUnit: "khoảng 2 mẻ sản xuất theo dõi" },
       { label: "25 thùng sữa chua", amount: 25, unit: "thùng", seasonUnit: "khoảng 5 mẻ sản xuất theo dõi" },
@@ -154,6 +164,17 @@ function normalizeApiProject(project) {
   };
 }
 
+function calculateCredits(project, amount) {
+  const value = Number(amount || 0) * Number(project.unitPrice || CREDIT_VALUE);
+  return Math.ceil(value / CREDIT_VALUE);
+}
+
+function renderCreditLine(project, amount) {
+  const credits = calculateCredits(project, amount);
+  const value = Number(amount || 0) * Number(project.unitPrice || CREDIT_VALUE);
+  return `${credits.toLocaleString("vi-VN")} tín chỉ - ${currency.format(value)}`;
+}
+
 function renderProject(project) {
   detailRoot.innerHTML = `
     <section class="detail-hero">
@@ -167,7 +188,7 @@ function renderProject(project) {
         <p>${project.summary}</p>
         <p>${project.productIntro}</p>
         <div class="detail-actions">
-          <a class="primary-button" href="#investmentOrder">Đặt đầu tư sản phẩm này</a>
+          <a class="primary-button" href="#investmentOrder">Chọn tín chỉ mùa vụ</a>
           ${project.facebookUrl ? `<a class="secondary-button" href="${project.facebookUrl}" target="_blank" rel="noreferrer">Xem kênh nhà nông</a>` : ""}
         </div>
       </article>
@@ -188,17 +209,40 @@ function renderProject(project) {
       </article>
     </section>
 
+    <section class="detail-card credit-explainer">
+      <div>
+        <p class="eyebrow">Cơ chế tín chỉ</p>
+        <h2>1 tín chỉ mùa vụ = ${currency.format(CREDIT_VALUE)}</h2>
+        <p>${project.investmentIntro}</p>
+      </div>
+      <div class="credit-facts">
+        <article>
+          <span>Giá tham chiếu</span>
+          <strong>${currency.format(project.unitPrice || CREDIT_VALUE)} / ${project.unitLabel || project.category}</strong>
+        </article>
+        <article>
+          <span>Quy đổi mẫu</span>
+          <strong>1 ${project.unitLabel || "đơn vị"} = ${Math.ceil((project.unitPrice || CREDIT_VALUE) / CREDIT_VALUE).toLocaleString("vi-VN")} tín chỉ</strong>
+        </article>
+        <article>
+          <span>Giá trị nhận lại</span>
+          <strong>Nông sản thật hoặc trải nghiệm farm</strong>
+        </article>
+      </div>
+    </section>
+
     <section class="detail-two-column" id="investmentOrder">
       <article class="detail-card">
-        <p class="eyebrow">Chọn số lượng muốn đặt</p>
-        <h2>Sản lượng đặt mua sẽ được quy đổi thành mùa vụ theo dõi.</h2>
+        <p class="eyebrow">Chọn tín chỉ mùa vụ</p>
+        <h2>Sản lượng đặt mua sẽ được quy đổi thành mảnh vườn theo dõi.</h2>
         <div class="quantity-grid">
           ${project.quantityOptions
             .map(
               (item, index) => `
-                <button class="quantity-option ${index === 0 ? "active" : ""}" type="button" data-quantity="${item.label}" data-season="${item.seasonUnit}">
+                <button class="quantity-option ${index === 0 ? "active" : ""}" type="button" data-quantity="${item.label}" data-season="${item.seasonUnit}" data-credit="${renderCreditLine(project, item.amount)}">
                   <strong>${item.label}</strong>
                   <span>${item.seasonUnit}</span>
+                  <em>${renderCreditLine(project, item.amount)}</em>
                 </button>
               `,
             )
@@ -211,7 +255,7 @@ function renderProject(project) {
         <div class="selected-season" id="selectedSeason">
           <span>Sản lượng đang chọn</span>
           <strong>${project.quantityOptions[0].label}</strong>
-          <p>${project.quantityOptions[0].seasonUnit}. Đây sẽ là cơ sở để AgriShare cập nhật tiến độ mùa vụ cho nhà đầu tư.</p>
+          <p>${renderCreditLine(project, project.quantityOptions[0].amount)}. ${project.quantityOptions[0].seasonUnit}. Đây là cơ sở để AgriShare cập nhật nhật ký vườn cho người tiêu dùng thông thái.</p>
         </div>
       </article>
 
@@ -236,7 +280,7 @@ function renderProject(project) {
             Ghi chú nhu cầu
             <textarea rows="3" placeholder="Số lượng muốn đặt, nhận hàng tại nhà hay trải nghiệm farm..."></textarea>
           </label>
-          <button class="primary-button" type="submit">Gửi nhu cầu tư vấn</button>
+          <button class="primary-button" type="submit">Gửi nhu cầu đồng hành</button>
           <p class="form-status" role="status"></p>
         </form>
       </article>
@@ -253,7 +297,7 @@ detailRoot.addEventListener("click", (event) => {
   selectedSeason.innerHTML = `
     <span>Sản lượng đang chọn</span>
     <strong>${option.dataset.quantity}</strong>
-    <p>${option.dataset.season}. Đây sẽ là cơ sở để AgriShare cập nhật tiến độ mùa vụ cho nhà đầu tư.</p>
+    <p>${option.dataset.credit}. ${option.dataset.season}. Đây là cơ sở để AgriShare cập nhật nhật ký vườn cho người tiêu dùng thông thái.</p>
   `;
 });
 

@@ -59,6 +59,46 @@ function formatDate(value) {
   return dateFormatter.format(date);
 }
 
+function renderSeasonUpdates(updates = []) {
+  if (!updates.length) {
+    return `
+      <div class="farm-update-empty">
+        <strong>Chưa có nhật ký mùa vụ mới.</strong>
+        <span>Admin AgriShare và nhà nông sẽ cập nhật hình ảnh, video, lịch chăm sóc và mốc thu hoạch khi có dữ liệu từ vườn.</span>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="farm-update-grid">
+      ${updates
+        .map(
+          (update) => `
+            <article class="farm-update-card">
+              <div>
+                <span>${formatDate(update.createdAt)}</span>
+                <strong>${update.title || "Cập nhật mùa vụ"}</strong>
+              </div>
+              <p>${update.description || "AgriShare đang cập nhật thêm thông tin thực tế từ vườn."}</p>
+              ${
+                update.images?.length
+                  ? `<div class="farm-update-images">
+                      ${update.images
+                        .slice(0, 4)
+                        .map((image) => `<img src="${image}" alt="${update.title || "Nhật ký vườn"}" />`)
+                        .join("")}
+                    </div>`
+                  : ""
+              }
+              <small>${[update.farmUnitCode, update.orderCode, update.createdBy?.fullName || "Admin AgriShare"].filter(Boolean).join(" - ")}</small>
+            </article>
+          `,
+        )
+        .join("")}
+    </div>
+  `;
+}
+
 async function lookupOrder(event) {
   event.preventDefault();
 
@@ -159,6 +199,11 @@ function renderOrder(order) {
           )
           .join("")}
       </ul>
+    </div>
+
+    <div>
+      <p class="eyebrow">Nhật ký vườn từ AgriShare</p>
+      ${renderSeasonUpdates(order.seasonUpdates || [])}
     </div>
   `;
 }

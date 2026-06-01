@@ -179,6 +179,45 @@
   align-items: start;
 }
 
+.credit-explainer {
+  grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
+  align-items: center;
+}
+
+.credit-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.credit-facts article {
+  border: 1px solid rgba(255, 255, 255, 0.62);
+  border-radius: 8px;
+  padding: 14px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(255, 246, 226, 0.36)),
+    rgba(255, 255, 255, 0.5);
+}
+
+.credit-facts span,
+.credit-facts strong {
+  display: block;
+}
+
+.credit-facts span {
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.credit-facts strong {
+  margin-top: 6px;
+  color: var(--soil);
+  font-size: 0.95rem;
+  line-height: 1.35;
+}
+
 .package-list,
 .update-list,
 .faq-list,
@@ -274,6 +313,13 @@
   line-height: 1.4;
 }
 
+.quantity-option em {
+  color: var(--leaf-dark);
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: 900;
+}
+
 .detail-input,
 .detail-interest-form label {
   display: grid;
@@ -365,6 +411,8 @@
   .detail-hero,
   .detail-grid,
   .detail-two-column,
+  .credit-explainer,
+  .credit-facts,
   .quantity-grid,
   .farm-photo-grid {
     grid-template-columns: 1fr;

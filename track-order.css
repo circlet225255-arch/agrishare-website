@@ -242,6 +242,71 @@ input {
   display: block;
 }
 
+.farm-update-empty,
+.farm-update-card {
+  border: 1px solid rgba(76, 175, 80, 0.18);
+  border-radius: 8px;
+  padding: 16px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(232, 245, 233, 0.58)),
+    var(--white);
+}
+
+.farm-update-empty {
+  display: grid;
+  gap: 6px;
+}
+
+.farm-update-empty strong,
+.farm-update-card strong {
+  color: var(--leaf-dark);
+}
+
+.farm-update-empty span,
+.farm-update-card p {
+  color: var(--muted);
+}
+
+.farm-update-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.farm-update-card {
+  display: grid;
+  gap: 10px;
+}
+
+.farm-update-card span,
+.farm-update-card small {
+  color: var(--soil);
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.farm-update-card strong {
+  display: block;
+  margin-top: 3px;
+}
+
+.farm-update-card p {
+  margin: 0;
+}
+
+.farm-update-images {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.farm-update-images img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
 @media (max-width: 900px) {
   .tracking-shell {
     grid-template-columns: 1fr;

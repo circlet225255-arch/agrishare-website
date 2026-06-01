@@ -7,12 +7,13 @@ const marketplaceProfiles = {
       "https://facebook.com/htxbuoidaxanhsongxoaitanthanh?mibextid=wwXIfr&rdid=FnB3W6UFXdJYiR2T&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1bZEJ69iCj%2F%3Fmibextid%3DwwXIfr",
     producer: "HTX Bưởi da xanh Sông Xoài",
     productIntro:
-      "Bưởi da xanh tuyển chọn từ vùng Sông Xoài, phù hợp khách muốn đầu tư theo sản lượng thật và nhận trái theo mùa.",
+      "Bưởi da xanh tuyển chọn từ vùng Sông Xoài, phù hợp khách muốn đồng hành theo sản lượng thật và nhận trái theo mùa.",
     investmentIntro:
-      "Đặt đầu tư theo kg bưởi, quy đổi thành phần vườn được theo dõi bằng nhật ký chăm sóc, hình ảnh và mốc thu hoạch.",
+      "Đặt tín chỉ theo kg bưởi, quy đổi thành phần vườn được theo dõi bằng nhật ký chăm sóc, hình ảnh và mốc thu hoạch.",
     farmerInfo: "HTX chuyên canh bưởi da xanh, định hướng sản xuất ổn định và bán trực tiếp đến khách hàng.",
     certificateStatus: "Đang chờ cập nhật giấy kiểm định chất lượng.",
-    farmExperience: "Đặt đầu tư để trải nghiệm vườn bưởi, tham quan quy trình chăm sóc và nhận sản phẩm tại farm.",
+    farmExperience: "Đặt tín chỉ để trải nghiệm vườn bưởi, tham quan quy trình chăm sóc và nhận sản phẩm tại farm.",
+    creditNote: "1kg bưởi tham chiếu khoảng 3 tín chỉ mùa vụ.",
     quantityOptions: [
       { label: "100kg bưởi", unit: "kg", amount: 100, seasonUnit: "khoảng 0,05 mẫu vườn theo dõi" },
       { label: "250kg bưởi", unit: "kg", amount: 250, seasonUnit: "khoảng 0,12 mẫu vườn theo dõi" },
@@ -35,12 +36,13 @@ const marketplaceProfiles = {
     facebookUrl: "https://www.facebook.com/profile.php?id=61565116450494",
     producer: "Gạo Tám Á",
     productIntro:
-      "Gạo Tám Á phù hợp khách muốn đầu tư vào mùa vụ lúa, nhận gạo sạch theo đợt và theo dõi nguồn gốc rõ ràng.",
+      "Gạo Tám Á phù hợp khách muốn đồng hành cùng mùa vụ lúa, nhận gạo sạch theo đợt và theo dõi nguồn gốc rõ ràng.",
     investmentIntro:
-      "Đặt đầu tư theo kg gạo, quy đổi thành diện tích ruộng dự kiến để cập nhật tiến độ gieo trồng, thu hoạch và đóng gói.",
+      "Đặt tín chỉ theo kg gạo, quy đổi thành diện tích ruộng dự kiến để cập nhật tiến độ gieo trồng, thu hoạch và đóng gói.",
     farmerInfo: "Đơn vị sản xuất gạo địa phương, tập trung nguồn gạo dùng hằng ngày và đóng gói sạch.",
     certificateStatus: "Đang chờ cập nhật giấy kiểm định chất lượng.",
-    farmExperience: "Đặt đầu tư để trải nghiệm đồng lúa, xem quy trình canh tác và nhận gạo tại farm/điểm sản xuất.",
+    farmExperience: "Đặt tín chỉ để trải nghiệm đồng lúa, xem quy trình canh tác và nhận gạo tại farm/điểm sản xuất.",
+    creditNote: "1kg gạo tham chiếu khoảng 2,5 tín chỉ mùa vụ.",
     quantityOptions: [
       { label: "100kg gạo", unit: "kg", amount: 100, seasonUnit: "khoảng 0,04 mẫu ruộng theo dõi" },
       { label: "300kg gạo", unit: "kg", amount: 300, seasonUnit: "khoảng 0,12 mẫu ruộng theo dõi" },
@@ -63,12 +65,13 @@ const marketplaceProfiles = {
     facebookUrl: "https://www.facebook.com/profile.php?id=61587362812412",
     producer: "Mật ong dú Win's Farm",
     productIntro:
-      "Mật ong dú Win's Farm là đặc sản sản lượng giới hạn, phù hợp khách muốn đầu tư theo tổ ong và nhận mật theo đợt khai thác.",
+      "Mật ong dú Win's Farm là đặc sản sản lượng giới hạn, phù hợp khách muốn đồng hành theo tổ ong và nhận mật theo đợt khai thác.",
     investmentIntro:
-      "Đặt đầu tư theo lít mật, quy đổi thành số tổ ong dú dự kiến để theo dõi chăm sóc, khai thác và đóng chai.",
+      "Đặt tín chỉ theo lít mật, quy đổi thành số tổ ong dú dự kiến để theo dõi chăm sóc, khai thác và đóng chai.",
     farmerInfo: "Win's Farm phát triển mô hình ong dú bản địa, khai thác theo đợt và ưu tiên chất lượng từng lô mật.",
     certificateStatus: "Đang chờ cập nhật giấy kiểm định chất lượng.",
-    farmExperience: "Đặt đầu tư để trải nghiệm farm ong dú, tìm hiểu tổ ong và quy trình khai thác mật.",
+    farmExperience: "Đặt tín chỉ để trải nghiệm farm ong dú, tìm hiểu tổ ong và quy trình khai thác mật.",
+    creditNote: "1 lít mật tham chiếu khoảng 25 tín chỉ mùa vụ.",
     quantityOptions: [
       { label: "20 lít mật", unit: "lít", amount: 20, seasonUnit: "khoảng 4 tổ ong dú theo dõi" },
       { label: "50 lít mật", unit: "lít", amount: 50, seasonUnit: "khoảng 10 tổ ong dú theo dõi" },
@@ -91,12 +94,13 @@ const marketplaceProfiles = {
     facebookUrl: "https://www.facebook.com/suabotuoiongnhiem/?locale=vi_VN",
     producer: "Sữa chua Ông Nhiệm",
     productIntro:
-      "Sữa chua Ông Nhiệm phù hợp khách muốn đầu tư sản xuất theo mẻ, nhận sản phẩm tươi định kỳ cho gia đình hoặc văn phòng.",
+      "Sữa chua Ông Nhiệm phù hợp khách muốn đồng hành theo mẻ sản xuất, nhận sản phẩm tươi định kỳ cho gia đình hoặc văn phòng.",
     investmentIntro:
-      "Đặt đầu tư theo thùng/hũ, quy đổi thành mẻ sản xuất dự kiến để theo dõi nguyên liệu, sản xuất lạnh và giao hàng.",
+      "Đặt tín chỉ theo thùng/hũ, quy đổi thành mẻ sản xuất dự kiến để theo dõi nguyên liệu, sản xuất lạnh và giao hàng.",
     farmerInfo: "Cơ sở sữa chua địa phương, tập trung sản phẩm tươi, giao định kỳ và kiểm soát bảo quản lạnh.",
     certificateStatus: "Đang chờ cập nhật giấy kiểm định chất lượng.",
-    farmExperience: "Đặt đầu tư để trải nghiệm điểm sản xuất, xem quy trình làm sữa chua và nhận sản phẩm tươi.",
+    farmExperience: "Đặt tín chỉ để trải nghiệm điểm sản xuất, xem quy trình làm sữa chua và nhận sản phẩm tươi.",
+    creditNote: "1 thùng sữa chua tham chiếu khoảng 18 tín chỉ mùa vụ.",
     quantityOptions: [
       { label: "10 thùng sữa chua", unit: "thùng", amount: 10, seasonUnit: "khoảng 2 mẻ sản xuất theo dõi" },
       { label: "25 thùng sữa chua", unit: "thùng", amount: 25, seasonUnit: "khoảng 5 mẻ sản xuất theo dõi" },
@@ -136,9 +140,9 @@ const fallbackProjects = [
     returnRate: "10-14%",
     risk: "Ổn định chất lượng",
     tags: ["Chất lượng", "Mùa vụ ổn định", "Ổn định chất lượng"],
-    cta: "Lựa chọn gói đầu tư",
+    cta: "Chọn tín chỉ mùa vụ",
     summary:
-      "Đầu tư theo sản lượng bưởi thật, theo dõi một phần vườn và nhận trái theo mùa thu hoạch.",
+      "Đồng hành theo sản lượng bưởi thật, theo dõi một phần vườn và nhận trái theo mùa thu hoạch.",
     ...marketplaceProfiles["Bưởi da xanh"],
   },
   {
@@ -154,8 +158,8 @@ const fallbackProjects = [
     risk: "Thấp",
     tags: ["Gạo ngon", "Đóng gói sạch", "Nguồn cung ổn định"],
     summary:
-      "Đầu tư theo kg gạo, theo dõi mùa vụ lúa và nhận gạo sạch theo lịch giao đã xác nhận.",
-    cta: "Lựa chọn gói đầu tư",
+      "Đồng hành theo kg gạo, theo dõi mùa vụ lúa và nhận gạo sạch theo lịch giao đã xác nhận.",
+    cta: "Chọn tín chỉ mùa vụ",
     ...marketplaceProfiles.Gạo,
   },
   {
@@ -171,8 +175,8 @@ const fallbackProjects = [
     risk: "Trung bình",
     tags: ["Mật ong dú", "Đặc sản", "Sản lượng giới hạn"],
     summary:
-      "Đầu tư theo lít mật, quy đổi số tổ ong dú và theo dõi quá trình chăm sóc, khai thác.",
-    cta: "Lựa chọn gói đầu tư",
+      "Đồng hành theo lít mật, quy đổi số tổ ong dú và theo dõi quá trình chăm sóc, khai thác.",
+    cta: "Chọn tín chỉ mùa vụ",
     ...marketplaceProfiles["Mật ong dú"],
   },
   {
@@ -188,8 +192,8 @@ const fallbackProjects = [
     risk: "Thấp",
     tags: ["Sữa chua tươi", "Giao định kỳ", "Bán lẻ"],
     summary:
-      "Đầu tư theo mẻ sản xuất, nhận sữa chua tươi định kỳ hoặc trải nghiệm tại điểm sản xuất.",
-    cta: "Lựa chọn gói đầu tư",
+      "Đồng hành theo mẻ sản xuất, nhận sữa chua tươi định kỳ hoặc trải nghiệm tại điểm sản xuất.",
+    cta: "Chọn tín chỉ mùa vụ",
     ...marketplaceProfiles["Sữa chua"],
   },
 ];
@@ -306,7 +310,7 @@ function enrichMarketplaceProject(project) {
     image: fallback?.image || project.image,
     tags: fallback?.tags || project.tags || [],
     summary: fallback?.summary || project.summary,
-    cta: "Lựa chọn gói đầu tư",
+    cta: "Chọn tín chỉ mùa vụ",
     ...profile,
   };
 }
@@ -324,6 +328,53 @@ function formatTrackingDate(value) {
   return shortDateFormatter.format(date);
 }
 
+function renderHomepageSeasonUpdates(updates = []) {
+  if (!updates.length) {
+    return `
+      <div class="homepage-season-empty">
+        <p class="eyebrow">Nhật ký vườn từ AgriShare</p>
+        <strong>Chưa có hình ảnh mùa vụ mới.</strong>
+        <span>Admin AgriShare và nhà nông sẽ cập nhật hình ảnh, video, lịch chăm sóc và mốc thu hoạch tại đây.</span>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="homepage-season-updates">
+      <div class="season-updates-head">
+        <p class="eyebrow">Nhật ký vườn từ AgriShare</p>
+        <strong>${updates.length} cập nhật mùa vụ gần nhất</strong>
+      </div>
+      <div class="season-update-grid">
+        ${updates
+          .map(
+            (update) => `
+              <article class="season-update-card">
+                <div>
+                  <span>${formatTrackingDate(update.createdAt)}</span>
+                  <strong>${update.title || "Cập nhật mùa vụ"}</strong>
+                </div>
+                <p>${update.description || "AgriShare đang cập nhật thêm thông tin từ vườn."}</p>
+                ${
+                  update.images?.length
+                    ? `<div class="season-update-images">
+                        ${update.images
+                          .slice(0, 3)
+                          .map((image) => `<img src="${image}" alt="${update.title || "Nhật ký vườn"}" />`)
+                          .join("")}
+                      </div>`
+                    : ""
+                }
+                <small>${[update.farmUnitCode, update.orderCode, update.createdBy?.fullName || "Admin AgriShare"].filter(Boolean).join(" - ")}</small>
+              </article>
+            `,
+          )
+          .join("")}
+      </div>
+    </div>
+  `;
+}
+
 function renderHomepageOrder(order) {
   const customer = order.customerSnapshot || {};
   const project = order.projectSnapshot || order.projectId || {};
@@ -334,13 +385,13 @@ function renderHomepageOrder(order) {
       <div class="tracking-result-head">
         <div>
           <p class="eyebrow">Mã đơn ${order.orderCode}</p>
-          <h3>${project.name || "Đơn đầu tư AgriShare"}</h3>
+          <h3>${project.name || "Đơn tín chỉ AgriShare"}</h3>
         </div>
         <span class="status-pill ${order.status}">${orderStatusLabels[order.status] || order.status}</span>
       </div>
       <div class="order-summary-grid">
         <div><span>Khách hàng</span><strong>${customer.fullName || "Chưa có"}</strong></div>
-        <div><span>Gói đầu tư</span><strong>${packageInfo.label || "Gói đầu tư"} - ${currency.format(order.amount || 0)}</strong></div>
+        <div><span>Tín chỉ mùa vụ</span><strong>${packageInfo.label || "Gói tín chỉ"} - ${currency.format(order.amount || 0)}</strong></div>
         <div><span>Thanh toán</span><strong>${paymentStatusLabels[order.payment?.status] || "Chưa cập nhật"}</strong></div>
         <div><span>Nhận sản phẩm</span><strong>${deliveryMethodLabels[order.delivery?.method] || "Chưa chọn"}</strong></div>
         <div><span>Trạng thái giao/farm</span><strong>${deliveryStatusLabels[order.delivery?.status] || "Chưa cập nhật"}</strong></div>
@@ -358,6 +409,7 @@ function renderHomepageOrder(order) {
           )
           .join("")}
       </ul>
+      ${renderHomepageSeasonUpdates(order.seasonUpdates || [])}
       <div class="tracking-actions">
         <a class="text-link" href="track-order.html?code=${encodeURIComponent(order.orderCode)}">Mở trang tra cứu đầy đủ</a>
         <a class="text-link" href="${API_BASE_URL}/checkout/orders/${encodeURIComponent(order.orderCode)}/receipt" target="_blank" rel="noreferrer">In/Lưu biên nhận</a>
@@ -381,11 +433,11 @@ async function lookupHomepageOrder(event) {
     const data = await response.json();
 
     if (!response.ok || !data.success) {
-      throw new Error(data.message || "Không tìm thấy đơn đầu tư");
+      throw new Error(data.message || "Không tìm thấy đơn tín chỉ");
     }
 
     renderHomepageOrder(data.order);
-    homeTrackingStatus.textContent = "Đã tìm thấy đơn đầu tư.";
+    homeTrackingStatus.textContent = "Đã tìm thấy đơn tín chỉ.";
     homeTrackingStatus.dataset.state = "success";
     trackEvent("homepage_order_lookup", { orderCode });
   } catch (error) {
@@ -407,7 +459,7 @@ function renderProjects(filter = "all") {
           role="link"
           tabindex="0"
           data-detail-url="project-detail.html?id=${encodeURIComponent(project.id)}"
-          aria-label="Xem hồ sơ đầu tư ${project.name}"
+          aria-label="Xem hồ sơ mùa vụ ${project.name}"
         >
           <div class="project-image">
             <img src="${project.image}" alt="${project.name}" />
@@ -421,6 +473,7 @@ function renderProjects(filter = "all") {
           <div class="project-body">
             <div class="project-card-topline">
               <span class="producer-pill">${project.producer || project.category}</span>
+              <span class="funding-pill">1 tín chỉ = 10.000đ</span>
             </div>
             <div class="project-meta">
               <span>${project.category}</span>
@@ -437,8 +490,9 @@ function renderProjects(filter = "all") {
                 <strong>Chờ cập nhật</strong>
               </div>
             </div>
+            <p class="investment-intro">${project.creditNote || "Tín chỉ được quy đổi theo sản lượng mùa vụ thực tế."}</p>
             <div class="project-actions">
-              <span class="card-action">Đặt đầu tư</span>
+              <span class="card-action">Chọn tín chỉ</span>
               <span class="project-detail-link">Xem chi tiết sản phẩm</span>
             </div>
           </div>
@@ -898,24 +952,26 @@ function trackEvent(type, metadata = {}) {
 
 function updateCalculator() {
   const capital = Number(document.querySelector("#capitalInput").value || 0);
-  const returnRate = Number(document.querySelector("#returnInput").value);
-  const feeRate = Number(document.querySelector("#feeInput").value);
-  const grossProfit = capital * returnRate;
-  const platformFee = grossProfit * feeRate;
-  const netProfit = grossProfit - platformFee;
+  const productSelect = document.querySelector("#returnInput");
+  const deliverySelect = document.querySelector("#feeInput");
+  const referencePrice = Number(productSelect.value || 1);
+  const unit = productSelect.selectedOptions[0]?.dataset.unit || "đơn vị";
+  const credits = Math.max(0, Math.floor(capital / 10000));
+  const quantity = capital / referencePrice;
+  const deliveryLabel = deliverySelect.selectedOptions[0]?.textContent || "Nhận nông sản";
 
   calcResults.innerHTML = `
     <div>
-      <span>Lợi nhuận trước phí</span>
-      <strong>${currency.format(grossProfit)}</strong>
+      <span>Tín chỉ mùa vụ</span>
+      <strong>${credits.toLocaleString("vi-VN")} tín chỉ</strong>
     </div>
     <div>
-      <span>Phí nền tảng</span>
-      <strong>${currency.format(platformFee)}</strong>
+      <span>Sản lượng tham chiếu</span>
+      <strong>${quantity.toLocaleString("vi-VN", { maximumFractionDigits: 1 })} ${unit}</strong>
     </div>
     <div>
-      <span>Dự kiến nhận về</span>
-      <strong>${currency.format(capital + netProfit)}</strong>
+      <span>Cách nhận giá trị</span>
+      <strong>${deliveryLabel}</strong>
     </div>
   `;
 }
