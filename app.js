@@ -3,17 +3,19 @@ const API_BASE_URL = window.AGRISHARE_CONFIG?.API_BASE_URL || "http://localhost:
 const marketplaceProfiles = {
   "Bưởi da xanh": {
     logo: "assets/logo-buoi-song-xoai.jpg",
-    facebookUrl:
-      "https://facebook.com/htxbuoidaxanhsongxoaitanthanh?mibextid=wwXIfr&rdid=FnB3W6UFXdJYiR2T&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1bZEJ69iCj%2F%3Fmibextid%3DwwXIfr",
-    producer: "HTX Bưởi da xanh Sông Xoài",
+    facebookUrl: "https://www.facebook.com/share/1DAv6TPQSd/?mibextid=wwXIfr",
+    website: "https://htxbuoidaxanhsongxoai.vn/tuyen-dung",
+    producer: "Bưởi da xanh Sông Xoài",
+    farmerName: "Hồ Hoàng Kha",
+    certificateLabel: "Đầy đủ giấy tờ",
     productIntro:
       "Bưởi da xanh tuyển chọn từ vùng Sông Xoài, phù hợp khách muốn đồng hành theo sản lượng thật và nhận trái theo mùa.",
     investmentIntro:
       "Đặt tín chỉ theo kg bưởi, quy đổi thành phần vườn được theo dõi bằng nhật ký chăm sóc, hình ảnh và mốc thu hoạch.",
-    farmerInfo: "HTX chuyên canh bưởi da xanh, định hướng sản xuất ổn định và bán trực tiếp đến khách hàng.",
-    certificateStatus: "Đang chờ cập nhật giấy kiểm định chất lượng.",
+    farmerInfo: "Chủ hộ kinh doanh Hồ Hoàng Kha, vườn bưởi tại Tổ 2, Ấp 3, phường Tân Thành, TP.HCM.",
+    certificateStatus: "Đã cập nhật 2 giấy tờ kiểm định/chứng nhận.",
     farmExperience: "Đặt tín chỉ để trải nghiệm vườn bưởi, tham quan quy trình chăm sóc và nhận sản phẩm tại farm.",
-    creditNote: "1kg bưởi tham chiếu khoảng 3 tín chỉ mùa vụ.",
+    creditNote: "1 tín chỉ 100.000đ tham chiếu khoảng 3,3kg bưởi.",
     quantityOptions: [
       { label: "100kg bưởi", unit: "kg", amount: 100, seasonUnit: "khoảng 0,05 mẫu vườn theo dõi" },
       { label: "250kg bưởi", unit: "kg", amount: 250, seasonUnit: "khoảng 0,12 mẫu vườn theo dõi" },
@@ -35,14 +37,16 @@ const marketplaceProfiles = {
     logo: "assets/logo-gao-tam-a.jpg",
     facebookUrl: "https://www.facebook.com/profile.php?id=61565116450494",
     producer: "Gạo Tám Á",
+    farmerName: "Trần Quang",
+    certificateLabel: "Đầy đủ giấy tờ",
     productIntro:
       "Gạo Tám Á phù hợp khách muốn đồng hành cùng mùa vụ lúa, nhận gạo sạch theo đợt và theo dõi nguồn gốc rõ ràng.",
     investmentIntro:
       "Đặt tín chỉ theo kg gạo, quy đổi thành diện tích ruộng dự kiến để cập nhật tiến độ gieo trồng, thu hoạch và đóng gói.",
-    farmerInfo: "Đơn vị sản xuất gạo địa phương, tập trung nguồn gạo dùng hằng ngày và đóng gói sạch.",
-    certificateStatus: "Đang chờ cập nhật giấy kiểm định chất lượng.",
+    farmerInfo: "Chủ hộ kinh doanh Trần Quang, phụ trách nguồn gạo sạch và đóng gói rõ nguồn gốc.",
+    certificateStatus: "Đã cập nhật giấy chứng nhận nhãn hiệu và báo cáo thử nghiệm gạo.",
     farmExperience: "Đặt tín chỉ để trải nghiệm đồng lúa, xem quy trình canh tác và nhận gạo tại farm/điểm sản xuất.",
-    creditNote: "1kg gạo tham chiếu khoảng 2,5 tín chỉ mùa vụ.",
+    creditNote: "1 tín chỉ 100.000đ tham chiếu khoảng 4kg gạo.",
     quantityOptions: [
       { label: "100kg gạo", unit: "kg", amount: 100, seasonUnit: "khoảng 0,04 mẫu ruộng theo dõi" },
       { label: "300kg gạo", unit: "kg", amount: 300, seasonUnit: "khoảng 0,12 mẫu ruộng theo dõi" },
@@ -62,16 +66,18 @@ const marketplaceProfiles = {
   },
   "Mật ong dú": {
     logo: "assets/logo-mat-ong-du-wins-farm.jpg",
-    facebookUrl: "https://www.facebook.com/profile.php?id=61587362812412",
+    website: "https://winsfarm.netzeronomy.com",
     producer: "Mật ong dú Win's Farm",
+    farmerName: "Nguyễn Thị Ngọc Phượng",
+    certificateLabel: "Đầy đủ giấy tờ",
     productIntro:
       "Mật ong dú Win's Farm là đặc sản sản lượng giới hạn, phù hợp khách muốn đồng hành theo tổ ong và nhận mật theo đợt khai thác.",
     investmentIntro:
       "Đặt tín chỉ theo lít mật, quy đổi thành số tổ ong dú dự kiến để theo dõi chăm sóc, khai thác và đóng chai.",
-    farmerInfo: "Win's Farm phát triển mô hình ong dú bản địa, khai thác theo đợt và ưu tiên chất lượng từng lô mật.",
-    certificateStatus: "Đang chờ cập nhật giấy kiểm định chất lượng.",
+    farmerInfo: "Chủ hộ kinh doanh Nguyễn Thị Ngọc Phượng, thương hiệu Ong dú Win's Farm.",
+    certificateStatus: "Đã cập nhật 2 hình ảnh kết quả kiểm nghiệm mật ong dú.",
     farmExperience: "Đặt tín chỉ để trải nghiệm farm ong dú, tìm hiểu tổ ong và quy trình khai thác mật.",
-    creditNote: "1 lít mật tham chiếu khoảng 25 tín chỉ mùa vụ.",
+    creditNote: "1 lít mật tham chiếu khoảng 2,5 tín chỉ mùa vụ.",
     quantityOptions: [
       { label: "20 lít mật", unit: "lít", amount: 20, seasonUnit: "khoảng 4 tổ ong dú theo dõi" },
       { label: "50 lít mật", unit: "lít", amount: 50, seasonUnit: "khoảng 10 tổ ong dú theo dõi" },
@@ -91,16 +97,19 @@ const marketplaceProfiles = {
   },
   "Sữa chua": {
     logo: "assets/logo-sua-chua-ong-nhiem.jpg",
-    facebookUrl: "https://www.facebook.com/suabotuoiongnhiem/?locale=vi_VN",
+    facebookUrl: "https://www.facebook.com/share/1KrpeNodBE/?mibextid=wwXIfr",
+    website: "https://suaboongnhiem.com/",
     producer: "Sữa chua Ông Nhiệm",
+    farmerName: "Nguyễn Văn Nhiệm",
+    certificateLabel: "Đầy đủ giấy tờ",
     productIntro:
       "Sữa chua Ông Nhiệm phù hợp khách muốn đồng hành theo mẻ sản xuất, nhận sản phẩm tươi định kỳ cho gia đình hoặc văn phòng.",
     investmentIntro:
       "Đặt tín chỉ theo thùng/hũ, quy đổi thành mẻ sản xuất dự kiến để theo dõi nguyên liệu, sản xuất lạnh và giao hàng.",
-    farmerInfo: "Cơ sở sữa chua địa phương, tập trung sản phẩm tươi, giao định kỳ và kiểm soát bảo quản lạnh.",
-    certificateStatus: "Đang chờ cập nhật giấy kiểm định chất lượng.",
+    farmerInfo: "Chủ hộ kinh doanh Nguyễn Văn Nhiệm, điểm sản xuất tại Tổ 1, Ấp Tân Lễ A, Xã Châu Pha, TP Hồ Chí Minh.",
+    certificateStatus: "Đã cập nhật giấy chứng nhận nhãn hiệu và phiếu kiểm nghiệm.",
     farmExperience: "Đặt tín chỉ để trải nghiệm điểm sản xuất, xem quy trình làm sữa chua và nhận sản phẩm tươi.",
-    creditNote: "1 thùng sữa chua tham chiếu khoảng 18 tín chỉ mùa vụ.",
+    creditNote: "1 thùng sữa chua tham chiếu khoảng 1,8 tín chỉ mùa vụ.",
     quantityOptions: [
       { label: "10 thùng sữa chua", unit: "thùng", amount: 10, seasonUnit: "khoảng 2 mẻ sản xuất theo dõi" },
       { label: "25 thùng sữa chua", unit: "thùng", amount: 25, seasonUnit: "khoảng 5 mẻ sản xuất theo dõi" },
@@ -306,6 +315,7 @@ function enrichMarketplaceProject(project) {
     ...project,
     ...fallback,
     id: project.id || fallback?.id,
+    detailId: fallback?.id || project.slug || project.id,
     packages: project.packages || fallback?.packages,
     image: fallback?.image || project.image,
     tags: fallback?.tags || project.tags || [],
@@ -458,7 +468,7 @@ function renderProjects(filter = "all") {
           class="project-card project-card-featured"
           role="link"
           tabindex="0"
-          data-detail-url="project-detail.html?id=${encodeURIComponent(project.id)}"
+          data-detail-url="project-detail.html?id=${encodeURIComponent(project.detailId || project.id)}"
           aria-label="Xem hồ sơ mùa vụ ${project.name}"
         >
           <div class="project-image">
@@ -473,7 +483,7 @@ function renderProjects(filter = "all") {
           <div class="project-body">
             <div class="project-card-topline">
               <span class="producer-pill">${project.producer || project.category}</span>
-              <span class="funding-pill">1 tín chỉ = 10.000đ</span>
+              <span class="funding-pill">1 tín chỉ = 100.000đ</span>
             </div>
             <div class="project-meta">
               <span>${project.category}</span>
@@ -483,11 +493,11 @@ function renderProjects(filter = "all") {
             <div class="project-info-strip">
               <div>
                 <span>Nhà nông</span>
-                <strong>${project.producer || "Đang cập nhật"}</strong>
+                <strong>${project.farmerName || project.producer || "Đang cập nhật"}</strong>
               </div>
               <div>
                 <span>Kiểm định</span>
-                <strong>Chờ cập nhật</strong>
+                <strong>${project.certificateLabel || "Đầy đủ giấy tờ"}</strong>
               </div>
             </div>
             <p class="investment-intro">${project.creditNote || "Tín chỉ được quy đổi theo sản lượng mùa vụ thực tế."}</p>
@@ -514,9 +524,8 @@ async function loadMarketplaceProjects() {
 
     if (data.success && Array.isArray(data.projects) && data.projects.length > 0) {
       const curatedNames = new Set(fallbackProjects.map((project) => project.name));
-      const curatedCategories = new Set(fallbackProjects.map((project) => project.category));
       projects = data.projects
-        .filter((project) => curatedNames.has(project.name) || curatedCategories.has(project.category))
+        .filter((project) => curatedNames.has(project.name))
         .map(enrichMarketplaceProject)
         .slice(0, 4);
 
@@ -956,7 +965,7 @@ function updateCalculator() {
   const deliverySelect = document.querySelector("#feeInput");
   const referencePrice = Number(productSelect.value || 1);
   const unit = productSelect.selectedOptions[0]?.dataset.unit || "đơn vị";
-  const credits = Math.max(0, Math.floor(capital / 10000));
+  const credits = Math.max(0, Math.floor(capital / 100000));
   const quantity = capital / referencePrice;
   const deliveryLabel = deliverySelect.selectedOptions[0]?.textContent || "Nhận nông sản";
 
