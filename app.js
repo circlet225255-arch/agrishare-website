@@ -11,11 +11,11 @@ const marketplaceProfiles = {
     productIntro:
       "Bưởi da xanh tuyển chọn từ vùng Sông Xoài, phù hợp khách muốn đồng hành theo sản lượng thật và nhận trái theo mùa.",
     investmentIntro:
-      "Đặt tín chỉ theo kg bưởi, quy đổi thành phần vườn được theo dõi bằng nhật ký chăm sóc, hình ảnh và mốc thu hoạch.",
+      "Đặt Agricoin theo kg bưởi, quy đổi thành phần vườn được theo dõi bằng nhật ký chăm sóc, hình ảnh và mốc thu hoạch.",
     farmerInfo: "Chủ hộ kinh doanh Hồ Hoàng Kha, vườn bưởi tại Tổ 2, Ấp 3, phường Tân Thành, TP.HCM.",
     certificateStatus: "Đã cập nhật 2 giấy tờ kiểm định/chứng nhận.",
-    farmExperience: "Đặt tín chỉ để trải nghiệm vườn bưởi, tham quan quy trình chăm sóc và nhận sản phẩm tại farm.",
-    creditNote: "1 tín chỉ 100.000đ tham chiếu khoảng 3,3kg bưởi.",
+    farmExperience: "Đặt Agricoin để trải nghiệm vườn bưởi, tham quan quy trình chăm sóc và nhận sản phẩm tại farm.",
+    creditNote: "1 Agricoin = 100.000đ, tham chiếu khoảng 3,3kg bưởi.",
     quantityOptions: [
       { label: "100kg bưởi", unit: "kg", amount: 100, seasonUnit: "khoảng 0,05 mẫu vườn theo dõi" },
       { label: "250kg bưởi", unit: "kg", amount: 250, seasonUnit: "khoảng 0,12 mẫu vườn theo dõi" },
@@ -42,11 +42,11 @@ const marketplaceProfiles = {
     productIntro:
       "Gạo Tám Á phù hợp khách muốn đồng hành cùng mùa vụ lúa, nhận gạo sạch theo đợt và theo dõi nguồn gốc rõ ràng.",
     investmentIntro:
-      "Đặt tín chỉ theo kg gạo, quy đổi thành diện tích ruộng dự kiến để cập nhật tiến độ gieo trồng, thu hoạch và đóng gói.",
+      "Đặt Agricoin theo kg gạo, quy đổi thành diện tích ruộng dự kiến để cập nhật tiến độ gieo trồng, thu hoạch và đóng gói.",
     farmerInfo: "Chủ hộ kinh doanh Trần Quang, phụ trách nguồn gạo sạch và đóng gói rõ nguồn gốc.",
     certificateStatus: "Đã cập nhật giấy chứng nhận nhãn hiệu và báo cáo thử nghiệm gạo.",
-    farmExperience: "Đặt tín chỉ để trải nghiệm đồng lúa, xem quy trình canh tác và nhận gạo tại farm/điểm sản xuất.",
-    creditNote: "1 tín chỉ 100.000đ tham chiếu khoảng 4kg gạo.",
+    farmExperience: "Đặt Agricoin để trải nghiệm đồng lúa, xem quy trình canh tác và nhận gạo tại farm/điểm sản xuất.",
+    creditNote: "1 Agricoin = 100.000đ, tham chiếu khoảng 4kg gạo.",
     quantityOptions: [
       { label: "100kg gạo", unit: "kg", amount: 100, seasonUnit: "khoảng 0,04 mẫu ruộng theo dõi" },
       { label: "300kg gạo", unit: "kg", amount: 300, seasonUnit: "khoảng 0,12 mẫu ruộng theo dõi" },
@@ -73,11 +73,11 @@ const marketplaceProfiles = {
     productIntro:
       "Mật ong dú Win's Farm là đặc sản sản lượng giới hạn, phù hợp khách muốn đồng hành theo tổ ong và nhận mật theo đợt khai thác.",
     investmentIntro:
-      "Đặt tín chỉ theo lít mật, quy đổi thành số tổ ong dú dự kiến để theo dõi chăm sóc, khai thác và đóng chai.",
+      "Đặt Agricoin theo lít mật, quy đổi thành số tổ ong dú dự kiến để theo dõi chăm sóc, khai thác và đóng chai.",
     farmerInfo: "Chủ hộ kinh doanh Nguyễn Thị Ngọc Phượng, thương hiệu Ong dú Win's Farm.",
     certificateStatus: "Đã cập nhật 2 hình ảnh kết quả kiểm nghiệm mật ong dú.",
-    farmExperience: "Đặt tín chỉ để trải nghiệm farm ong dú, tìm hiểu tổ ong và quy trình khai thác mật.",
-    creditNote: "1 lít mật tham chiếu khoảng 2,5 tín chỉ mùa vụ.",
+    farmExperience: "Đặt Agricoin để trải nghiệm farm ong dú, tìm hiểu tổ ong và quy trình khai thác mật.",
+    creditNote: "1 lít mật tham chiếu khoảng 2,5 Agricoin.",
     quantityOptions: [
       { label: "20 lít mật", unit: "lít", amount: 20, seasonUnit: "khoảng 4 tổ ong dú theo dõi" },
       { label: "50 lít mật", unit: "lít", amount: 50, seasonUnit: "khoảng 10 tổ ong dú theo dõi" },
@@ -105,11 +105,11 @@ const marketplaceProfiles = {
     productIntro:
       "Sữa chua Ông Nhiệm phù hợp khách muốn đồng hành theo mẻ sản xuất, nhận sản phẩm tươi định kỳ cho gia đình hoặc văn phòng.",
     investmentIntro:
-      "Đặt tín chỉ theo thùng/hũ, quy đổi thành mẻ sản xuất dự kiến để theo dõi nguyên liệu, sản xuất lạnh và giao hàng.",
+      "Đặt Agricoin theo thùng/hũ, quy đổi thành mẻ sản xuất dự kiến để theo dõi nguyên liệu, sản xuất lạnh và giao hàng.",
     farmerInfo: "Chủ hộ kinh doanh Nguyễn Văn Nhiệm, điểm sản xuất tại Tổ 1, Ấp Tân Lễ A, Xã Châu Pha, TP Hồ Chí Minh.",
     certificateStatus: "Đã cập nhật giấy chứng nhận nhãn hiệu và phiếu kiểm nghiệm.",
-    farmExperience: "Đặt tín chỉ để trải nghiệm điểm sản xuất, xem quy trình làm sữa chua và nhận sản phẩm tươi.",
-    creditNote: "1 thùng sữa chua tham chiếu khoảng 1,8 tín chỉ mùa vụ.",
+    farmExperience: "Đặt Agricoin để trải nghiệm điểm sản xuất, xem quy trình làm sữa chua và nhận sản phẩm tươi.",
+    creditNote: "1 thùng sữa chua tham chiếu khoảng 1,8 Agricoin.",
     quantityOptions: [
       { label: "10 thùng sữa chua", unit: "thùng", amount: 10, seasonUnit: "khoảng 2 mẻ sản xuất theo dõi" },
       { label: "25 thùng sữa chua", unit: "thùng", amount: 25, seasonUnit: "khoảng 5 mẻ sản xuất theo dõi" },
@@ -149,7 +149,7 @@ const fallbackProjects = [
     returnRate: "10-14%",
     risk: "Ổn định chất lượng",
     tags: ["Chất lượng", "Mùa vụ ổn định", "Ổn định chất lượng"],
-    cta: "Chọn tín chỉ mùa vụ",
+    cta: "Chọn Agricoin mùa vụ",
     summary:
       "Đồng hành theo sản lượng bưởi thật, theo dõi một phần vườn và nhận trái theo mùa thu hoạch.",
     ...marketplaceProfiles["Bưởi da xanh"],
@@ -168,7 +168,7 @@ const fallbackProjects = [
     tags: ["Gạo ngon", "Đóng gói sạch", "Nguồn cung ổn định"],
     summary:
       "Đồng hành theo kg gạo, theo dõi mùa vụ lúa và nhận gạo sạch theo lịch giao đã xác nhận.",
-    cta: "Chọn tín chỉ mùa vụ",
+    cta: "Chọn Agricoin mùa vụ",
     ...marketplaceProfiles.Gạo,
   },
   {
@@ -185,7 +185,7 @@ const fallbackProjects = [
     tags: ["Mật ong dú", "Đặc sản", "Sản lượng giới hạn"],
     summary:
       "Đồng hành theo lít mật, quy đổi số tổ ong dú và theo dõi quá trình chăm sóc, khai thác.",
-    cta: "Chọn tín chỉ mùa vụ",
+    cta: "Chọn Agricoin mùa vụ",
     ...marketplaceProfiles["Mật ong dú"],
   },
   {
@@ -202,7 +202,7 @@ const fallbackProjects = [
     tags: ["Sữa chua tươi", "Giao định kỳ", "Bán lẻ"],
     summary:
       "Đồng hành theo mẻ sản xuất, nhận sữa chua tươi định kỳ hoặc trải nghiệm tại điểm sản xuất.",
-    cta: "Chọn tín chỉ mùa vụ",
+    cta: "Chọn Agricoin mùa vụ",
     ...marketplaceProfiles["Sữa chua"],
   },
 ];
@@ -320,7 +320,7 @@ function enrichMarketplaceProject(project) {
     image: fallback?.image || project.image,
     tags: fallback?.tags || project.tags || [],
     summary: fallback?.summary || project.summary,
-    cta: "Chọn tín chỉ mùa vụ",
+    cta: "Chọn Agricoin mùa vụ",
     ...profile,
   };
 }
@@ -344,7 +344,7 @@ function renderHomepageSeasonUpdates(updates = []) {
       <div class="homepage-season-empty">
         <p class="eyebrow">Nhật ký vườn từ AgriShare</p>
         <strong>Chưa có hình ảnh mùa vụ mới.</strong>
-        <span>Admin AgriShare và nhà nông sẽ cập nhật hình ảnh, video, lịch chăm sóc và mốc thu hoạch tại đây.</span>
+        <span>Admin AgriShare và Chủ vườn sẽ cập nhật hình ảnh, video, lịch chăm sóc và mốc thu hoạch tại đây.</span>
       </div>
     `;
   }
@@ -395,13 +395,13 @@ function renderHomepageOrder(order) {
       <div class="tracking-result-head">
         <div>
           <p class="eyebrow">Mã đơn ${order.orderCode}</p>
-          <h3>${project.name || "Đơn tín chỉ AgriShare"}</h3>
+          <h3>${project.name || "Đơn Agricoin AgriShare"}</h3>
         </div>
         <span class="status-pill ${order.status}">${orderStatusLabels[order.status] || order.status}</span>
       </div>
       <div class="order-summary-grid">
         <div><span>Khách hàng</span><strong>${customer.fullName || "Chưa có"}</strong></div>
-        <div><span>Tín chỉ mùa vụ</span><strong>${packageInfo.label || "Gói tín chỉ"} - ${currency.format(order.amount || 0)}</strong></div>
+        <div><span>Agricoin mùa vụ</span><strong>${packageInfo.label || "Gói Agricoin"} - ${currency.format(order.amount || 0)}</strong></div>
         <div><span>Thanh toán</span><strong>${paymentStatusLabels[order.payment?.status] || "Chưa cập nhật"}</strong></div>
         <div><span>Nhận sản phẩm</span><strong>${deliveryMethodLabels[order.delivery?.method] || "Chưa chọn"}</strong></div>
         <div><span>Trạng thái giao/farm</span><strong>${deliveryStatusLabels[order.delivery?.status] || "Chưa cập nhật"}</strong></div>
@@ -443,11 +443,11 @@ async function lookupHomepageOrder(event) {
     const data = await response.json();
 
     if (!response.ok || !data.success) {
-      throw new Error(data.message || "Không tìm thấy đơn tín chỉ");
+      throw new Error(data.message || "Không tìm thấy đơn Agricoin");
     }
 
     renderHomepageOrder(data.order);
-    homeTrackingStatus.textContent = "Đã tìm thấy đơn tín chỉ.";
+    homeTrackingStatus.textContent = "Đã tìm thấy đơn Agricoin.";
     homeTrackingStatus.dataset.state = "success";
     trackEvent("homepage_order_lookup", { orderCode });
   } catch (error) {
@@ -483,7 +483,7 @@ function renderProjects(filter = "all") {
           <div class="project-body">
             <div class="project-card-topline">
               <span class="producer-pill">${project.producer || project.category}</span>
-              <span class="funding-pill">1 tín chỉ = 100.000đ</span>
+              <span class="funding-pill">1 Agricoin = 100.000đ</span>
             </div>
             <div class="project-meta">
               <span>${project.category}</span>
@@ -492,7 +492,7 @@ function renderProjects(filter = "all") {
             <p class="project-summary">${project.summary}</p>
             <div class="project-info-strip">
               <div>
-                <span>Nhà nông</span>
+                <span>Chủ vườn</span>
                 <strong>${project.farmerName || project.producer || "Đang cập nhật"}</strong>
               </div>
               <div>
@@ -500,9 +500,9 @@ function renderProjects(filter = "all") {
                 <strong>${project.certificateLabel || "Đầy đủ giấy tờ"}</strong>
               </div>
             </div>
-            <p class="investment-intro">${project.creditNote || "Tín chỉ được quy đổi theo sản lượng mùa vụ thực tế."}</p>
+            <p class="investment-intro">${project.creditNote || "Agricoin được quy đổi theo sản lượng mùa vụ thực tế."}</p>
             <div class="project-actions">
-              <span class="card-action">Chọn tín chỉ</span>
+              <span class="card-action">Chọn Agricoin</span>
               <span class="project-detail-link">Xem chi tiết sản phẩm</span>
             </div>
           </div>
@@ -693,7 +693,7 @@ function openProject(projectId) {
                   <small>Lưu địa chỉ giao hàng, lịch giao theo mùa vụ và trạng thái đơn hàng.</small>
                 </button>
                 <button class="delivery-option" type="button" data-delivery-method="farm_pickup">
-                  <strong>Trải nghiệm và nhận sản phẩm tại Farm của nhà nông</strong>
+                  <strong>Trải nghiệm và nhận sản phẩm tại Farm của Chủ vườn</strong>
                   <small>Đặt lịch tham quan, xác nhận người tham dự và nhận sản phẩm trực tiếp tại farm.</small>
                 </button>
               </div>
@@ -863,7 +863,7 @@ async function submitInvestmentOrder(event) {
   }
 
   if (!amount || amount < 1000000) {
-    status.textContent = "Vui lòng nhập số tiền đầu tư tối thiểu 1.000.000đ.";
+    status.textContent = "Vui lòng nhập gói đầu tư tối thiểu 10 Agricoin = 1.000.000đ.";
     status.dataset.state = "error";
     return;
   }
@@ -971,8 +971,8 @@ function updateCalculator() {
 
   calcResults.innerHTML = `
     <div>
-      <span>Tín chỉ mùa vụ</span>
-      <strong>${credits.toLocaleString("vi-VN")} tín chỉ</strong>
+      <span>Agricoin mùa vụ</span>
+      <strong>${credits.toLocaleString("vi-VN")} Agricoin</strong>
     </div>
     <div>
       <span>Sản lượng tham chiếu</span>

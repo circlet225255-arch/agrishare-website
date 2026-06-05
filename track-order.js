@@ -64,7 +64,7 @@ function renderSeasonUpdates(updates = []) {
     return `
       <div class="farm-update-empty">
         <strong>Chưa có nhật ký mùa vụ mới.</strong>
-        <span>Admin AgriShare và nhà nông sẽ cập nhật hình ảnh, video, lịch chăm sóc và mốc thu hoạch khi có dữ liệu từ vườn.</span>
+        <span>Admin AgriShare và Chủ vườn sẽ cập nhật hình ảnh, video, lịch chăm sóc và mốc thu hoạch khi có dữ liệu từ vườn.</span>
       </div>
     `;
   }
