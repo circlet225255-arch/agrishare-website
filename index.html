@@ -15,7 +15,7 @@
       rel="stylesheet"
     />
     <link rel="icon" type="image/png" href="assets/agrishare-logo-icon.png" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=20260607-3" />
   </head>
   <body>
     <header class="site-header" data-elevated="false">
@@ -69,17 +69,39 @@
         </div>
         <div class="pillar-grid">
           <article>
-            <span>01</span>
+            <span class="pillar-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.2.2-1.6.6L3 17" />
+                <path d="m7 21 1.6-1.4c.4-.4 1-.6 1.6-.6H15c1.1 0 2.1-.4 2.8-1.2L22 14" />
+                <path d="m2 16 6 6" />
+                <circle cx="16" cy="5" r="3" />
+                <path d="M16 3v4M14.5 5h3" />
+              </svg>
+            </span>
             <h3>Chia sẻ giá trị</h3>
             <p>Kết nối người tiêu dùng với chủ vườn, tạo ra nông sản sạch, minh bạch và thu nhập bền vững.</p>
           </article>
           <article>
-            <span>02</span>
+            <span class="pillar-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 14c1.5-1.5 3-3.2 3-5.5A4.5 4.5 0 0 0 17.5 4c-1.8 0-3 1-3.5 2-.5-1-1.7-2-3.5-2A4.5 4.5 0 0 0 6 8.5c0 2.3 1.5 4 3 5.5l5 5Z" />
+                <path d="m12 13-1-1a2 2 0 0 0-3 0l-5 5" />
+                <path d="m2 16 6 6" />
+                <path d="m18 16 2 2" />
+              </svg>
+            </span>
             <h3>Gói trọn yêu thương</h3>
             <p>Mỗi sản phẩm là một hành động tử tế, chăm sóc gia đình và lan tỏa giá trị nhân văn.</p>
           </article>
           <article>
-            <span>03</span>
+            <span class="pillar-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2" />
+                <circle cx="11" cy="11" r="4" />
+                <path d="m14 14 4 4" />
+                <path d="M9.5 11.2 10.7 12.4 13 10" />
+              </svg>
+            </span>
             <h3>Số hoá & Minh bạch</h3>
             <p>Ứng dụng công nghệ để theo dõi mùa vụ, kiểm soát chất lượng và minh bạch nguồn gốc.</p>
           </article>
@@ -180,9 +202,9 @@
             <p>Chủ vườn chia sẻ triết lý canh tác, khó khăn thật và niềm tự hào khi trao sản phẩm đúng mùa cho khách.</p>
           </article>
           <article>
-            <span>Farm to Table</span>
-            <h3>Từ gốc cây đến bàn ăn</h3>
-            <p>Khách nhận nông sản tại nhà hoặc trải nghiệm bữa ăn tại vườn, nơi chủ vườn và khách trở thành bạn đồng hành.</p>
+            <span>Farm to Dish</span>
+            <h3>Từ mùa vụ đến món ăn</h3>
+            <p>Nông sản được theo dõi từ nơi sản xuất đến khi trở thành món ăn trọn vị, giúp khách hiểu rõ nguồn gốc và thêm gắn kết với chủ vườn.</p>
           </article>
         </div>
       </section>
@@ -225,8 +247,8 @@
       </section>
 
       <section class="section dashboard-section" id="dashboard">
-        <div class="section-heading">
-          <div>
+        <div class="dashboard-showcase">
+          <div class="section-heading">
             <p class="eyebrow">Mảnh vườn của tôi</p>
             <h2>Người tiêu dùng thông thái có thể tra cứu tiến độ sau khi đặt Agricoin mùa vụ.</h2>
             <p>
@@ -234,6 +256,16 @@
               giao nhận sản phẩm và biên nhận của đơn hàng.
             </p>
           </div>
+          <figure class="dashboard-garden-visual">
+            <img
+              src="assets/agrishare-my-garden-background.png?v=20260607-3"
+              alt="Gia đình người tiêu dùng thông thái gặp gỡ chủ vườn và nhận bưởi tại vườn"
+            />
+            <figcaption>
+              <strong>Thấy rõ hành trình mùa vụ</strong>
+              <span>Kết nối trực tiếp với chủ vườn và giá trị nông sản thật.</span>
+            </figcaption>
+          </figure>
         </div>
         <div class="dashboard-layout">
           <aside class="portfolio-summary">
@@ -292,7 +324,7 @@
             <li>Xây dựng hồ sơ uy tín cho vườn, sản phẩm và lịch sử mùa vụ</li>
             <li>Cập nhật nhật ký sản xuất bằng hình ảnh, dữ liệu và mốc tiến độ</li>
             <li>Tiếp cận khách hàng thật, nhận đơn đặt trước và giảm áp lực đầu ra</li>
-            <li>Tăng giá trị nhờ Farm to Table, câu chuyện chủ vườn và trải nghiệm tại farm</li>
+            <li>Tăng giá trị nhờ Farm to Dish, câu chuyện chủ vườn và trải nghiệm tại farm</li>
           </ul>
         </div>
       </section>
