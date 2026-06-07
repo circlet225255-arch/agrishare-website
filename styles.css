@@ -2525,17 +2525,19 @@ body::before {
 .section.dashboard-section {
   isolation: isolate;
   overflow: hidden;
+  color: var(--ink);
   background:
-    radial-gradient(circle at 86% 8%, rgba(219, 241, 197, 0.28), transparent 28%),
-    radial-gradient(circle at 10% 92%, rgba(190, 111, 48, 0.15), transparent 30%),
-    linear-gradient(138deg, #0d2b1b 0%, #286143 54%, #173e2a 100%);
+    radial-gradient(circle at 14% 12%, rgba(255, 255, 255, 0.78), transparent 28%),
+    radial-gradient(circle at 86% 16%, rgba(190, 111, 48, 0.12), transparent 24%),
+    radial-gradient(circle at 82% 86%, rgba(82, 183, 136, 0.18), transparent 30%),
+    linear-gradient(135deg, rgba(238, 246, 234, 0.96), rgba(255, 252, 244, 0.84) 48%, rgba(207, 226, 197, 0.88));
 }
 
 .section.dashboard-section::before {
   z-index: -1;
   background:
-    linear-gradient(118deg, rgba(255, 255, 255, 0.15), transparent 22% 66%, rgba(255, 255, 255, 0.06)),
-    radial-gradient(circle at 13% 9%, rgba(212, 245, 184, 0.2), transparent 25%);
+    linear-gradient(118deg, rgba(255, 255, 255, 0.42), transparent 28% 68%, rgba(255, 255, 255, 0.16)),
+    radial-gradient(circle at 12% 10%, rgba(212, 245, 184, 0.26), transparent 26%);
 }
 
 .dashboard-showcase {
@@ -2555,18 +2557,18 @@ body::before {
   justify-content: center;
   gap: 16px;
   margin: 0;
-  border: 1px solid rgba(255, 255, 255, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.76);
   border-radius: 8px;
   padding: clamp(28px, 4vw, 52px);
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.07) 46%, rgba(169, 211, 145, 0.1)),
-    rgba(7, 39, 22, 0.38);
+    linear-gradient(145deg, rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.34) 48%, rgba(210, 229, 200, 0.28)),
+    rgba(255, 255, 255, 0.48);
   box-shadow:
-    0 30px 76px rgba(2, 18, 8, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.56),
+    0 30px 76px rgba(18, 38, 25, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.86),
     inset 0 -1px 0 rgba(158, 205, 137, 0.16);
-  backdrop-filter: blur(32px) saturate(1.62);
-  -webkit-backdrop-filter: blur(32px) saturate(1.62);
+  backdrop-filter: blur(36px) saturate(1.68);
+  -webkit-backdrop-filter: blur(36px) saturate(1.68);
 }
 
 .dashboard-section .section-heading::after {
@@ -2574,8 +2576,8 @@ body::before {
   inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(125deg, rgba(255, 255, 255, 0.3), transparent 24% 74%, rgba(255, 255, 255, 0.1)),
-    radial-gradient(circle at 14% 8%, rgba(255, 255, 255, 0.24), transparent 24%);
+    linear-gradient(125deg, rgba(255, 255, 255, 0.58), transparent 24% 74%, rgba(255, 255, 255, 0.22)),
+    radial-gradient(circle at 14% 8%, rgba(255, 255, 255, 0.36), transparent 24%);
   content: "";
 }
 
@@ -2594,7 +2596,7 @@ body::before {
   border-radius: 8px;
   background: #cbdab9;
   box-shadow:
-    0 30px 82px rgba(2, 18, 8, 0.32),
+    0 30px 82px rgba(18, 38, 25, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.76),
     0 0 0 6px rgba(255, 255, 255, 0.06);
 }
@@ -2605,8 +2607,8 @@ body::before {
   inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(128deg, rgba(255, 255, 255, 0.2), transparent 24% 78%, rgba(22, 73, 43, 0.12)),
-    linear-gradient(180deg, transparent 56%, rgba(5, 31, 17, 0.2));
+    linear-gradient(128deg, rgba(255, 255, 255, 0.18), transparent 24% 78%, rgba(22, 73, 43, 0.06)),
+    linear-gradient(180deg, transparent 62%, rgba(5, 31, 17, 0.12));
   content: "";
 }
 
@@ -2630,15 +2632,15 @@ body::before {
   border: 1px solid rgba(255, 255, 255, 0.56);
   border-radius: 8px;
   padding: 15px 18px;
-  color: #fff;
+  color: var(--ink);
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.06)),
-    rgba(7, 42, 23, 0.58);
+    linear-gradient(135deg, rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.34)),
+    rgba(237, 248, 232, 0.46);
   box-shadow:
-    0 18px 42px rgba(0, 0, 0, 0.24),
-    inset 0 1px 0 rgba(255, 255, 255, 0.34);
-  backdrop-filter: blur(22px) saturate(1.5);
-  -webkit-backdrop-filter: blur(22px) saturate(1.5);
+    0 18px 42px rgba(18, 38, 25, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.84);
+  backdrop-filter: blur(24px) saturate(1.56);
+  -webkit-backdrop-filter: blur(24px) saturate(1.56);
 }
 
 .dashboard-garden-visual figcaption strong {
@@ -2646,26 +2648,26 @@ body::before {
 }
 
 .dashboard-garden-visual figcaption span {
-  color: rgba(255, 255, 255, 0.84);
+  color: #4b5c52;
   font-size: 0.88rem;
 }
 
 .dashboard-section .section-heading .eyebrow {
   display: inline-flex;
   width: fit-content;
-  border: 1px solid rgba(234, 252, 218, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.74);
   border-radius: 999px;
   padding: 8px 14px;
-  color: #f1ffdf;
+  color: #8a5525;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.06)),
-    rgba(17, 72, 40, 0.48);
+    linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(255, 247, 225, 0.42)),
+    rgba(255, 255, 255, 0.46);
   box-shadow:
-    0 12px 30px rgba(2, 20, 9, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.32);
+    0 12px 30px rgba(18, 38, 25, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.84);
   backdrop-filter: blur(16px) saturate(1.35);
   -webkit-backdrop-filter: blur(16px) saturate(1.35);
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.58);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.72);
 }
 
 .dashboard-section .section-heading h2,
@@ -2675,10 +2677,12 @@ body::before {
 
 .dashboard-section .section-heading h2,
 .dashboard-section .section-heading p {
-  color: #fff;
-  text-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.78),
-    0 12px 34px rgba(1, 15, 7, 0.52);
+  color: var(--ink);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.dashboard-section .section-heading p {
+  color: #354438;
 }
 
 .dashboard-section .section-heading h2 {
@@ -2996,12 +3000,12 @@ body::before {
 .dashboard-section .portfolio-summary,
 .dashboard-section .tracking-placeholder,
 .dashboard-section .tracking-result-card {
-  border-color: rgba(255, 255, 255, 0.7);
+  border-color: rgba(255, 255, 255, 0.76);
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(244, 251, 240, 0.42) 50%, rgba(184, 216, 166, 0.24)),
-    rgba(237, 248, 232, 0.34);
+    linear-gradient(145deg, rgba(255, 255, 255, 0.88), rgba(244, 251, 240, 0.52) 50%, rgba(217, 234, 204, 0.32)),
+    rgba(255, 255, 255, 0.48);
   box-shadow:
-    0 26px 68px rgba(2, 24, 11, 0.24),
+    0 26px 68px rgba(18, 38, 25, 0.16),
     inset 0 1px 0 rgba(255, 255, 255, 0.94),
     inset 0 -1px 0 rgba(75, 130, 83, 0.1);
   backdrop-filter: blur(34px) saturate(1.6);
@@ -3010,8 +3014,8 @@ body::before {
 
 .dashboard-section .portfolio-summary {
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(246, 251, 240, 0.48) 52%, rgba(214, 231, 199, 0.32)),
-    rgba(240, 248, 235, 0.4);
+    linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(246, 251, 240, 0.58) 52%, rgba(214, 231, 199, 0.34)),
+    rgba(255, 255, 255, 0.52);
 }
 
 .dashboard-section .inline-tracking-form input {
