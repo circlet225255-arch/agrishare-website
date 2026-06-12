@@ -311,7 +311,7 @@ Authorization: Bearer <token>
 7. **escrows** - Quản lý tiền ký quỹ
 8. **quality_audits** - QA/QC
 9. **traceability** - Truy xuất sản phẩm
-10. **project_updates** - Nhật ký tiến độ
+10. **project_updates** - Nhật ký tiến độ cập nhật 1 lần mỗi tuần, kèm hình ảnh và video thực tế
 
 ---
 

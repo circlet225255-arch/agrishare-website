@@ -856,6 +856,77 @@ select {
   align-items: center;
 }
 
+.agricoin-model-copy {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.58fr) minmax(230px, 1fr);
+  gap: clamp(18px, 3vw, 34px);
+  align-items: center;
+}
+
+.agricoin-identity {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  margin: 0;
+  border: 1px solid rgba(255, 255, 255, 0.76);
+  border-radius: 8px;
+  padding: 18px 14px 14px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(255, 251, 240, 0.34) 50%, rgba(222, 237, 214, 0.3)),
+    rgba(255, 255, 255, 0.48);
+  box-shadow:
+    0 26px 70px rgba(18, 38, 25, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(30px) saturate(1.6);
+  -webkit-backdrop-filter: blur(30px) saturate(1.6);
+}
+
+.agricoin-identity::before {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    linear-gradient(128deg, rgba(255, 255, 255, 0.56), transparent 28% 74%, rgba(255, 255, 255, 0.18)),
+    radial-gradient(circle at 18% 10%, rgba(255, 255, 255, 0.38), transparent 24%);
+  content: "";
+}
+
+.agricoin-identity > * {
+  position: relative;
+  z-index: 1;
+}
+
+.agricoin-identity img {
+  width: min(100%, 210px);
+  aspect-ratio: 1;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 24px rgba(75, 58, 19, 0.24));
+  transition: transform 0.25s ease;
+}
+
+.agricoin-identity:hover img {
+  transform: translateY(-4px) rotate(-2deg);
+}
+
+.agricoin-identity figcaption {
+  display: grid;
+  gap: 2px;
+  text-align: center;
+}
+
+.agricoin-identity figcaption strong {
+  color: #28633d;
+  font-size: 1rem;
+}
+
+.agricoin-identity figcaption span {
+  color: #5c665f;
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
 .model-panel .section-copy p {
   color: rgba(255, 255, 255, 0.78);
 }
@@ -1632,6 +1703,22 @@ select {
   color: var(--muted);
 }
 
+.season-update-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px 10px;
+}
+
+.season-update-meta .season-week {
+  border: 1px solid rgba(47, 111, 78, 0.22);
+  border-radius: 999px;
+  padding: 5px 9px;
+  color: var(--leaf-deep);
+  background: rgba(207, 235, 185, 0.48);
+}
+
 .season-update-images {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1642,6 +1729,16 @@ select {
   width: 100%;
   aspect-ratio: 4 / 3;
   border-radius: 8px;
+  object-fit: cover;
+}
+
+.season-update-videos video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid rgba(47, 111, 78, 0.18);
+  border-radius: 8px;
+  background: #15281d;
   object-fit: cover;
 }
 
@@ -3089,6 +3186,20 @@ body::before {
   z-index: 1;
 }
 
+.calculator-intro {
+  display: grid;
+  grid-template-columns: 126px minmax(0, 1fr);
+  gap: 20px;
+  align-items: center;
+}
+
+.calculator-agricoin {
+  width: 126px;
+  aspect-ratio: 1;
+  object-fit: contain;
+  filter: drop-shadow(0 18px 22px rgba(75, 58, 19, 0.22));
+}
+
 .calculator-section .eyebrow {
   color: #8a5525;
 }
@@ -3128,6 +3239,26 @@ body::before {
   color: #8b4f1e;
 }
 
+.calc-results .agricoin-result {
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr);
+  align-items: center;
+  column-gap: 12px;
+}
+
+.calc-results .agricoin-result img {
+  grid-row: 1 / span 2;
+  width: 54px;
+  aspect-ratio: 1;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 10px rgba(75, 58, 19, 0.18));
+}
+
+.calc-results .agricoin-result span,
+.calc-results .agricoin-result strong {
+  margin: 0;
+}
+
 @media (max-width: 1080px) {
   .project-grid,
   .policy-grid,
@@ -3153,6 +3284,10 @@ body::before {
 
   .calc-results {
     grid-column: auto;
+  }
+
+  .agricoin-model-copy {
+    grid-template-columns: minmax(170px, 0.42fr) minmax(0, 1fr);
   }
 
   .dashboard-garden-visual,
@@ -3247,6 +3382,23 @@ body::before {
   .checkout-grid,
   .dialog-facts {
     grid-template-columns: 1fr;
+  }
+
+  .agricoin-model-copy {
+    grid-template-columns: 1fr;
+  }
+
+  .agricoin-identity {
+    width: min(100%, 360px);
+    justify-self: center;
+  }
+
+  .calculator-intro {
+    grid-template-columns: 88px minmax(0, 1fr);
+  }
+
+  .calculator-agricoin {
+    width: 88px;
   }
 
   .section-heading {
@@ -3378,6 +3530,14 @@ body::before {
     height: 180px;
   }
 
+  .calculator-intro {
+    grid-template-columns: 1fr;
+  }
+
+  .calculator-agricoin {
+    width: 108px;
+  }
+
   .dashboard-section .section-heading {
     padding: 24px 20px;
   }
@@ -3392,5 +3552,301 @@ body::before {
     bottom: 10px;
     left: 10px;
     padding: 12px 14px;
+  }
+}
+
+/* Homepage content refinement, hero intentionally untouched. */
+.section:not(.hero) {
+  padding-top: 88px;
+  padding-bottom: 88px;
+}
+
+.section:not(.hero) .section-heading {
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.section:not(.hero) .section-heading > div {
+  max-width: 820px;
+}
+
+.section:not(.hero) .eyebrow {
+  margin-bottom: 10px;
+  color: #8b5525;
+  font-size: 0.76rem;
+  letter-spacing: 0;
+  line-height: 1.35;
+}
+
+.section:not(.hero) h2 {
+  color: #102c1c;
+  font-size: 2.35rem;
+  line-height: 1.16;
+  text-wrap: balance;
+}
+
+.section:not(.hero) .section-heading p:not(.eyebrow),
+.section:not(.hero) .section-copy p,
+.section:not(.hero) .project-summary,
+.section:not(.hero) .investment-intro,
+.section:not(.hero) .journal-card p,
+.section:not(.hero) .story-grid p,
+.section:not(.hero) .tracking-placeholder p,
+.section:not(.hero) .feature-list li {
+  color: #3f5147;
+  font-size: 0.96rem;
+  line-height: 1.68;
+}
+
+.section:not(.hero) .section-heading p:not(.eyebrow),
+.section:not(.hero) .section-copy p {
+  max-width: 700px;
+  margin-top: 14px;
+  margin-bottom: 0;
+}
+
+.pillar-grid article,
+.credit-grid article,
+.journal-card,
+.story-grid article,
+.project-card,
+.portfolio-summary,
+.tracking-placeholder,
+.tracking-result-card,
+.visual-panel {
+  border-color: rgba(255, 255, 255, 0.78);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.38) 50%, rgba(218, 235, 206, 0.3)),
+    rgba(255, 255, 255, 0.48);
+}
+
+.pillar-grid article,
+.journal-card,
+.story-grid article,
+.credit-grid article {
+  min-height: 100%;
+  padding: 26px;
+}
+
+.pillar-grid h3,
+.journal-card h3,
+.story-grid h3,
+.credit-grid strong,
+.portfolio-summary h3,
+.tracking-placeholder h3 {
+  color: #123d22;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.pillar-grid h3,
+.journal-card h3,
+.story-grid h3,
+.portfolio-summary h3,
+.tracking-placeholder h3 {
+  font-size: 1.12rem;
+}
+
+.pillar-grid span:not(.pillar-icon),
+.credit-grid span,
+.journal-card span,
+.story-grid span,
+.project-info-strip span,
+.metric-list span {
+  color: #366d4b;
+  letter-spacing: 0;
+}
+
+.pillar-grid .pillar-icon {
+  margin-bottom: 10px;
+}
+
+.model-panel,
+.calculator-panel {
+  gap: 42px;
+}
+
+.model-section h2,
+.calculator-section h2 {
+  max-width: 620px;
+}
+
+.credit-grid strong {
+  margin-top: 8px;
+  color: #8b4f1e;
+  font-size: 1.56rem;
+}
+
+.credit-grid article p {
+  margin-bottom: 0;
+}
+
+.project-section .section-heading {
+  gap: 18px;
+}
+
+.filters {
+  padding-top: 4px;
+}
+
+.filter-btn {
+  min-height: 38px;
+  padding-inline: 13px;
+  color: #284334;
+}
+
+.project-body {
+  gap: 11px;
+}
+
+.project-header {
+  min-height: 70px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.project-header h3 {
+  max-width: 86%;
+  font-size: 1rem;
+  line-height: 1.24;
+}
+
+.project-summary {
+  margin-top: 2px;
+}
+
+.project-info-strip div {
+  min-height: 62px;
+}
+
+.investment-intro {
+  border-left: 3px solid rgba(139, 79, 30, 0.42);
+  padding-left: 12px;
+}
+
+.card-action,
+.project-detail-link,
+.btn-primary {
+  letter-spacing: 0;
+}
+
+.card-action {
+  min-height: 44px;
+}
+
+.journal-layout,
+.story-grid,
+.pillar-grid,
+.credit-grid {
+  gap: 18px;
+}
+
+.calculator-panel {
+  align-items: start;
+}
+
+.calculator {
+  align-self: stretch;
+}
+
+.calc-results div {
+  min-height: 108px;
+}
+
+.dashboard-section .section-heading h2 {
+  color: #fffdf6;
+  font-size: 2.44rem;
+  line-height: 1.15;
+}
+
+.dashboard-section .section-heading p {
+  color: rgba(255, 253, 246, 0.86);
+  line-height: 1.68;
+}
+
+.dashboard-section .section-heading .eyebrow {
+  border-color: rgba(171, 91, 28, 0.32);
+  color: #8f3f18;
+  background:
+    linear-gradient(135deg, rgba(255, 248, 218, 0.94), rgba(246, 194, 103, 0.54)),
+    rgba(255, 243, 209, 0.76);
+  box-shadow:
+    0 12px 30px rgba(124, 65, 20, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.92);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.82);
+}
+
+.dashboard-garden-visual figcaption {
+  border-color: rgba(255, 255, 255, 0.62);
+}
+
+.farmer-section .section-copy {
+  max-width: 720px;
+}
+
+.feature-list {
+  gap: 10px;
+}
+
+.feature-list li {
+  font-weight: 700;
+}
+
+@media (max-width: 1080px) {
+  .section:not(.hero) {
+    padding-top: 76px;
+    padding-bottom: 76px;
+  }
+
+  .section:not(.hero) h2,
+  .dashboard-section .section-heading h2 {
+    font-size: 2.06rem;
+  }
+}
+
+@media (max-width: 820px) {
+  .section:not(.hero) {
+    padding-top: 62px;
+    padding-bottom: 62px;
+  }
+
+  .section:not(.hero) h2,
+  .dashboard-section .section-heading h2 {
+    font-size: 1.78rem;
+    line-height: 1.2;
+  }
+
+  .section:not(.hero) .section-heading p:not(.eyebrow),
+  .section:not(.hero) .section-copy p,
+  .section:not(.hero) .project-summary,
+  .section:not(.hero) .investment-intro,
+  .section:not(.hero) .journal-card p,
+  .section:not(.hero) .story-grid p,
+  .section:not(.hero) .tracking-placeholder p,
+  .section:not(.hero) .feature-list li {
+    font-size: 0.93rem;
+  }
+
+  .pillar-grid article,
+  .journal-card,
+  .story-grid article,
+  .credit-grid article {
+    padding: 22px;
+  }
+}
+
+@media (max-width: 520px) {
+  .section:not(.hero) h2,
+  .dashboard-section .section-heading h2 {
+    font-size: 1.55rem;
+  }
+
+  .section:not(.hero) {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .project-header h3 {
+    font-size: 0.94rem;
   }
 }

@@ -7,6 +7,9 @@ const allowedMimeTypes = new Map([
   ['image/png', 'png'],
   ['image/jpeg', 'jpg'],
   ['image/webp', 'webp'],
+  ['video/mp4', 'mp4'],
+  ['video/webm', 'webm'],
+  ['video/quicktime', 'mov'],
   ['application/pdf', 'pdf'],
 ]);
 
@@ -25,16 +28,17 @@ const saveDataUrl = async ({ dataUrl, folder = 'general', originalName = 'upload
   const extension = allowedMimeTypes.get(mimeType);
 
   if (!extension) {
-    const error = new Error('Chỉ hỗ trợ PNG, JPG, WEBP hoặc PDF');
+    const error = new Error('Chỉ hỗ trợ PNG, JPG, WEBP, MP4, WEBM, MOV hoặc PDF');
     error.statusCode = 400;
     throw error;
   }
 
   const buffer = Buffer.from(match[2], 'base64');
-  const maxBytes = 8 * 1024 * 1024;
+  const isVideo = mimeType.startsWith('video/');
+  const maxBytes = (isVideo ? 30 : 8) * 1024 * 1024;
 
   if (!buffer.length || buffer.length > maxBytes) {
-    const error = new Error('File rỗng hoặc vượt quá 8MB');
+    const error = new Error(`File rỗng hoặc vượt quá ${isVideo ? 30 : 8}MB`);
     error.statusCode = 400;
     throw error;
   }

@@ -294,6 +294,22 @@ input {
   margin: 0;
 }
 
+.farm-update-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px 10px;
+}
+
+.farm-update-meta .farm-update-week {
+  border: 1px solid rgba(76, 175, 80, 0.24);
+  border-radius: 999px;
+  padding: 5px 9px;
+  color: var(--leaf-dark);
+  background: rgba(220, 244, 202, 0.62);
+}
+
 .farm-update-images {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -304,6 +320,16 @@ input {
   width: 100%;
   aspect-ratio: 4 / 3;
   border-radius: 8px;
+  object-fit: cover;
+}
+
+.farm-update-videos video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid rgba(76, 175, 80, 0.2);
+  border-radius: 8px;
+  background: #15281d;
   object-fit: cover;
 }
 

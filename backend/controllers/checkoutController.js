@@ -105,7 +105,7 @@ const buildTimeline = (deliveryMethod) => [
     key: 'farm_updates',
     title: 'Theo dõi mùa vụ',
     status: 'pending',
-    description: 'Cập nhật nhật ký sản xuất, hình ảnh, QA/QC và tiến độ thu hoạch.',
+    description: 'Cập nhật 1 lần mỗi tuần bằng hình ảnh, video thực tế, QA/QC và tiến độ thu hoạch.',
   },
   {
     key: 'harvest_delivery',
@@ -350,8 +350,8 @@ exports.getOrderByCode = async (req, res) => {
         ],
       })
         .populate('createdBy', 'fullName role')
-        .sort({ createdAt: -1 })
-        .limit(8)
+        .sort({ weekStart: -1, createdAt: -1 })
+        .limit(12)
         .lean()
       : [];
 

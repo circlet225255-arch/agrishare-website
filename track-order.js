@@ -59,12 +59,17 @@ function formatDate(value) {
   return dateFormatter.format(date);
 }
 
+function formatSeasonWeek(update) {
+  const match = String(update?.updateWeek || "").match(/^(\d{4})-W(\d{2})$/);
+  return match ? `Tuần ${Number(match[2])}/${match[1]}` : "Nhật ký theo tuần";
+}
+
 function renderSeasonUpdates(updates = []) {
   if (!updates.length) {
     return `
       <div class="farm-update-empty">
-        <strong>Chưa có nhật ký mùa vụ mới.</strong>
-        <span>Admin AgriShare và Chủ vườn sẽ cập nhật hình ảnh, video, lịch chăm sóc và mốc thu hoạch khi có dữ liệu từ vườn.</span>
+        <strong>Chưa có nhật ký tuần mới.</strong>
+        <span>AgriShare cập nhật 1 lần mỗi tuần, gồm hình ảnh và video thực tế từ đúng cây/lô/tổ/mẻ đã theo dõi.</span>
       </div>
     `;
   }
@@ -76,7 +81,10 @@ function renderSeasonUpdates(updates = []) {
           (update) => `
             <article class="farm-update-card">
               <div>
-                <span>${formatDate(update.createdAt)}</span>
+                <div class="farm-update-meta">
+                  <span class="farm-update-week">${formatSeasonWeek(update)}</span>
+                  <span>${formatDate(update.createdAt)}</span>
+                </div>
                 <strong>${update.title || "Cập nhật mùa vụ"}</strong>
               </div>
               <p>${update.description || "AgriShare đang cập nhật thêm thông tin thực tế từ vườn."}</p>
@@ -86,6 +94,22 @@ function renderSeasonUpdates(updates = []) {
                       ${update.images
                         .slice(0, 4)
                         .map((image) => `<img src="${image}" alt="${update.title || "Nhật ký vườn"}" />`)
+                        .join("")}
+                    </div>`
+                  : ""
+              }
+              ${
+                update.videos?.length
+                  ? `<div class="farm-update-videos">
+                      ${update.videos
+                        .slice(0, 1)
+                        .map(
+                          (video) =>
+                            `<video controls preload="metadata" playsinline aria-label="Video ${update.title || "cập nhật mùa vụ"}">
+                              <source src="${video}" />
+                              Trình duyệt của bạn chưa hỗ trợ phát video.
+                            </video>`,
+                        )
                         .join("")}
                     </div>`
                   : ""

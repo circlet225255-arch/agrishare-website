@@ -202,7 +202,7 @@ const detailProjects = {
         "Thu thập phản hồi khách hàng",
       ],
     },
-    unitPrice: 250000,
+    unitPrice: 2000000,
     unitLabel: "lít mật",
     quantityOptions: [
       { label: "20 lít mật", amount: 20, unit: "lít", seasonUnit: "khoảng 4 tổ ong dú theo dõi" },

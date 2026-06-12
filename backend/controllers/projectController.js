@@ -19,6 +19,31 @@ const fallbackImages = {
   'Sữa chua': 'assets/agrishare-concept-03.jpg',
 };
 
+const getWeekRange = (updateWeek) => {
+  const match = String(updateWeek || '').match(/^(\d{4})-W(\d{2})$/);
+
+  if (!match) return null;
+
+  const year = Number(match[1]);
+  const week = Number(match[2]);
+
+  if (week < 1 || week > 53) return null;
+
+  const januaryFourth = new Date(Date.UTC(year, 0, 4));
+  const januaryFourthDay = januaryFourth.getUTCDay() || 7;
+  const firstMonday = new Date(januaryFourth);
+  firstMonday.setUTCDate(januaryFourth.getUTCDate() - januaryFourthDay + 1);
+
+  const weekStart = new Date(firstMonday);
+  weekStart.setUTCDate(firstMonday.getUTCDate() + (week - 1) * 7);
+
+  const weekEnd = new Date(weekStart);
+  weekEnd.setUTCDate(weekStart.getUTCDate() + 6);
+  weekEnd.setUTCHours(23, 59, 59, 999);
+
+  return { weekStart, weekEnd };
+};
+
 const mapProjectForMarketplace = (project) => {
   const locationParts = [project.location?.district, project.location?.province].filter(Boolean);
 
@@ -198,8 +223,8 @@ exports.getMarketplaceProjects = async (req, res, next) => {
     }
 
     const priority = {
-      'Bưởi da xanh': 1,
-      Gạo: 2,
+      Gạo: 1,
+      'Bưởi da xanh': 2,
       'Mật ong dú': 3,
       'Sữa chua': 4,
     };
@@ -350,7 +375,7 @@ exports.getProjectUpdates = async (req, res) => {
       ],
     })
       .populate('createdBy', 'fullName role')
-      .sort({ createdAt: -1 });
+      .sort({ weekStart: -1, createdAt: -1 });
 
     res.status(200).json({
       success: true,
@@ -385,8 +410,45 @@ exports.createProjectUpdate = async (req, res) => {
 
     const orderCode = req.body.orderCode ? String(req.body.orderCode).trim().toUpperCase() : '';
     const farmUnitCode = req.body.farmUnitCode ? String(req.body.farmUnitCode).trim().toUpperCase() : '';
+    const updateWeek = String(req.body.updateWeek || '').trim();
+    const weekRange = getWeekRange(updateWeek);
+    const images = Array.isArray(req.body.images) ? req.body.images.filter(Boolean) : [];
+    const videos = Array.isArray(req.body.videos) ? req.body.videos.filter(Boolean) : [];
+
+    if (!weekRange) {
+      return res.status(400).json({
+        success: false,
+        message: 'Vui lòng chọn đúng tuần cập nhật mùa vụ',
+      });
+    }
+
+    if (!images.length || !videos.length) {
+      return res.status(400).json({
+        success: false,
+        message: 'Mỗi cập nhật tuần cần có ít nhất 1 hình ảnh và 1 video thực tế',
+      });
+    }
+
+    const existingWeeklyUpdate = await ProjectUpdate.findOne({
+      projectId: project._id,
+      updateWeek,
+      orderCode,
+      farmUnitCode,
+    });
+
+    if (existingWeeklyUpdate) {
+      return res.status(409).json({
+        success: false,
+        message: 'Tuần này đã có nhật ký cho đúng mã đơn và mã cây/lô/tổ/mẻ đã chọn',
+      });
+    }
+
     const update = await ProjectUpdate.create({
       ...req.body,
+      images,
+      videos,
+      updateWeek,
+      ...weekRange,
       orderCode,
       farmUnitCode,
       visibility: orderCode ? 'order' : 'project',

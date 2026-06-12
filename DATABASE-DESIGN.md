@@ -401,7 +401,7 @@ db.createCollection("project_updates", {
   validator: {
     $jsonSchema: {
       bsonType: "object",
-      required: ["projectId", "type", "createdAt"],
+      required: ["projectId", "type", "title", "updateWeek", "images", "videos", "createdAt"],
       properties: {
         _id: { bsonType: "objectId" },
         projectId: { bsonType: "objectId" },
@@ -411,6 +411,16 @@ db.createCollection("project_updates", {
         title: { bsonType: "string" },
         description: { bsonType: "string" },
         images: { bsonType: "array" },
+        videos: { bsonType: "array" },
+        updateWeek: {
+          bsonType: "string",
+          description: "Tuần ISO, ví dụ 2026-W24"
+        },
+        weekStart: { bsonType: "date" },
+        weekEnd: { bsonType: "date" },
+        orderCode: { bsonType: "string" },
+        farmUnitCode: { bsonType: "string" },
+        visibility: { enum: ["project", "order"] },
         metrics: {
           bsonType: "object",
           properties: {
@@ -550,6 +560,7 @@ db.traceability.createIndex({ batchId: 1 }, { unique: true });
 
 // project_updates collection
 db.project_updates.createIndex({ projectId: 1, createdAt: -1 });
+db.project_updates.createIndex({ projectId: 1, updateWeek: -1, farmUnitCode: 1, orderCode: 1 });
 
 // community_posts collection
 db.community_posts.createIndex({ userId: 1, createdAt: -1 });

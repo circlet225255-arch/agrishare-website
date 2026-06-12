@@ -749,14 +749,26 @@ async function saveProjectUpdate(event) {
   projectUpdateStatus.dataset.state = "";
 
   try {
-    const uploadedImage = await uploadFile(formData.get("updateImageFile"), "project-updates");
+    const imageFiles = Array.from(projectUpdateForm.elements.updateImageFiles.files || []);
+    const videoFile = formData.get("updateVideoFile");
+
+    if (!imageFiles.length || !videoFile?.size) {
+      throw new Error("Mỗi cập nhật tuần cần có ít nhất 1 hình ảnh và 1 video.");
+    }
+
+    const uploadedImages = await Promise.all(
+      imageFiles.map((file) => uploadFile(file, "project-updates")),
+    );
+    const uploadedVideo = await uploadFile(videoFile, "project-update-videos");
     const payload = {
       type: formData.get("type"),
       title: formData.get("title"),
       description: formData.get("description"),
+      updateWeek: formData.get("updateWeek"),
       orderCode: String(formData.get("orderCode") || "").trim().toUpperCase(),
       farmUnitCode: String(formData.get("farmUnitCode") || "").trim().toUpperCase(),
-      images: uploadedImage ? [uploadedImage] : [],
+      images: uploadedImages.filter(Boolean),
+      videos: uploadedVideo ? [uploadedVideo] : [],
       metrics: {
         growthStage: formData.get("growthStage"),
         temperatureAvg: formData.get("temperatureAvg") ? Number(formData.get("temperatureAvg")) : undefined,
@@ -780,13 +792,34 @@ async function saveProjectUpdate(event) {
       throw new Error(data.message || "Không thể lưu nhật ký mùa vụ");
     }
 
-    projectUpdateStatus.textContent = "Đã lưu nhật ký mùa vụ.";
+    projectUpdateStatus.textContent = `Đã lưu nhật ký ${formData.get("updateWeek")}.`;
     projectUpdateStatus.dataset.state = "success";
     projectUpdateForm.reset();
+    setCurrentProjectUpdateWeek();
     renderProjectUpdateOptions();
   } catch (error) {
     projectUpdateStatus.textContent = error.message;
     projectUpdateStatus.dataset.state = "error";
+  }
+}
+
+function getCurrentIsoWeek() {
+  const now = new Date();
+  const date = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
+  const day = date.getUTCDay() || 7;
+
+  date.setUTCDate(date.getUTCDate() + 4 - day);
+
+  const year = date.getUTCFullYear();
+  const yearStart = new Date(Date.UTC(year, 0, 1));
+  const week = Math.ceil((((date - yearStart) / 86400000) + 1) / 7);
+
+  return `${year}-W${String(week).padStart(2, "0")}`;
+}
+
+function setCurrentProjectUpdateWeek() {
+  if (!projectUpdateForm.elements.updateWeek.value) {
+    projectUpdateForm.elements.updateWeek.value = getCurrentIsoWeek();
   }
 }
 
@@ -1199,4 +1232,5 @@ ordersTableBody.addEventListener("click", (event) => {
 
 orderDetail.addEventListener("submit", updateSelectedOrder);
 
+setCurrentProjectUpdateWeek();
 renderSession();

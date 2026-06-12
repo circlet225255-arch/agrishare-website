@@ -279,6 +279,15 @@ button {
   z-index: 1;
 }
 
+.project-form label > small {
+  display: block;
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
 .login-panel {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;

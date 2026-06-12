@@ -251,7 +251,7 @@ const seedDatabase = async () => {
         qualityNotes: 'Ưu tiên hũ mật trong, thơm, vị chua ngọt đặc trưng; cần kiểm soát thời điểm khai thác và bảo quản.',
         specs: {
           packaging: 'Hũ thủy tinh hoặc chai nhỏ, niêm phong theo lô khai thác',
-          referencePrice: 'Theo sản lượng khai thác và quy cách đóng hũ thực tế',
+          referencePrice: '2.000.000đ/lít mật, tương đương 20 Agricoin',
           shelfLife: '12 tháng nếu bảo quản đúng điều kiện',
           storage: 'Đậy kín, để nơi khô mát, tránh nhiệt cao và ánh nắng trực tiếp',
           deliveryPlan: 'Giao theo đợt khai thác, số lượng có thể giới hạn theo mùa',

@@ -77,7 +77,7 @@ const marketplaceProfiles = {
     farmerInfo: "Chủ hộ kinh doanh Nguyễn Thị Ngọc Phượng, thương hiệu Ong dú Win's Farm.",
     certificateStatus: "Đã cập nhật 2 hình ảnh kết quả kiểm nghiệm mật ong dú.",
     farmExperience: "Đặt Agricoin để trải nghiệm farm ong dú, tìm hiểu tổ ong và quy trình khai thác mật.",
-    creditNote: "1 lít mật tham chiếu khoảng 2,5 Agricoin.",
+    creditNote: "1 lít mật = 2.000.000đ, tương đương 20 Agricoin.",
     quantityOptions: [
       { label: "20 lít mật", unit: "lít", amount: 20, seasonUnit: "khoảng 4 tổ ong dú theo dõi" },
       { label: "50 lít mật", unit: "lít", amount: 50, seasonUnit: "khoảng 10 tổ ong dú theo dõi" },
@@ -88,7 +88,7 @@ const marketplaceProfiles = {
       "Ưu tiên hũ mật trong, thơm, vị chua ngọt đặc trưng; cần kiểm soát thời điểm khai thác và bảo quản.",
     specs: {
       packaging: "Hũ thủy tinh hoặc chai nhỏ, niêm phong theo lô khai thác",
-      referencePrice: "Theo sản lượng khai thác và quy cách đóng hũ thực tế",
+      referencePrice: "2.000.000đ/lít mật, tương đương 20 Agricoin",
       shelfLife: "12 tháng nếu bảo quản đúng điều kiện",
       storage: "Đậy kín, để nơi khô mát, tránh nhiệt cao và ánh nắng trực tiếp",
       deliveryPlan: "Giao theo đợt khai thác, số lượng có thể giới hạn theo mùa",
@@ -130,8 +130,8 @@ const marketplaceProfiles = {
 };
 
 const productPriority = {
-  "Bưởi da xanh": 1,
-  Gạo: 2,
+  Gạo: 1,
+  "Bưởi da xanh": 2,
   "Mật ong dú": 3,
   "Sữa chua": 4,
 };
@@ -338,13 +338,18 @@ function formatTrackingDate(value) {
   return shortDateFormatter.format(date);
 }
 
+function formatSeasonWeek(update) {
+  const match = String(update?.updateWeek || "").match(/^(\d{4})-W(\d{2})$/);
+  return match ? `Tuần ${Number(match[2])}/${match[1]}` : "Nhật ký theo tuần";
+}
+
 function renderHomepageSeasonUpdates(updates = []) {
   if (!updates.length) {
     return `
       <div class="homepage-season-empty">
         <p class="eyebrow">Nhật ký vườn từ AgriShare</p>
-        <strong>Chưa có hình ảnh mùa vụ mới.</strong>
-        <span>Admin AgriShare và Chủ vườn sẽ cập nhật hình ảnh, video, lịch chăm sóc và mốc thu hoạch tại đây.</span>
+        <strong>Chưa có nhật ký tuần mới.</strong>
+        <span>AgriShare cập nhật 1 lần mỗi tuần, gồm hình ảnh và video thực tế từ đúng cây/lô/tổ/mẻ đã theo dõi.</span>
       </div>
     `;
   }
@@ -361,7 +366,10 @@ function renderHomepageSeasonUpdates(updates = []) {
             (update) => `
               <article class="season-update-card">
                 <div>
-                  <span>${formatTrackingDate(update.createdAt)}</span>
+                  <div class="season-update-meta">
+                    <span class="season-week">${formatSeasonWeek(update)}</span>
+                    <span>${formatTrackingDate(update.createdAt)}</span>
+                  </div>
                   <strong>${update.title || "Cập nhật mùa vụ"}</strong>
                 </div>
                 <p>${update.description || "AgriShare đang cập nhật thêm thông tin từ vườn."}</p>
@@ -371,6 +379,22 @@ function renderHomepageSeasonUpdates(updates = []) {
                         ${update.images
                           .slice(0, 3)
                           .map((image) => `<img src="${image}" alt="${update.title || "Nhật ký vườn"}" />`)
+                          .join("")}
+                      </div>`
+                    : ""
+                }
+                ${
+                  update.videos?.length
+                    ? `<div class="season-update-videos">
+                        ${update.videos
+                          .slice(0, 1)
+                          .map(
+                            (video) =>
+                              `<video controls preload="metadata" playsinline aria-label="Video ${update.title || "cập nhật mùa vụ"}">
+                                <source src="${video}" />
+                                Trình duyệt của bạn chưa hỗ trợ phát video.
+                              </video>`,
+                          )
                           .join("")}
                       </div>`
                     : ""
@@ -970,7 +994,8 @@ function updateCalculator() {
   const deliveryLabel = deliverySelect.selectedOptions[0]?.textContent || "Nhận nông sản";
 
   calcResults.innerHTML = `
-    <div>
+    <div class="agricoin-result">
+      <img src="assets/agrishare-agricoin.png?v=20260611-1" alt="" />
       <span>Agricoin mùa vụ</span>
       <strong>${credits.toLocaleString("vi-VN")} Agricoin</strong>
     </div>

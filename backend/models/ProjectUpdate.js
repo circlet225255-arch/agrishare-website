@@ -18,6 +18,14 @@ const ProjectUpdateSchema = new mongoose.Schema(
     },
     description: String,
     images: [String],
+    videos: [String],
+    updateWeek: {
+      type: String,
+      trim: true,
+      match: /^\d{4}-W\d{2}$/,
+    },
+    weekStart: Date,
+    weekEnd: Date,
     orderCode: {
       type: String,
       trim: true,
@@ -54,5 +62,6 @@ const ProjectUpdateSchema = new mongoose.Schema(
 // Index để tối ưu truy vấn
 ProjectUpdateSchema.index({ projectId: 1, createdAt: -1 });
 ProjectUpdateSchema.index({ projectId: 1, orderCode: 1, createdAt: -1 });
+ProjectUpdateSchema.index({ projectId: 1, updateWeek: -1, farmUnitCode: 1, orderCode: 1 });
 
 module.exports = mongoose.model('ProjectUpdate', ProjectUpdateSchema);
