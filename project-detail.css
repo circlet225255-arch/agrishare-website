@@ -526,17 +526,119 @@
 }
 
 .order-flow-card {
-  gap: 18px;
+  gap: clamp(18px, 3vw, 26px);
+  overflow: visible;
 }
 
 .order-flow-head {
   display: grid;
   gap: 8px;
+  max-width: 850px;
 }
 
 .order-flow-head h2,
 .order-flow-head p {
   margin: 0;
+}
+
+.order-confirmation-form {
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.checkout-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.42fr);
+  gap: clamp(16px, 3vw, 28px);
+  align-items: start;
+}
+
+.checkout-main,
+.checkout-section,
+.checkout-section-heading,
+.order-sidebar,
+.order-sidebar-title,
+.order-product-preview,
+.order-summary-strip {
+  display: grid;
+}
+
+.checkout-main {
+  gap: 14px;
+  min-width: 0;
+}
+
+.checkout-section {
+  position: relative;
+  overflow: hidden;
+  gap: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.68);
+  border-radius: 8px;
+  padding: clamp(16px, 2.4vw, 22px);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.34) 52%, rgba(216, 236, 205, 0.28)),
+    rgba(255, 255, 255, 0.46);
+  box-shadow:
+    0 22px 58px rgba(8, 24, 17, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(28px) saturate(1.55);
+  -webkit-backdrop-filter: blur(28px) saturate(1.55);
+}
+
+.checkout-section::before,
+.order-sidebar::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(124deg, rgba(255, 255, 255, 0.5), transparent 24% 74%, rgba(255, 255, 255, 0.2)),
+    radial-gradient(circle at 16% 8%, rgba(255, 255, 255, 0.32), transparent 24%);
+  content: "";
+}
+
+.checkout-section > *,
+.order-sidebar > * {
+  position: relative;
+  z-index: 1;
+}
+
+.checkout-section-heading {
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.checkout-section-heading > span {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  color: #17341f;
+  background:
+    linear-gradient(135deg, #f5ffd8, #9acf75 48%, #2f7542),
+    rgba(255, 255, 255, 0.66);
+  box-shadow: 0 12px 28px rgba(47, 117, 66, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.82);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.checkout-section-heading h3 {
+  margin: 0;
+  color: var(--soil);
+  font-size: clamp(1rem, 1.7vw, 1.22rem);
+  line-height: 1.25;
+}
+
+.checkout-section-heading p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
 }
 
 .fulfillment-choice {
@@ -547,31 +649,41 @@
 
 .fulfillment-option {
   display: grid;
-  min-height: 148px;
+  min-height: 138px;
   align-content: start;
   gap: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.66);
   border-radius: 8px;
   padding: 18px;
   color: var(--ink);
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.34)),
-    rgba(255, 255, 255, 0.5);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.58);
+    linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.34) 52%, rgba(235, 244, 230, 0.28)),
+    rgba(255, 255, 255, 0.44);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    0 12px 28px rgba(8, 24, 17, 0.08);
   cursor: pointer;
   text-align: left;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.fulfillment-option:hover,
+.fulfillment-option.active {
+  transform: translateY(-2px);
 }
 
 .fulfillment-option.active {
-  border-color: rgba(82, 183, 136, 0.78);
+  border-color: rgba(255, 255, 255, 0.88);
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.78), rgba(213, 235, 209, 0.72)),
-    rgba(239, 250, 243, 0.66);
-  box-shadow: 0 16px 36px rgba(76, 175, 80, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.72);
+    linear-gradient(135deg, rgba(255, 255, 255, 0.86), rgba(143, 198, 110, 0.38)),
+    rgba(79, 143, 91, 0.28);
+  box-shadow: 0 18px 44px rgba(23, 77, 44, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 .fulfillment-option span,
-.order-summary-strip span {
+.order-summary-strip span,
+.order-product-preview span,
+.order-sidebar-title p {
   color: var(--muted);
   font-size: 0.76rem;
   font-weight: 900;
@@ -590,35 +702,124 @@
   line-height: 1.45;
 }
 
-.order-confirmation-form {
-  border: 1px solid rgba(255, 255, 255, 0.62);
-  border-radius: 8px;
-  padding: clamp(16px, 3vw, 22px);
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(255, 246, 226, 0.34)),
-    rgba(255, 255, 255, 0.46);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.58);
-}
-
-.order-summary-strip,
 .order-form-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.farm-tour-fields {
+  display: grid;
   gap: 10px;
 }
 
-.order-form-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+.farm-tour-fields[hidden] {
+  display: none;
+}
+
+.order-sidebar {
+  position: sticky;
+  top: 96px;
+  gap: 16px;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.76);
+  border-radius: 8px;
+  padding: clamp(18px, 2.6vw, 24px);
+  color: var(--ink);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(255, 251, 239, 0.44) 52%, rgba(211, 231, 198, 0.32)),
+    rgba(255, 255, 255, 0.54);
+  box-shadow:
+    0 28px 82px rgba(8, 24, 17, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(34px) saturate(1.65);
+  -webkit-backdrop-filter: blur(34px) saturate(1.65);
+}
+
+.order-sidebar-title {
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+  border-bottom: 1px solid rgba(31, 44, 31, 0.1);
+  padding-bottom: 14px;
+}
+
+.order-sidebar-title h3 {
+  margin: 0;
+  color: var(--soil);
+  font-size: 1.04rem;
+}
+
+.order-sidebar-title p {
+  margin: 2px 0 0;
+  color: #8a5525;
+}
+
+.order-cart-icon {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.76);
+  border-radius: 8px;
+  color: #245934;
+  background:
+    linear-gradient(135deg, #fbfff0, #a8d984 48%, #357c48),
+    rgba(255, 255, 255, 0.66);
+  box-shadow: 0 14px 30px rgba(47, 117, 66, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.82);
+}
+
+.order-cart-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.order-product-preview {
+  grid-template-columns: 62px minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+}
+
+.order-product-preview img {
+  width: 62px;
+  height: 62px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 8px;
+  object-fit: cover;
+  background: #edf6e7;
+  box-shadow: 0 10px 24px rgba(8, 24, 17, 0.12);
+}
+
+.order-product-preview strong,
+.order-product-preview span {
+  display: block;
+}
+
+.order-product-preview strong {
+  color: var(--soil);
+  line-height: 1.28;
+}
+
+.order-product-preview span {
+  margin-top: 4px;
+  color: #8a5525;
+  text-transform: none;
+}
+
+.order-summary-strip {
+  gap: 10px;
 }
 
 .order-summary-strip div {
   min-width: 0;
-  border: 1px solid rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.66);
   border-radius: 8px;
   padding: 12px;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(237, 248, 239, 0.34)),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.78), rgba(240, 249, 235, 0.42)),
     rgba(255, 255, 255, 0.46);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 
 .order-summary-strip span,
@@ -631,13 +832,22 @@
   overflow-wrap: anywhere;
 }
 
-.farm-tour-fields {
-  display: grid;
-  gap: 10px;
+.order-assurance {
+  margin: 0;
+  border: 1px solid rgba(47, 111, 78, 0.16);
+  border-radius: 8px;
+  padding: 12px;
+  color: #354438;
+  background: rgba(238, 246, 234, 0.58);
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.55;
 }
 
-.farm-tour-fields[hidden] {
-  display: none;
+.order-submit-button {
+  width: 100%;
+  min-height: 52px;
+  justify-content: center;
 }
 
 .farm-photo-grid div {
@@ -693,11 +903,16 @@
   .farmer-profile-grid,
   .farm-tour-layout,
   .quantity-grid,
+  .checkout-layout,
   .fulfillment-choice,
   .order-summary-strip,
   .order-form-grid,
   .farm-photo-grid {
     grid-template-columns: 1fr;
+  }
+
+  .order-sidebar {
+    position: static;
   }
 
   .detail-header {
@@ -722,5 +937,14 @@
 
   .detail-hero-media {
     min-height: 360px;
+  }
+
+  .checkout-section,
+  .order-sidebar {
+    padding: 16px;
+  }
+
+  .checkout-section-heading {
+    grid-template-columns: 1fr;
   }
 }

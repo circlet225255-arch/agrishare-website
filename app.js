@@ -606,11 +606,49 @@ async function resolveCheckoutProject(project) {
   return enrichedProject;
 }
 
+function getPackageSummary(project, packageId, customAmount = 0) {
+  const fallbackPackage = investmentPackages.find((item) => item.id === packageId) || investmentPackages[0];
+  const databasePackage = project?.packages?.find((item) => item.key === packageId);
+  const amount =
+    databasePackage?.isCustom || packageId === "custom"
+      ? Number(customAmount || 0)
+      : Number(databasePackage?.amount || fallbackPackage?.amount || 0);
+
+  return {
+    label: databasePackage?.label || fallbackPackage?.label || "Gói đầu tư",
+    amount,
+    amountText: amount ? currency.format(amount) : "Tùy chọn đầu tư",
+    note: databasePackage?.isCustom || packageId === "custom" ? "Tùy chọn đầu tư" : fallbackPackage?.note,
+  };
+}
+
+function getDeliverySummary(deliveryMethod) {
+  return deliveryMethod === "farm_pickup"
+    ? "Đăng ký Farm tour"
+    : "Nhận sản phẩm tại nhà";
+}
+
+function updateCheckoutSidebar(flow) {
+  if (!flow) return;
+  const project = projects.find((item) => String(item.id) === String(flow.dataset.projectId));
+  const packageId = flow.dataset.selectedPackage || "goi-1";
+  const customAmount = flow.querySelector("#customInvestmentAmount")?.value;
+  const packageSummary = getPackageSummary(project, packageId, customAmount);
+  const packageLabel = flow.querySelector("#checkoutPackageLabel");
+  const packageAmount = flow.querySelector("#checkoutPackageAmount");
+  const deliveryLabel = flow.querySelector("#checkoutDeliveryLabel");
+
+  if (packageLabel) packageLabel.textContent = `${packageSummary.label} - ${packageSummary.note || packageSummary.amountText}`;
+  if (packageAmount) packageAmount.textContent = packageSummary.amountText;
+  if (deliveryLabel) deliveryLabel.textContent = getDeliverySummary(flow.dataset.selectedDelivery);
+}
+
 function openProject(projectId) {
   const project = projects.find((item) => String(item.id) === String(projectId));
   if (!project) return;
   const packageOptions = getAvailablePackages(project);
   const defaultPackage = packageOptions[0];
+  const defaultPackageSummary = getPackageSummary(project, defaultPackage.id);
 
   dialogContent.innerHTML = `
     <div class="dialog-commerce">
@@ -666,108 +704,148 @@ function openProject(projectId) {
         </div>
       </aside>
       <div class="dialog-checkout">
-        <form class="investment-flow" data-project-id="${project.id}" data-selected-package="${defaultPackage.id}" data-selected-delivery="home_delivery">
-          <div class="flow-header">
-            <span>Đặt đầu tư thật</span>
-            <h4>Khách hàng lựa chọn gói đầu tư</h4>
-            <p>Thông tin bên dưới sẽ được gửi về MongoDB để AgriShare tư vấn, xác nhận thanh toán và theo dõi đơn.</p>
-          </div>
-          <div class="checkout-step">
-            <span>01</span>
-            <div>
-              <h5>Chọn gói đầu tư</h5>
-              <div class="package-grid" role="group" aria-label="Lựa chọn gói đầu tư">
-                ${packageOptions
-                  .map(
-                    (item) => `
-                      <button
-                        class="package-option ${item.id === defaultPackage.id ? "active" : ""}"
-                        type="button"
-                        data-package-id="${item.id}"
-                      >
-                        <span>${item.label}</span>
-                        <strong>${item.note}</strong>
-                      </button>
-                    `,
-                  )
-                  .join("")}
-              </div>
-              <label class="custom-investment" data-custom-investment hidden>
-                Số tiền tùy chọn của khách hàng
-                <input id="customInvestmentAmount" name="customAmount" type="number" min="1000000" step="1000000" placeholder="Nhập số tiền đầu tư" />
-              </label>
+        <form class="investment-flow marketplace-checkout-flow" data-project-id="${project.id}" data-selected-package="${defaultPackage.id}" data-selected-delivery="home_delivery">
+          <div class="checkout-main-column">
+            <div class="flow-header">
+              <span>Đặt đầu tư thật</span>
+              <h4>Khách hàng lựa chọn gói đầu tư</h4>
+              <p>Thông tin bên dưới sẽ được gửi về MongoDB để AgriShare tư vấn, xác nhận thanh toán và theo dõi đơn.</p>
             </div>
-          </div>
-          <div class="checkout-step">
-            <span>02</span>
-            <div class="reward-panel">
-              <span>Quyền lợi</span>
-              <h4>Giá trị sản phẩm nhận lại</h4>
-              <ul id="packageBenefits">${renderBenefits(project, defaultPackage.id)}</ul>
-            </div>
-          </div>
-          <div class="checkout-step">
-            <span>03</span>
-            <div class="delivery-panel">
-              <span>Nhận sản phẩm</span>
-              <h4>Chọn hình thức nhận sản phẩm</h4>
-              <div class="delivery-grid" role="group" aria-label="Hình thức nhận sản phẩm">
-                <button class="delivery-option active" type="button" data-delivery-method="home_delivery">
-                  <strong>Nhận hàng tại nhà</strong>
-                  <small>Lưu địa chỉ giao hàng, lịch giao theo mùa vụ và trạng thái đơn hàng.</small>
-                </button>
-                <button class="delivery-option" type="button" data-delivery-method="farm_pickup">
-                  <strong>Trải nghiệm và nhận sản phẩm tại Farm của Chủ vườn</strong>
-                  <small>Đặt lịch tham quan, xác nhận người tham dự và nhận sản phẩm trực tiếp tại farm.</small>
-                </button>
+            <div class="checkout-step">
+              <span>01</span>
+              <div>
+                <h5>Chọn gói đầu tư</h5>
+                <div class="package-grid" role="group" aria-label="Lựa chọn gói đầu tư">
+                  ${packageOptions
+                    .map(
+                      (item) => `
+                        <button
+                          class="package-option ${item.id === defaultPackage.id ? "active" : ""}"
+                          type="button"
+                          data-package-id="${item.id}"
+                        >
+                          <span>${item.label}</span>
+                          <strong>${item.note}</strong>
+                        </button>
+                      `,
+                    )
+                    .join("")}
+                </div>
+                <label class="custom-investment" data-custom-investment hidden>
+                  Số tiền tùy chọn của khách hàng
+                  <input id="customInvestmentAmount" name="customAmount" type="number" min="1000000" step="1000000" placeholder="Nhập số tiền đầu tư" />
+                </label>
               </div>
             </div>
-          </div>
-          <div class="checkout-step">
-            <span>04</span>
-            <div class="customer-panel">
-              <span>Thông tin khách hàng</span>
-              <h4>AgriShare liên hệ xác nhận đơn</h4>
-              <div class="checkout-grid">
-                <label>
-                  Họ và tên
-                  <input name="fullName" type="text" autocomplete="name" required placeholder="Nguyễn Văn A" />
-                </label>
-                <label>
-                  Số điện thoại
-                  <input name="phone" type="tel" autocomplete="tel" required placeholder="090..." />
-                </label>
-                <label>
-                  Email
-                  <input name="email" type="email" autocomplete="email" placeholder="email@domain.com" />
-                </label>
-                <label>
-                  Ngày mong muốn nhận hàng hoặc đi farm
-                  <input name="preferredDate" type="date" />
-                </label>
-                <label class="checkout-wide">
-                  Địa chỉ nhận hàng
-                  <input name="address" type="text" autocomplete="street-address" placeholder="Số nhà, phường/xã, tỉnh/thành" />
-                </label>
-                <label>
-                  Số người tham gia farm
-                  <input name="participants" type="number" min="1" value="1" />
-                </label>
-                <label class="checkout-wide">
-                  Ghi chú thêm
-                  <textarea name="note" rows="3" placeholder="Nhu cầu nhận hàng, thời gian liên hệ, yêu cầu hóa đơn..."></textarea>
+            <div class="checkout-step">
+              <span>02</span>
+              <div class="reward-panel">
+                <span>Quyền lợi</span>
+                <h4>Giá trị sản phẩm nhận lại</h4>
+                <ul id="packageBenefits">${renderBenefits(project, defaultPackage.id)}</ul>
+              </div>
+            </div>
+            <div class="checkout-step">
+              <span>03</span>
+              <div class="delivery-panel">
+                <span>Nhận sản phẩm</span>
+                <h4>Chọn hình thức nhận sản phẩm</h4>
+                <div class="delivery-grid" role="group" aria-label="Hình thức nhận sản phẩm">
+                  <button class="delivery-option active" type="button" data-delivery-method="home_delivery">
+                    <strong>Nhận hàng tại nhà</strong>
+                    <small>Lưu địa chỉ giao hàng, lịch giao theo mùa vụ và trạng thái đơn hàng.</small>
+                  </button>
+                  <button class="delivery-option" type="button" data-delivery-method="farm_pickup">
+                    <strong>Trải nghiệm và nhận sản phẩm tại Farm của Chủ vườn</strong>
+                    <small>Đặt lịch tham quan, xác nhận người tham dự và nhận sản phẩm trực tiếp tại farm.</small>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="checkout-step">
+              <span>04</span>
+              <div class="customer-panel">
+                <span>Thông tin khách hàng</span>
+                <h4>AgriShare liên hệ xác nhận đơn</h4>
+                <div class="checkout-grid">
+                  <label>
+                    Họ và tên
+                    <input name="fullName" type="text" autocomplete="name" required placeholder="Nguyễn Văn A" />
+                  </label>
+                  <label>
+                    Số điện thoại
+                    <input name="phone" type="tel" autocomplete="tel" required placeholder="090..." />
+                  </label>
+                  <label>
+                    Email
+                    <input name="email" type="email" autocomplete="email" placeholder="email@domain.com" />
+                  </label>
+                  <label>
+                    Ngày mong muốn nhận hàng hoặc đi farm
+                    <input name="preferredDate" type="date" />
+                  </label>
+                  <label class="checkout-wide">
+                    Địa chỉ nhận hàng
+                    <input name="address" type="text" autocomplete="street-address" placeholder="Số nhà, phường/xã, tỉnh/thành" />
+                  </label>
+                  <label>
+                    Số người tham gia farm
+                    <input name="participants" type="number" min="1" value="1" />
+                  </label>
+                  <label class="checkout-wide">
+                    Ghi chú thêm
+                    <textarea name="note" rows="3" placeholder="Nhu cầu nhận hàng, thời gian liên hệ, yêu cầu hóa đơn..."></textarea>
+                  </label>
+                </div>
+                <label class="consent-line">
+                  <input name="consentAccepted" type="checkbox" checked />
+                  Tôi đồng ý để AgriShare lưu thông tin và liên hệ tư vấn đơn đầu tư này theo <a href="legal.html" target="_blank" rel="noreferrer">điều khoản và chính sách bảo mật</a>.
                 </label>
               </div>
-              <label class="consent-line">
-                <input name="consentAccepted" type="checkbox" checked />
-                Tôi đồng ý để AgriShare lưu thông tin và liên hệ tư vấn đơn đầu tư này theo <a href="legal.html" target="_blank" rel="noreferrer">điều khoản và chính sách bảo mật</a>.
-              </label>
             </div>
           </div>
-          <div class="checkout-actions checkout-submit-bar">
-            <button class="btn btn-primary" type="submit">Gửi đơn đầu tư</button>
-            <p id="checkoutStatus" role="status"></p>
-          </div>
+
+          <aside class="checkout-cart-sidebar" aria-label="Tóm tắt đơn Agricoin">
+            <div class="checkout-cart-title">
+              <span class="checkout-cart-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="9" cy="20" r="1.6" />
+                  <circle cx="18" cy="20" r="1.6" />
+                  <path d="M3 4h2l2.2 11.4a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 1.9-1.4L21 8H6.1" />
+                </svg>
+              </span>
+              <div>
+                <h4>Giỏ hàng của bạn</h4>
+                <p>1 món</p>
+              </div>
+            </div>
+            <div class="checkout-cart-product">
+              <img src="${project.image}" alt="${project.name}" />
+              <div>
+                <strong>${project.name}</strong>
+                <span>${project.producer || project.category}</span>
+              </div>
+            </div>
+            <div class="checkout-cart-lines">
+              <div>
+                <span>Gói đang chọn</span>
+                <strong id="checkoutPackageLabel">${defaultPackageSummary.label} - ${defaultPackageSummary.note || defaultPackageSummary.amountText}</strong>
+              </div>
+              <div>
+                <span>Giá trị đơn</span>
+                <strong id="checkoutPackageAmount">${defaultPackageSummary.amountText}</strong>
+              </div>
+              <div>
+                <span>Cách nhận</span>
+                <strong id="checkoutDeliveryLabel">Nhận sản phẩm tại nhà</strong>
+              </div>
+            </div>
+            <p class="checkout-cart-note">Sau khi gửi đơn, AgriShare tạo mã đơn để khách tra cứu thanh toán, lịch giao hàng hoặc lịch trải nghiệm farm.</p>
+            <div class="checkout-actions checkout-submit-bar">
+              <button class="btn btn-primary" type="submit">Gửi đơn đầu tư</button>
+              <p id="checkoutStatus" role="status"></p>
+            </div>
+          </aside>
         </form>
         <div id="orderResult" class="order-result" hidden></div>
       </div>
@@ -855,6 +933,7 @@ function updateInvestmentSelection(packageId) {
     packageId,
     customInput?.value,
   );
+  updateCheckoutSidebar(flow);
 }
 
 function getSelectedInvestmentAmount(flow) {
@@ -1071,6 +1150,8 @@ dialog.addEventListener("click", (event) => {
     dialog.querySelectorAll(".delivery-option").forEach((button) => {
       button.classList.toggle("active", button === deliveryButton);
     });
+
+    updateCheckoutSidebar(flow);
   }
 });
 

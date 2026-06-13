@@ -562,19 +562,6 @@ function renderOrderConfirmation(project) {
         <p>Người tiêu dùng thông thái có thể nhận sản phẩm tại nhà hoặc đăng ký trải nghiệm farm tour theo đặc thù từng sản phẩm.</p>
       </div>
 
-      <div class="fulfillment-choice" role="radiogroup" aria-label="Chọn cách nhận sản phẩm">
-        <button class="fulfillment-option active" type="button" data-fulfillment="home" aria-pressed="true">
-          <span>Nhận sản phẩm tại nhà</span>
-          <strong>${copy.homeTitle}</strong>
-          <small>${copy.homeDescription}</small>
-        </button>
-        <button class="fulfillment-option" type="button" data-fulfillment="farm" aria-pressed="false">
-          <span>Đăng ký Farm tour</span>
-          <strong>${copy.tourTitle}</strong>
-          <small>${copy.tourDescription}</small>
-        </button>
-      </div>
-
       <form
         class="detail-interest-form order-confirmation-form"
         data-current-fulfillment="home"
@@ -586,60 +573,135 @@ function renderOrderConfirmation(project) {
         <input type="hidden" name="product" value="${project.name}" />
         <input type="hidden" name="fulfillment" value="home" />
 
-        <div class="order-summary-strip">
-          <div>
-            <span>Sản phẩm</span>
-            <strong>${project.name}</strong>
+        <div class="checkout-layout">
+          <div class="checkout-main">
+            <div class="checkout-section">
+              <div class="checkout-section-heading">
+                <span>01</span>
+                <div>
+                  <h3>Chọn cách nhận</h3>
+                  <p>Chọn nhận tại nhà hoặc đăng ký farm tour trước khi xác nhận đơn.</p>
+                </div>
+              </div>
+              <div class="fulfillment-choice" role="radiogroup" aria-label="Chọn cách nhận sản phẩm">
+                <button class="fulfillment-option active" type="button" data-fulfillment="home" aria-pressed="true">
+                  <span>Nhận sản phẩm tại nhà</span>
+                  <strong>${copy.homeTitle}</strong>
+                  <small>${copy.homeDescription}</small>
+                </button>
+                <button class="fulfillment-option" type="button" data-fulfillment="farm" aria-pressed="false">
+                  <span>Đăng ký Farm tour</span>
+                  <strong>${copy.tourTitle}</strong>
+                  <small>${copy.tourDescription}</small>
+                </button>
+              </div>
+            </div>
+
+            <div class="checkout-section">
+              <div class="checkout-section-heading">
+                <span>02</span>
+                <div>
+                  <h3>Thông tin khách hàng</h3>
+                  <p>AgriShare dùng thông tin này để tư vấn, xác nhận thanh toán và lịch nhận sản phẩm.</p>
+                </div>
+              </div>
+              <div class="order-form-grid">
+                <label>
+                  Tên khách hàng
+                  <input name="customerName" type="text" placeholder="Nguyễn Văn A" required />
+                </label>
+                <label>
+                  Số điện thoại
+                  <input name="phone" type="tel" placeholder="090..." required />
+                </label>
+                <label>
+                  Email
+                  <input name="email" type="email" placeholder="email@example.com" required />
+                </label>
+                <label>
+                  Địa chỉ nhận sản phẩm
+                  <input name="address" type="text" placeholder="Số nhà, phường/xã, tỉnh/thành" />
+                </label>
+              </div>
+            </div>
+
+            <div class="farm-tour-fields" hidden>
+              <div class="checkout-section">
+                <div class="checkout-section-heading">
+                  <span>03</span>
+                  <div>
+                    <h3>Thông tin Farm tour</h3>
+                    <p>Chỉ cần điền khi khách chọn đăng ký trải nghiệm tại farm.</p>
+                  </div>
+                </div>
+                <div class="order-form-grid">
+                  <label>
+                    ${copy.guestLabel}
+                    <input name="guestCount" type="number" min="1" max="50" placeholder="VD: 4" />
+                  </label>
+                  <label>
+                    ${copy.dateLabel}
+                    <input name="farmDate" type="date" />
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="checkout-section">
+              <div class="checkout-section-heading">
+                <span>04</span>
+                <div>
+                  <h3>Ghi chú cho AgriShare</h3>
+                  <p>Thêm nhu cầu nhận hàng, thời gian liên hệ hoặc yêu cầu riêng nếu có.</p>
+                </div>
+              </div>
+              <label>
+                Ghi chú cho AgriShare
+                <textarea name="note" rows="3" placeholder="${copy.notePlaceholder}"></textarea>
+              </label>
+            </div>
           </div>
-          <div>
-            <span>Sản lượng đã chọn</span>
-            <strong id="orderQuantity">${firstOption.label}</strong>
-          </div>
-          <div>
-            <span>Agricoin dự kiến</span>
-            <strong id="orderCredit">${renderCreditLine(project, firstOption.amount)}</strong>
-          </div>
+
+          <aside class="order-sidebar" aria-label="Tóm tắt đơn Agricoin">
+            <div class="order-sidebar-title">
+              <span class="order-cart-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="9" cy="20" r="1.6" />
+                  <circle cx="18" cy="20" r="1.6" />
+                  <path d="M3 4h2l2.2 11.4a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 1.9-1.4L21 8H6.1" />
+                </svg>
+              </span>
+              <div>
+                <h3>Đơn Agricoin của bạn</h3>
+                <p>1 sản phẩm</p>
+              </div>
+            </div>
+            <div class="order-product-preview">
+              <img src="${project.image}" alt="${project.name}" />
+              <div>
+                <strong>${project.name}</strong>
+                <span>${currency.format(project.unitPrice || CREDIT_VALUE)} / ${project.unitLabel || project.category}</span>
+              </div>
+            </div>
+            <div class="order-summary-strip">
+              <div>
+                <span>Sản phẩm</span>
+                <strong>${project.name}</strong>
+              </div>
+              <div>
+                <span>Sản lượng đã chọn</span>
+                <strong id="orderQuantity">${firstOption.label}</strong>
+              </div>
+              <div>
+                <span>Agricoin dự kiến</span>
+                <strong id="orderCredit">${renderCreditLine(project, firstOption.amount)}</strong>
+              </div>
+            </div>
+            <p class="order-assurance">Sau khi gửi đơn, AgriShare tạo mã đơn để khách tra cứu thanh toán, lịch nhận hàng và nhật ký mùa vụ.</p>
+            <button class="primary-button order-submit-button" type="submit">Xác nhận đơn ${project.name}</button>
+            <p class="form-status" role="status"></p>
+          </aside>
         </div>
-
-        <div class="order-form-grid">
-          <label>
-            Tên khách hàng
-            <input name="customerName" type="text" placeholder="Nguyễn Văn A" required />
-          </label>
-          <label>
-            Số điện thoại
-            <input name="phone" type="tel" placeholder="090..." required />
-          </label>
-          <label>
-            Email
-            <input name="email" type="email" placeholder="email@example.com" required />
-          </label>
-          <label>
-            Địa chỉ nhận sản phẩm
-            <input name="address" type="text" placeholder="Số nhà, phường/xã, tỉnh/thành" />
-          </label>
-        </div>
-
-        <div class="farm-tour-fields" hidden>
-          <div class="order-form-grid">
-            <label>
-              ${copy.guestLabel}
-              <input name="guestCount" type="number" min="1" max="50" placeholder="VD: 4" />
-            </label>
-            <label>
-              ${copy.dateLabel}
-              <input name="farmDate" type="date" />
-            </label>
-          </div>
-        </div>
-
-        <label>
-          Ghi chú cho AgriShare
-          <textarea name="note" rows="3" placeholder="${copy.notePlaceholder}"></textarea>
-        </label>
-
-        <button class="primary-button" type="submit">Xác nhận đơn ${project.name}</button>
-        <p class="form-status" role="status"></p>
       </form>
     </section>
   `;
